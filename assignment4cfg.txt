@@ -1,0 +1,190 @@
+Revision 0 (16 February 2010)
+-----------------------------
+
+Context-free grammar (using JSON conventions)
+for messages sent from the game program to the game-playing program.
+
+<msg>  ::=  <congratulations>
+         |  <condolences>
+         |  <status>
+
+<congratulations>  ::=  { "congratulations" : <win> }
+
+<condolences>  ::=  { "condolences" : <loss> }
+
+<status>  ::=  { <location> }
+
+            |  { <location> , <actors> }
+            |  { <actors> , <location> }
+            |  { <location> , <stuff> }
+            |  { <stuff> , <location> }
+            |  { <location> , <threats> }
+            |  { <threats> , <location> }
+
+            |  { <location> , <actors> , <stuff> }
+            |  { <actors> , <location> , <stuff> }
+            |  { <actors> , <stuff> , <location> }
+            |  { <location> , <stuff> , <actors> }
+            |  { <stuff> , <location> , <actors> }
+            |  { <stuff> , <actors> , <location> }
+
+            |  { <location> , <actors> , <threats> }
+            |  { <actors> , <location> , <threats> }
+            |  { <actors> , <threats> , <location> }
+            |  { <location> , <threats> , <actors> }
+            |  { <threats> , <location> , <actors> }
+            |  { <threats> , <actors> , <location> }
+
+            |  { <location> , <stuff> , <threats> }
+            |  { <stuff> , <location> , <threats> }
+            |  { <stuff> , <threats> , <location> }
+            |  { <location> , <threats> , <stuff> }
+            |  { <threats> , <location> , <stuff> }
+            |  { <threats> , <stuff> , <location> }
+
+            |  { <location> , <actors> , <stuff> , <threats> }
+            |  { <location> , <threats> , <actors> , <stuff> }
+            |  { <location> , <stuff> , <threats> , <actors> }
+            |  { <location> , <actors> , <threats> , <stuff> }
+            |  { <location> , <stuff> , <actors> , <threats> }
+            |  { <location> , <threats> , <stuff> , <actors> }
+
+            |  { <actors> , <location> , <stuff> , <threats> }
+            |  { <threats> , <location> , <actors> , <stuff> }
+            |  { <stuff> , <location> , <threats> , <actors> }
+            |  { <actors> , <location> , <threats> , <stuff> }
+            |  { <stuff> , <location> , <actors> , <threats> }
+            |  { <threats> , <location> , <stuff> , <actors> }
+
+            |  { <actors> , <stuff> , <location> , <threats> }
+            |  { <threats> , <actors> , <location> , <stuff> }
+            |  { <stuff> , <threats> , <location> , <actors> }
+            |  { <actors> , <threats> , <location> , <stuff> }
+            |  { <stuff> , <actors> , <location> , <threats> }
+            |  { <threats> , <stuff> , <location> , <actors> }
+
+            |  { <actors> , <stuff> , <threats> , <location> }
+            |  { <threats> , <actors> , <stuff> , <location> }
+            |  { <stuff> , <threats> , <actors> , <location> }
+            |  { <actors> , <threats> , <stuff> , <location> }
+            |  { <stuff> , <actors> , <threats> , <location> }
+            |  { <threats> , <stuff> , <actors> , <location> }
+
+<win>  ::=  { <score> }
+         |  { <score> , <chronicle> }
+         |  { <chronicle> , <score> }
+         |  { <score> , <hoard> }
+         |  { <hoard> , <score> }
+         |  { <score> , <chronicle> , <hoard> }
+         |  { <hoard> , <score> , <chronicle> }
+         |  { <chronicle> , <hoard> , <score> }
+         |  { <score> , <hoard> , <chronicle> }
+         |  { <chronicle> , <score> , <hoard> }
+         |  { <hoard> , <chronicle> , <score> }
+
+<loss>  ::=  { "error" : <string> }
+          |  <win>
+
+<score>  ::=  "score" : <int>
+
+<chronicle>  ::=  "chronicle" : [ ]
+               |  "chronicle" : [ <events> ]
+
+<hoard>  ::=  "hoard" : [ ]
+           |  "hoard" : [ <items> ]
+
+<actors>  ::=  "actors" : [ ]
+            |  "actors" : [ <characters> ]
+
+<threats>  ::=  "threats" : [ ]
+             |  "threats" : [ <problems> ]
+
+<stuff>  ::=  "stuff" : [ ]
+           |  "stuff" : [ <items> ]
+
+<location>  ::=  "location" : <place>
+
+<place>  ::=  "outside the castle"
+           |  "in the moat"
+           |  { "room" : <room> }
+
+<room>  ::=  { <purpose> , <attributes> , <exits> }
+
+<purpose>  ::=  "purpose" : <string>
+
+<attributes>  ::=  "attributes" : [ ]
+                |  "attributes" : [ <strings> ]
+
+<exits>  ::=  "exits" : [ ]
+           |  "exits" : [ <directions> ]
+
+<direction>  ::=  "up"  |  "down"  |  "east"  |  "west"  |  "north"  |  "south"
+
+<character>  ::=  [ <stereotype> ]
+               |  [ <stereotype> , <strings> ]
+
+<stereotype>  ::=  "prince"
+                |  "princess"
+                |  "noble"
+                |  "guard"
+                |  "minion"
+                |  "dog"
+                |  "cat"
+                |  "bird"
+                |  "dragon"
+                |  "snake"
+                |  "hamster"
+                |  "rat"
+                |  "mosquito"
+
+<event>  ::=  { <verb> : <thing> }
+
+<verb>  ::=  <string>
+
+<thing>  ::=  <character>
+           |  <item>
+
+<item>  ::=  { "frog" : [ ] }
+          |  { "treasure" : <string> , "value" : <int> }
+          |  { "weapon" : <string> , "lethality" : <int> }
+          |  { "artifact" : <string> , "description" : [ <strings> ] }
+
+<problem>  ::=  { "ill" : <int> }
+             |  { "tired" : <int> }
+             |  { "injured" : <int> }
+             |  { "attacked" : <character> }
+
+<events>  ::=  <event>
+            |  <event> , <events>
+
+<items>  ::=  <item>
+           |  <item> , <items>
+
+<characters>  ::=  <character>
+                |  <character> , <characters>
+
+<problems>  ::=  <problem>
+              |  <problem> , <problems>
+
+<directions>  ::=  <direction>
+                |  <direction> , <directions>
+
+<strings>  ::=  <string>
+             |  <string> , <strings>
+
+****************************************************************
+
+Notes.
+
+The order of pairs in a <status> or <win> does not matter.
+
+The ordering of <events> matters.
+
+The ordering of <items> or <characters> or <problems>
+does not matter.
+
+The ordering of <strings> does not matter.
+
+The ordering of <directions> does not matter.
+
+****************************************************************
