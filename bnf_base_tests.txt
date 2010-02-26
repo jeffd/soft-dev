@@ -1,0 +1,2 @@
+"string" ||| quotedstring ||| "string"
+<foo> ||| bracketexp ||| "foo"

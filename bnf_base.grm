@@ -1,0 +1,4 @@
+quotedstring ::= (('"' | '\''):q (~<exactly q> <anything>)*:xs <exactly q>
+                     => ''.join(xs))
+bracketexp ::= '<'<name>:e'>' => e
+name ::= <letterOrDigit>+:ls => ''.join(ls)
