@@ -1,7 +1,10 @@
-number ::= <int>:i                  => i
+number ::= <int2>:i               => i
 
-int    ::= '-'<num>:i           => -i
-            | <num>:i              => i
+int ::= '-'<num>:i               => i * -1
+      | <num>:i                  => i
 
-num    ::= <num>:n <digit>:d    => n * 10 + d
-            | <digit>:d            => d
+int2 ::= <digit>+:ds             => reduce(lambda x,y : x * 10 + y, ds)
+       | -<digits>+:s            => -1 * reduce(lambda x,y : x * 10 + y, ds)
+
+num ::= <num>:n <digit>:d        => n * 10 + d
+      | <digit>:d                => d

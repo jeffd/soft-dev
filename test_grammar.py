@@ -23,15 +23,22 @@ def run_tests(grammar_iter, tests_iter):
     results = []
     failures = []
     for test in tests_iter:
-        test_string, production = [x.strip() for x in test.split("|||")]
+        to_parse, production, expected = [x.strip() for x in test.split("|||")]
 
-        application = parser(test_string)
+        application = parser(to_parse)
         try:
-            application.apply(production)
-            results.append(".")
+            expected_value = eval(expected)
+            result_value   = application.apply(production)
+            if result_value == expected_value:
+                results.append(".")
+            else:
+                results.append("F")
+                fail = "Test %s, %s failed" % (to_parse, production)
+                ex   = "Expected '%s', got '%s'" % (expected, result_value)
+                failures.append((fail, ex))
         except Exception as e:
             results.append("F")
-            fail = "Test %s, %s failed" % (test_string, production)
+            fail = "Test %s, %s failed" % (to_parse, production)
             ex   = "%s: %s" % (e.__class__.__name__, e)
             failures.append((fail, ex))
 
