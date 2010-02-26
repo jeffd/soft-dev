@@ -1,3 +1,10 @@
 CS 4500: Software Development: Spring 2010
 ==========================================
 
+[Testing Grammars]
+Create your grammer in a .grm file.
+Create your tests in a .txt file.
+Run:
+    cat <grammar> | python test_grammar.py -i <tests>
+
+For an example, see json_base.grm and json_base_tests.txt

@@ -1,0 +1,7 @@
+number ::= <int>:i                  => i
+
+int    ::= '-'<num>:i           => -i
+            | <num>:i              => i
+
+num    ::= <num>:n <digit>:d    => n * 10 + d
+            | <digit>:d            => d
