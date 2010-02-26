@@ -7,4 +7,8 @@ Create your tests in a .txt file.
 Run:
     cat <grammar> | python test_grammar.py -i <tests>
 
+    or
+
+    python test_grammar.py <grammar> <tests>
+
 For an example, see json_base.grm and json_base_tests.txt

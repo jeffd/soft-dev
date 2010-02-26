@@ -44,7 +44,7 @@ if __name__ == "__main__":
     options, args = opt.parse_args()
 
     ac = len(args)
-    if (options.from_stdin and ac != 1) or not (options.from_stdin and ac != 2):
+    if (options.from_stdin and ac != 1) or (ac != 2 and not options.from_stdin):
         print "usage: tester.py [-i] [<grammar_file>] <tests_file>"
         sys.exit(-1)
 
