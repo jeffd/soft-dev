@@ -1,12 +1,30 @@
 { "score" : 30 } ||| win
-[{ "frog" : [ ] }] ||| items
-[{ "treasure" : "silver plate", "value" : 85 }] ||| items
-[{ "treasure" : "silver plate", "value" : 85 }, { "frog" : [ ] }] ||| items
-[{ "artifact" : "tomb", "description" : ["hello"] }] ||| items
-[{ "artifact" : "tomb", "description" : ["hello","world"] }] ||| items
-[{ "weapon" : "laser gun", "lethality" : 55 }] ||| items
+{ "frog" : [ ] } ||| items
+{ "treasure" : "silver plate", "value" : 85 } ||| items
+{ "treasure" : "silver plate", "value" : 85 }, { "frog" : [ ] } ||| items
+{ "artifact" : "tomb", "description" : ["hello"] } ||| items
+{ "artifact" : "tomb", "description" : ["hello","world"] } ||| items
+{ "weapon" : "laser gun", "lethality" : 55 } ||| items
 "hoard" : [ ] ||| hoard
 "hoard" : [{ "frog" : [ ] }], "score" : 1000 }] ||| hoard
+{"found the frog" : { "frog" : [ ] }} ||| event
+{"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }} ||| event
+"prince" ||| stereotype
+"princess" ||| stereotype
+"noble" ||| stereotype
+"guard" ||| stereotype
+"minion" ||| stereotype
+"dog" ||| stereotype
+"cat" ||| stereotype
+"bird" ||| stereotype
+"dragon" ||| stereotype
+"snake" ||| stereotype
+"hamster" ||| stereotype
+"rat" ||| stereotype
+"mosquito" ||| stereotype
+"hefty", "handsome" ||| strings
+{"ran into a prince" : ["prince", "hefty", "handsome"]} ||| event
+{"found the frog" : { "frog" : [ ] }}, {"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }} ||| events
 { "congratulations" : { "score" : 30 } } ||| congratulations
 { "congratulations" : { "hoard" : [ ], "score" : 30 } } ||| congratulations
 { "congratulations" : { "hoard" : [{ "frog" : [ ] }], "score" : 1000 } } ||| congratulations
