@@ -1,11 +1,25 @@
-{ "congratulations" : { "score" : 30 }} ||| msg ||| { "congratulations" : { "score" : 30 }}
-{"congratulations" : { "hoard" : [ ], "score" : 30 } } ||| msg ||| {"congratulations" : { "hoard" : [ ], "score" : 30 } }
-{"congratulations" : { "hoard" : [{ "frog" : [ ] }], "score" : 1000 } } ||| congratulations ||| 25
-{"congratulations" : { "hoard" : [{ "frog" : [ ] }, { "treasure" : "gold", "value" : 9999999 }], "score" : 30 } } ||| congratulations ||| 25
-{"congratulations" : { "hoard" : [{ "treasure" : "silver plate", "value" : 85 }, { "frog" : [ ] }], "score" : 30 } } ||| congratulations ||| 25
-{"congratulations" : { "hoard" : [{ "weapon" : "laser gun", "lethality" : 55 }, { "frog" : [ ] }], "score" : 30 } } ||| congratulations ||| 25
-{"congratulations" : { "hoard" : [{ "frog" : [ ] }, { "weapon" : "laser gun", "lethality" : 55 }], "score" : 30 } } ||| congratulations ||| 25
-{"congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello"] }], "score" : 30 } } ||| congratulations ||| 25
-{"congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world"] }], "score" : 30 } } ||| congratulations ||| 25
-{"congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world"] }], "score" : 30 } } ||| congratulations ||| 25
-{"congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world","today"] }], "score" : 30 } } ||| congratulations ||| 25
+{ "score" : 30 } ||| win
+[{ "frog" : [ ] }] ||| items
+[{ "treasure" : "silver plate", "value" : 85 }] ||| items
+[{ "treasure" : "silver plate", "value" : 85 }, { "frog" : [ ] }] ||| items
+[{ "artifact" : "tomb", "description" : ["hello"] }] ||| items
+[{ "artifact" : "tomb", "description" : ["hello","world"] }] ||| items
+[{ "weapon" : "laser gun", "lethality" : 55 }] ||| items
+"hoard" : [ ] ||| hoard
+"hoard" : [{ "frog" : [ ] }], "score" : 1000 }] ||| hoard
+{ "congratulations" : { "score" : 30 } } ||| congratulations
+{ "congratulations" : { "hoard" : [ ], "score" : 30 } } ||| congratulations
+{ "congratulations" : { "hoard" : [{ "frog" : [ ] }], "score" : 1000 } } ||| congratulations
+{ "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "treasure" : "gold", "value" : 9999999 }], "score" : 30 } } ||| congratulations
+{ "congratulations" : { "hoard" : [{ "treasure" : "silver plate", "value" : 85 }, { "frog" : [ ] }], "score" : 30 } } ||| congratulations
+{ "congratulations" : { "hoard" : [{ "weapon" : "laser gun", "lethality" : 55 }, { "frog" : [ ] }], "score" : 30 } } ||| congratulations
+{ "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "weapon" : "laser gun", "lethality" : 55 }], "score" : 30 } } ||| congratulations
+{ "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello"] }], "score" : 30 } } ||| congratulations
+{ "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world"] }], "score" : 30 } } ||| congratulations
+{ "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world"] }], "score" : 30 } } ||| congratulations
+{ "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world","today"] }], "score" : 30 } } ||| congratulations
+{ "congratulations" : { "score" : 30, "chronicle" : [ ] } } ||| congratulations
+{ "congratulations" : { "score" : 30, "chronicle" : [{"found the frog" : { "frog" : [ ] }}] } } ||| congratulations
+{ "congratulations" : { "score" : 30, "chronicle" : [{"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }}] } } ||| congratulations
+{ "congratulations" : { "score" : 30, "chronicle" : [{"found the frog" : { "frog" : [ ] }}, {"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }}] } } ||| congratulations
+{ "congratulations" : { "score" : 30, "chronicle" : [{"ran into a prince" : ["prince", "hefty", "handsome"]}]}} ||| congratulations
