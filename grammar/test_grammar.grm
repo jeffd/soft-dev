@@ -1,0 +1,205 @@
+msg ::= <spaces> <congratulations>
+        | <spaces> <condolences>
+        | <spaces> <status>
+
+congratulations ::= <token '{'> <token '"congratulations"'> <token ':'> <spaces> <win> <token '}'>
+
+condolences ::= <token '{'> <token '"condolences"'> <token ':'> <spaces> <loss> <token '}'>
+
+status ::= <token '{'> <spaces> <location> <token '}'>
+
+        | <token '{'> <spaces> <location> <token ','> <spaces> <actors> <token '}'>
+        | <token '{'> <spaces> <actors> <token ','> <spaces> <location> <token '}'>
+        | <token '{'> <spaces> <location> <token ','> <spaces> <stuff> <token '}'>
+        | <token '{'> <spaces> <stuff> <token ','> <spaces> <location> <token '}'>
+        | <token '{'> <spaces> <location> <token ','> <spaces> <threats> <token '}'>
+        | <token '{'> <spaces> <threats> <token ','> <spaces> <location> <token '}'>
+
+        | <token '{'> <spaces> <location> <token ','> <spaces> <actors> <token ','> <spaces> <stuff> <token '}'>
+        | <token '{'> <spaces> <actors> <token ','> <spaces> <location> <token ','> <spaces> <stuff> <token '}'>
+        | <token '{'> <spaces> <actors> <token ','> <spaces> <stuff> <token ','> <spaces> <location> <token '}'>
+        | <token '{'> <spaces> <location> <token ','> <spaces> <stuff> <token ','> <spaces> <actors> <token '}'>
+        | <token '{'> <spaces> <stuff> <token ','> <spaces> <location> <token ','> <spaces> <actors> <token '}'>
+        | <token '{'> <spaces> <stuff> <token ','> <spaces> <actors> <token ','> <spaces> <location> <token '}'>
+
+        | <token '{'> <spaces> <location> <token ','> <spaces> <actors> <token ','> <spaces> <threats> <token '}'>
+        | <token '{'> <spaces> <actors> <token ','> <spaces> <location> <token ','> <spaces> <threats> <token '}'>
+        | <token '{'> <spaces> <actors> <token ','> <spaces> <threats> <token ','> <spaces> <location> <token '}'>
+        | <token '{'> <spaces> <location> <token ','> <spaces> <threats> <token ','> <spaces> <actors> <token '}'>
+        | <token '{'> <spaces> <threats> <token ','> <spaces> <location> <token ','> <spaces> <actors> <token '}'>
+        | <token '{'> <spaces> <threats> <token ','> <spaces> <actors> <token ','> <spaces> <location> <token '}'>
+
+        | <token '{'> <spaces> <location> <token ','> <spaces> <stuff> <token ','> <spaces> <threats> <token '}'>
+        | <token '{'> <spaces> <stuff> <token ','> <spaces> <location> <token ','> <spaces> <threats> <token '}'>
+        | <token '{'> <spaces> <stuff> <token ','> <spaces> <threats> <token ','> <spaces> <location> <token '}'>
+        | <token '{'> <spaces> <location> <token ','> <spaces> <threats> <token ','> <spaces> <stuff> <token '}'>
+        | <token '{'> <spaces> <threats> <token ','> <spaces> <location> <token ','> <spaces> <stuff> <token '}'>
+        | <token '{'> <spaces> <threats> <token ','> <spaces> <stuff> <token ','> <spaces> <location> <token '}'>
+
+        | <token '{'> <spaces> <location> <token ','> <spaces> <actors> <token ','> <spaces> <stuff> <token ','> <spaces> <threats> <token '}'>
+        | <token '{'> <spaces> <location> <token ','> <spaces> <threats> <token ','> <spaces> <actors> <token ','> <spaces> <stuff> <token '}'>
+        | <token '{'> <spaces> <location> <token ','> <spaces> <stuff> <token ','> <spaces> <threats> <token ','> <spaces> <actors> <token '}'>
+        | <token '{'> <spaces> <location> <token ','> <spaces> <actors> <token ','> <spaces> <threats> <token ','> <spaces> <stuff> <token '}'>
+        | <token '{'> <spaces> <location> <token ','> <spaces> <stuff> <token ','> <spaces> <actors> <token ','> <spaces> <threats> <token '}'>
+        | <token '{'> <spaces> <location> <token ','> <spaces> <threats> <token ','> <spaces> <stuff> <token ','> <spaces> <actors> <token '}'>
+
+        | <token '{'> <spaces> <actors> <token ','> <spaces> <location> <token ','> <spaces> <stuff> <token ','> <spaces> <threats> <token '}'>
+        | <token '{'> <spaces> <threats> <token ','> <spaces> <location> <token ','> <spaces> <actors> <token ','> <spaces> <stuff> <token '}'>
+        | <token '{'> <spaces> <stuff> <token ','> <spaces> <location> <token ','> <spaces> <threats> <token ','> <spaces> <actors> <token '}'>
+        | <token '{'> <spaces> <actors> <token ','> <spaces> <location> <token ','> <spaces> <threats> <token ','> <spaces> <stuff> <token '}'>
+        | <token '{'> <spaces> <stuff> <token ','> <spaces> <location> <token ','> <spaces> <actors> <token ','> <spaces> <threats> <token '}'>
+        | <token '{'> <spaces> <threats> <token ','> <spaces> <location> <token ','> <spaces> <stuff> <token ','> <spaces> <actors> <token '}'>
+
+        | <token '{'> <spaces> <actors> <token ','> <spaces> <stuff> <token ','> <spaces> <location> <token ','> <spaces> <threats> <token '}'>
+        | <token '{'> <spaces> <threats> <token ','> <spaces> <actors> <token ','> <spaces> <location> <token ','> <spaces> <stuff> <token '}'>
+        | <token '{'> <spaces> <stuff> <token ','> <spaces> <threats> <token ','> <spaces> <location> <token ','> <spaces> <actors> <token '}'>
+        | <token '{'> <spaces> <actors> <token ','> <spaces> <threats> <token ','> <spaces> <location> <token ','> <spaces> <stuff> <token '}'>
+        | <token '{'> <spaces> <stuff> <token ','> <spaces> <actors> <token ','> <spaces> <location> <token ','> <spaces> <threats> <token '}'>
+        | <token '{'> <spaces> <threats> <token ','> <spaces> <stuff> <token ','> <spaces> <location> <token ','> <spaces> <actors> <token '}'>
+
+        | <token '{'> <spaces> <actors> <token ','> <spaces> <stuff> <token ','> <spaces> <threats> <token ','> <spaces> <location> <token '}'>
+        | <token '{'> <spaces> <threats> <token ','> <spaces> <actors> <token ','> <spaces> <stuff> <token ','> <spaces> <location> <token '}'>
+        | <token '{'> <spaces> <stuff> <token ','> <spaces> <threats> <token ','> <spaces> <actors> <token ','> <spaces> <location> <token '}'>
+        | <token '{'> <spaces> <actors> <token ','> <spaces> <threats> <token ','> <spaces> <stuff> <token ','> <spaces> <location> <token '}'>
+        | <token '{'> <spaces> <stuff> <token ','> <spaces> <actors> <token ','> <spaces> <threats> <token ','> <spaces> <location> <token '}'>
+        | <token '{'> <spaces> <threats> <token ','> <spaces> <stuff> <token ','> <spaces> <actors> <token ','> <spaces> <location> <token '}'>
+
+win ::= <token '{'> <spaces> <score> <token '}'>
+        | <token '{'> <spaces> <score> <token ','> <spaces> <chronicle> <token '}'>
+        | <token '{'> <spaces> <chronicle> <token ','> <spaces> <score> <token '}'>
+        | <token '{'> <spaces> <score> <token ','> <spaces> <hoard> <token '}'>
+        | <token '{'> <spaces> <hoard> <token ','> <spaces> <score> <token '}'>
+        | <token '{'> <spaces> <score> <token ','> <spaces> <chronicle> <token ','> <spaces> <hoard> <token '}'>
+        | <token '{'> <spaces> <hoard> <token ','> <spaces> <score> <token ','> <spaces> <chronicle> <token '}'>
+        | <token '{'> <spaces> <chronicle> <token ','> <spaces> <hoard> <token ','> <spaces> <score> <token '}'>
+        | <token '{'> <spaces> <score> <token ','> <spaces> <hoard> <token ','> <spaces> <chronicle> <token '}'>
+        | <token '{'> <spaces> <chronicle> <token ','> <spaces> <score> <token ','> <spaces> <hoard> <token '}'>
+        | <token '{'> <spaces> <hoard> <token ','> <spaces> <chronicle> <token ','> <spaces> <score> <token '}'>
+
+loss ::= <token '{'> <token '"error"'> <token ':'> <spaces> <string> <token '}'>
+        | <spaces> <win>
+
+score ::= <token '"score"'> <token ':'> <spaces> <int>
+
+chronicle ::= <token '"chronicle"'> <token ':'> <token '['> <token ']'>
+        | <token '"chronicle"'> <token ':'> <token '['> <spaces> <events> <token ']'>
+
+hoard ::= <token '"hoard"'> <token ':'> <token '['> <token ']'>
+        | <token '"hoard"'> <token ':'> <token '['> <spaces> <items> <token ']'>
+
+actors ::= <token '"actors"'> <token ':'> <token '['> <token ']'>
+        | <token '"actors"'> <token ':'> <token '['> <spaces> <characters> <token ']'>
+
+threats ::= <token '"threats"'> <token ':'> <token '['> <token ']'>
+        | <token '"threats"'> <token ':'> <token '['> <spaces> <problems> <token ']'>
+
+stuff ::= <token '"stuff"'> <token ':'> <token '['> <token ']'>
+        | <token '"stuff"'> <token ':'> <token '['> <spaces> <items> <token ']'>
+
+location ::= <token '"location"'> <token ':'> <spaces> <place>
+
+place ::= <token '"outside'> <token 'the'> <token 'castle"'>
+        | <token '"in'> <token 'the'> <token 'moat"'>
+        | <token '{'> <token '"room"'> <token ':'> <spaces> <room> <token '}'>
+
+room ::= <token '{'> <spaces> <purpose> <token ','> <spaces> <attributes> <token ','> <spaces> <exits> <token '}'>
+
+purpose ::= <token '"purpose"'> <token ':'> <spaces> <string>
+
+attributes ::= <token '"attributes"'> <token ':'> <token '['> <spaces> <strings> <token ']'>
+        | <token '"attributes"'> <token ':'> <token '['> <token ']'>
+
+exits ::= <token '"exits"'> <token ':'> <token '['> <spaces> <directions> <token ']'>
+        | <token '"exits"'> <token ':'> <token '['> <token ']'>
+
+
+direction ::= <token '"up"'> <token '|'> <token '"down"'> <token '|'> <token '"east"'> <token '|'> <token '"west"'> <token '|'> <token '"north"'> <token '|'> <token '"south"'>
+
+character ::= <token '['> <spaces> <stereotype> <token ']'>
+        | <token '['> <spaces> <stereotype> <token ','> <spaces> <strings> <token ']'>
+
+stereotype ::= <token '"prince"'>
+        | <token '"princess"'>
+        | <token '"noble"'>
+        | <token '"guard"'>
+        | <token '"minion"'>
+        | <token '"dog"'>
+        | <token '"cat"'>
+        | <token '"bird"'>
+        | <token '"dragon"'>
+        | <token '"snake"'>
+        | <token '"hamster"'>
+        | <token '"rat"'>
+        | <token '"mosquito"'>
+
+event ::= <token '{'> <spaces> <verb> <token ':'> <spaces> <thing> <token '}'>
+
+verb ::= <spaces> <string>
+
+thing ::= <spaces> <character>
+        | <spaces> <item>
+
+item ::= <token '{'> <token '"frog"'> <token ':'> <token '['> <token ']'> <token '}'>
+        | <token '{'> <token '"treasure"'> <token ':'> <spaces> <string> <token ','> <token '"value"'> <token ':'> <spaces> <int> <token '}'>
+        | <token '{'> <token '"weapon"'> <token ':'> <spaces> <string> <token ','> <token '"lethality"'> <token ':'> <spaces> <int> <token '}'>
+        | <token '{'> <token '"artifact"'> <token ':'> <spaces> <string> <token ','> <token '"description"'> <token ':'> <token '['> <spaces> <strings> <token ']'> <token '}'>
+
+problem ::= <token '{'> <token '"ill"'> <token ':'> <spaces> <int> <token '}'>
+        | <token '{'> <token '"tired"'> <token ':'> <spaces> <int> <token '}'>
+        | <token '{'> <token '"injured"'> <token ':'> <spaces> <int> <token '}'>
+        | <token '{'> <token '"attacked"'> <token ':'> <spaces> <character> <token '}'>
+
+events ::= <spaces> <event> <token ','> <spaces> <events>
+        | <spaces> <event>
+        
+items ::= <spaces> <item> <token ','> <spaces> <items>
+        | <spaces> <item>
+
+characters ::= <spaces> <character>
+        | <spaces> <character> <token ','> <spaces> <characters>
+
+problems ::= <spaces> <problem> <token ','> <spaces> <problems>
+        | <spaces> <problem>
+
+directions ::= <spaces> <direction> <token ','> <spaces> <directions>
+        | <spaces> <direction>
+
+strings ::= <spaces> <string> <token ','> <spaces> <strings>
+        | <spaces> <string>
+
+escapedChar ::= '\\' ('n' => u"\n"
+                     |'r' => u"\r"
+                     |'t' => u"\t"
+                     |'b' => u"\b"
+                     |'f' => u"\f"
+                     |'"' => u'"'
+                     |'\'' => u"'"
+                     |'\\' => u"\\"
+                     |'u' <hexdigit>+:h ?(len(h) == 4)
+                        => unichr(int("".join(h), 16)))
+
+hexdigit ::= :x ?(x in "0123456789abcdefABCDEF") => x
+
+string ::= <token '"'> (<escapedChar> | ~('"') <anything>)*:c <token '"'>
+                => u"".join(c)
+
+number ::= '-' <unsigned_number>:n      => -1 * n
+         | <unsigned_number>:n          => n
+
+unsigned_number ::= <int>:i <frac>:f <expon>:e   => (i + f) * e
+                  | <int>:i <expon>:e            => i * e
+                  | <int>:i <frac>:f             => i + f
+                  | <int>:i                      => i
+
+int ::= <digit>+:ds             => int("".join(ds))
+
+frac ::= '.' <digit>+:ds        => float("".join(ds)) / (10**len(ds))
+
+expon ::= <e>:e <digit>+:ds     => e * 10**int("".join(ds))
+
+e ::= "e" "-"            => -1
+    | "e" "+"            => 1
+    | "e"                => 1
+    | "E" "-"            => -1
+    | "E" "+"            => 1
+    | "E"                => 1
