@@ -1,0 +1,6 @@
+25                                          ||| number          ||| 25
+{"score" : 25}                              ||| score           |||
+{"congratulations" : {"score" : 25}}        ||| congratulations |||
+"foobar"                                    ||| string          |||
+{"error" : "bad person"}                    ||| error           |||
+{"condolences" : {"error" : "wrong input"}} ||| condolences     |||

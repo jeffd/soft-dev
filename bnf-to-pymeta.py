@@ -18,11 +18,11 @@ def convert_line(line):
     match = production_start.match(line)
     if match:
         name, body = match.groups()
-        return "%s ::= %s" % (name, convert_body(body))
+        return "%s ::= %s    => 0" % (name, convert_body(body))
     match = production_cont.match(line)
     if match:
         body = match.groups()[0]
-        return "        | %s" % convert_body(body)
+        return "        | %s    => 0" % convert_body(body)
     return ""
 
 def convert_body(body):
@@ -35,7 +35,8 @@ def convert_body(body):
         result.extend(tokenized)
         if refs:
             next_ref = refs.pop(0)
-            result.append(next_ref)
+            result.append("<spaces>")
+            result.append("%s:%s" % (next_ref, next_ref[1:-1]))
     return " ".join(result)
 
 def tokenize(str):

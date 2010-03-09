@@ -1,8 +1,0 @@
-24                   ||| number ||| 24
--24                  ||| number ||| -24
-25.5                 ||| number ||| 25.5
--25.5                ||| number ||| 0
-1e100                ||| number ||| 0
--1e100               ||| number ||| 0
-1.1e100              ||| number ||| 0
--1.1e100             ||| number ||| 0

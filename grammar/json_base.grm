@@ -1,0 +1,36 @@
+escapedChar ::= '\\' ('n' => u"\n"
+                     |'r' => u"\r"
+                     |'t' => u"\t"
+                     |'b' => u"\b"
+                     |'f' => u"\f"
+                     |'"' => u'"'
+                     |'\'' => u"'"
+                     |'\\' => u"\\"
+                     |'u' <hexdigit>+:h ?(len(h) == 4)
+                        => unichr(int("".join(h), 16)))
+
+hexdigit ::= :x ?(x in "0123456789abcdefABCDEF") => x
+
+string ::= <token '"'> (<escapedChar> | ~('"') <anything>)*:c <token '"'>
+                => u"".join(c)
+
+number ::= '-' <unsigned_number>:n      => -1 * n
+         | <unsigned_number>:n          => n
+
+unsigned_number ::= <int>:i <frac>:f <expon>:e   => (i + f) * e
+                  | <int>:i <expon>:e            => i * e
+                  | <int>:i <frac>:f             => i + f
+                  | <int>:i                      => i
+
+int ::= <digit>+:ds             => int("".join(ds))
+
+frac ::= '.' <digit>+:ds        => float("".join(ds)) / (10**len(ds))
+
+expon ::= <e>:e <digit>+:ds     => e * 10**int("".join(ds))
+
+e ::= "e" "-"            => -1
+    | "e" "+"            => 1
+    | "e"                => 1
+    | "E" "-"            => -1
+    | "E" "+"            => 1
+    | "E"                => 1

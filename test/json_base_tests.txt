@@ -1,0 +1,15 @@
+24                   ||| number ||| 24
+-24                  ||| number ||| -24
+25.5                 ||| number ||| 25.5
+25.5253              ||| number ||| 25.5253
+-25.5                ||| number ||| -25.5
+1e5                  ||| number ||| 100000
+-1e5                 ||| number ||| -100000
+1.1e5                ||| number ||| 110000.0
+-1.1e5               ||| number ||| -110000.0
+""                   ||| string ||| ""
+"foobar"             ||| string ||| "foobar"
+"foo\nbar"           ||| string ||| "foo\nbar"
+"\u1234"             ||| string ||| unichr(0x1234)
+"foo\tbar\n\fbar"    ||| string ||| "foo\tbar\n\fbar"
+"\\win\\baz"         ||| string ||| r"\win\baz"
