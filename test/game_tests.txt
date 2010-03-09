@@ -36,6 +36,10 @@
 { "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world"] }], "score" : 30 } } ||| congratulations
 { "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world"] }], "score" : 30 } } ||| congratulations
 { "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world","today"] }], "score" : 30 } } ||| congratulations
+"chronicle" : [ ] ||| chronicle
+"chronicle" : [{"found the frog" : { "frog" : [ ] }}] ||| chronicle
+"chronicle" : [{"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }}] ||| chronicle
+"chronicle" : [{"found the frog" : { "frog" : [ ] }}, {"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }}] ||| chronicle
 { "congratulations" : { "score" : 30, "chronicle" : [ ] } } ||| congratulations
 { "congratulations" : { "score" : 30, "chronicle" : [{"found the frog" : { "frog" : [ ] }}] } } ||| congratulations
 { "congratulations" : { "score" : 30, "chronicle" : [{"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }}] } } ||| congratulations
