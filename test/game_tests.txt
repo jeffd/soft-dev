@@ -75,5 +75,17 @@
 "exits" : ["east", "west"] ||| exits
 { "purpose" : "find key", "attributes" : [ ], "exits" : [ ]} ||| room
 { "purpose" : "find key", "attributes" : [ ], "exits" : ["east", "west"]} ||| room
+"location" : { "room" :  { "purpose" : "find key", "attributes" : [ ], "exits" : [ ]}}  ||| location
+"location" : { "room" :  { "purpose" : "find key", "attributes" : [ ], "exits" : ["north", "south"]} } ||| location
 { "location" : { "room" :  { "purpose" : "find key", "attributes" : [ ], "exits" : [ ]} } } ||| status
 { "location" : { "room" :  { "purpose" : "find key", "attributes" : [ ], "exits" : ["north", "south"]} } } ||| status
+"actors" : [ ] ||| actors
+["prince", "hefty", "handsome"] ||| character
+["princess", "sultry", "big", "loud"] ||| character
+["guard", "fat", "mean"] ||| character
+["minion", "small"] ||| character
+["hamster"] ||| character
+["hamster"], ["minion", "small"], ["prince", "hefty", "handsome"] ||| characters
+"actors" : [["hamster"], ["minion"]] ||| actors
+"stuff" : [ ] ||| stuff
+"stuff" : [{ "frog" : [ ] },{ "treasure" : "gold" , "value" : 99 }] ||| stuff
