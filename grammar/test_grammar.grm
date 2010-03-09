@@ -87,8 +87,8 @@ chronicle ::= <token '"chronicle"'> <token ':'> <token '['> <token ']'>
 hoard ::= <token '"hoard"'> <token ':'> <token '['> <token ']'>
         | <token '"hoard"'> <token ':'> <token '['> <spaces> <items> <token ']'>
 
-actors ::= <token '"actors"'> <token ':'> <token '['> <token ']'>
-        | <token '"actors"'> <token ':'> <token '['> <spaces> <characters> <token ']'>
+actors ::= <token '"actors"'> <token ':'> <token '['> <spaces> <characters> <token ']'>
+        | <token '"actors"'> <token ':'> <token '['> <token ']'>
 
 threats ::= <token '"threats"'> <token ':'> <token '['> <token ']'>
         | <token '"threats"'> <token ':'> <token '['> <spaces> <problems> <token ']'>
@@ -113,7 +113,7 @@ exits ::= <token '"exits"'> <token ':'> <token '['> <spaces> <directions> <token
         | <token '"exits"'> <token ':'> <token '['> <token ']'>
 
 
-direction ::= <token '"up"'> <token '|'> <token '"down"'> <token '|'> <token '"east"'> <token '|'> <token '"west"'> <token '|'> <token '"north"'> <token '|'> <token '"south"'>
+direction ::= <token '"up"'> | <token '"down"'> | <token '"east"'> | <token '"west"'> | <token '"north"'> | <token '"south"'>
 
 character ::= <token '['> <spaces> <stereotype> <token ']'>
         | <token '['> <spaces> <stereotype> <token ','> <spaces> <strings> <token ']'>
@@ -155,8 +155,8 @@ events ::= <spaces> <event> <token ','> <spaces> <events>
 items ::= <spaces> <item> <token ','> <spaces> <items>
         | <spaces> <item>
 
-characters ::= <spaces> <character>
-        | <spaces> <character> <token ','> <spaces> <characters>
+characters ::= <spaces> <character> <token ','> <spaces> <characters>
+        | <spaces> <character>
 
 problems ::= <spaces> <problem> <token ','> <spaces> <problems>
         | <spaces> <problem>
