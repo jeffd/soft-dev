@@ -16,7 +16,7 @@
 "minion" ||| stereotype
 "dog" ||| stereotype
 "cat" ||| stereotype
-"bird" ||| stereotype
+"bird" ||| stereotypeg
 "dragon" ||| stereotype
 "snake" ||| stereotype
 "hamster" ||| stereotype
@@ -25,6 +25,8 @@
 "hefty", "handsome" ||| strings
 {"ran into a prince" : ["prince", "hefty", "handsome"]} ||| event
 {"found the frog" : { "frog" : [ ] }}, {"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }} ||| events
+"hoard" : [{ "frog" : [ ] }] ||| hoard
+"hoard" : [{ "treasure" : "silver plate", "value" : 85}]  ||| hoard
 { "congratulations" : { "score" : 30 } } ||| congratulations
 { "congratulations" : { "hoard" : [ ], "score" : 30 } } ||| congratulations
 { "congratulations" : { "hoard" : [{ "frog" : [ ] }], "score" : 1000 } } ||| congratulations
@@ -36,6 +38,7 @@
 { "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world"] }], "score" : 30 } } ||| congratulations
 { "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world"] }], "score" : 30 } } ||| congratulations
 { "congratulations" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world","today"] }], "score" : 30 } } ||| congratulations
+{ "congratulations" : { "score" : 1000, "hoard" : [{ "frog" : [ ] }] } } ||| congratulations
 "chronicle" : [ ] ||| chronicle
 "chronicle" : [{"found the frog" : { "frog" : [ ] }}] ||| chronicle
 "chronicle" : [{"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }}] ||| chronicle
@@ -45,3 +48,13 @@
 { "congratulations" : { "score" : 30, "chronicle" : [{"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }}] } } ||| congratulations
 { "congratulations" : { "score" : 30, "chronicle" : [{"found the frog" : { "frog" : [ ] }}, {"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }}] } } ||| congratulations
 { "congratulations" : { "score" : 30, "chronicle" : [{"ran into a prince" : ["prince", "hefty", "handsome"]}]}} ||| congratulations
+{ "congratulations" : { "chronicle" : [{"ran into a prince" : ["prince", "hefty", "handsome"]}], "score" : 30 }} ||| congratulations
+{ "congratulations" : { "hoard" : [{ "frog" : [ ] }], "chronicle" : [{"ran into a prince" : ["prince", "hefty", "handsome"]}], "score" : 30 }} ||| congratulations
+{ "error" : "The mainframe crashed!" }  ||| loss
+{ "condolences" : { "error" : "The mainframe crashed!" } } ||| condolences
+{ "condolences" : { "hoard" : [ ], "score" : 30 } } ||| condolences
+{ "condolences" : { "score" : 30, "chronicle" : [{"got a weapon" : { "weapon" : "laser gun", "lethality" : 55 }}] }} ||| condolences
+{ "condolences" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello"] }], "score" : 30 }} ||| condolences
+{ "condolences" : { "score" : 30 } } ||| condolences
+{ "condolences" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world","today"] }], "score" : 30 } } ||| condolences
+{ "condolences" : { "hoard" : [{ "frog" : [ ] }], "chronicle" : [{"ran into a prince" : ["prince", "hefty", "handsome"]}], "score" : 30 } } ||| condolences
