@@ -13,7 +13,7 @@ from pymeta.grammar import OMeta
 from pymeta.runtime import ParseError
 from optparse import OptionParser
 
-def run_tests(grammar_iter, tests_iter):
+def run_tests(grammar_iter, tests_iter, expecting=False):
     """ Creates an OMeta grammar from the given grammar iterable, and
         tries to parse each test in the given test iterable
     """
@@ -23,13 +23,16 @@ def run_tests(grammar_iter, tests_iter):
     results = []
     failures = []
     for test in tests_iter:
-        to_parse, production, expected = [x.strip() for x in test.split("|||")]
+        if expecting:
+            to_parse, production, expected = [x.strip() for x in test.split("|||")]
+            expected_value = eval(expected)
+        else:
+            to_parse, production = [x.strip() for x in test.split("|||")]
 
         application = parser(to_parse)
         try:
-            expected_value = eval(expected)
             result_value   = application.apply(production)
-            if result_value == expected_value:
+            if not expecting or result_value == expected_value:
                 results.append(".")
             else:
                 results.append("F")
@@ -48,6 +51,8 @@ if __name__ == "__main__":
     opt = OptionParser()
     opt.add_option("-i", "--std-in", action="store_true", dest="from_stdin",
             help="Should the grammar file be read from stdin?", default=False)
+    opt.add_option("-e", "--expecting", action="store_true", dest="expecting",
+            help="Do these tests have a third column for expected value?", default=False)
     options, args = opt.parse_args()
 
     ac = len(args)
@@ -62,7 +67,7 @@ if __name__ == "__main__":
         grammar_file = open(args[0])
         tests_file  = open(args[1])
 
-    results, failures = run_tests(grammar_file, tests_file)
+    results, failures = run_tests(grammar_file, tests_file, options.expecting)
     print "===Results==="
     print "".join(results)
     if failures:
