@@ -16,7 +16,7 @@
 "minion" ||| stereotype
 "dog" ||| stereotype
 "cat" ||| stereotype
-"bird" ||| stereotypeg
+"bird" ||| stereotype
 "dragon" ||| stereotype
 "snake" ||| stereotype
 "hamster" ||| stereotype
@@ -58,3 +58,22 @@
 { "condolences" : { "score" : 30 } } ||| condolences
 { "condolences" : { "hoard" : [{ "frog" : [ ] }, { "artifact" : "tomb", "description" : ["hello","world","today"] }], "score" : 30 } } ||| condolences
 { "condolences" : { "hoard" : [{ "frog" : [ ] }], "chronicle" : [{"ran into a prince" : ["prince", "hefty", "handsome"]}], "score" : 30 } } ||| condolences
+"location" : "outside the castle" ||| location
+"location" : "in the moat" ||| location
+{ "location" : "outside the castle" } ||| status
+{ "location" : "in the moat" } ||| status
+"purpose" : "find key" ||| purpose
+"attributes" : [ ] ||| attributes
+"attributes" : ["stinky", "blue"] ||| attributes
+"exits" : [ ] ||| exits
+"up" ||| direction
+"down" ||| direction
+"east" ||| direction
+"west" ||| direction
+"north" ||| direction
+"south" ||| direction
+"exits" : ["east", "west"] ||| exits
+{ "purpose" : "find key", "attributes" : [ ], "exits" : [ ]} ||| room
+{ "purpose" : "find key", "attributes" : [ ], "exits" : ["east", "west"]} ||| room
+{ "location" : { "room" :  { "purpose" : "find key", "attributes" : [ ], "exits" : [ ]} } } ||| status
+{ "location" : { "room" :  { "purpose" : "find key", "attributes" : [ ], "exits" : ["north", "south"]} } } ||| status
