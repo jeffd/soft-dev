@@ -1,0 +1,4 @@
+"prince" ||| stereotype
+"princess" ||| stereotype
+"noble" ||| stereotype
+{"ran into a stereotype" : [<stereotype>]} ||| event
