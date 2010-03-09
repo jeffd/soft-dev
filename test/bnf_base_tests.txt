@@ -1,2 +1,9 @@
-"string" ||| quotedstring ||| "string"
-<foo> ||| bracketexp ||| "foo"
+"string" ||| string ||| "string"
+<foo> ||| dropbracketexp ||| "foo"
+<foo> ||| bracketexp ||| "<foo>"
+{ <goo> } ||| cbracket ||| "<token '{'><spaces> <goo> <spaces><token '}'>"
+a ||| identifier ||| "a"
+foo ::= a||| rule ||| "foo"
+<congratulations>  ::=  { "congratulations" : <win> } ||| rule ||| ""
+{ "congratulations" } ||| factor ||| ""
+
