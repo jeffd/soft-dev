@@ -54,13 +54,27 @@ def generate_tests(tests_iter):
         found_replacement = False
         
         for string_to_look_for in strings_to_look_for:
+            # For every stirng to find
             if raw_line.find(string_to_look_for) != -1:
                     # Found one of the strings
                     found_replacement = True
-                    for replacement in test_types[string_to_look_for.replace('<','').replace('>','')]:
-                        results.append(raw_line.replace(string_to_look_for,replacement))
+                    
+                    # Type is the text within <>
+                    type = string_to_look_for.replace('<','').replace('>','')
+                    
+                    # For keeping track of strings to replace it with
+                    replacements = []
+                    
+                    # Parse through the list of type
+                    for replace_with in test_types[type]:
+                        # Replace the <type_name> with the value
+                        replacements.append(raw_line.replace(string_to_look_for,replace_with))
+                    
+                    # Add replacements to results
+                    results.extend(replacements)                
         
         if not found_replacement:
+            # We didn't find any <>s so just add raw line
             results.append(raw_line)
         
     
