@@ -7,7 +7,8 @@ from pexpect import spawn, TIMEOUT
 class spawn(spawn):
     def receive_response(self, timeout):
         """ Receives characters until times out from
-        no more being sent, returns string """
+        no more being sent, returns string if it gets anything,
+        returns False if not"""
         chars = []
 
         while True:
