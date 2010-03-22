@@ -1,0 +1,28 @@
+begin room
+location =
+(0,0,0)
+message =
+{ "location" : { "room" : { "purpose" : "pantry" ,
+                            "attributes" : [ "stone" ,
+                                             "straw-floor" ,
+                                             "fireplace east" ] ,
+                            "exits" : [ "south" ,
+                                        "up" ,
+                                        "north" ] } } }
+end room
+begin room
+location =
+(0, 0, 1)
+message = 
+{ "actors" : [ [ "minion" ,
+                 "unworthy" ] ] ,
+  "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "stone" ,
+                                             "fireplace south" ] ,
+                            "exits" : [ "east" ,
+                                        "south" ,
+                                        "north" ,
+                                        "west" ,
+                                        "down" ] } } }
+end room
