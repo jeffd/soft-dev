@@ -5,25 +5,34 @@ from pexpect import spawn, TIMEOUT
 
 # Extending spawn for recieve convience functions
 class spawn(spawn):
-    def receive_response(self, timeout):
+    def receive_response(self, response_timeout, character_timeout):
         """ Receives characters until times out from
         no more being sent, returns string if it gets anything,
-        returns False if not"""
+        throws Exception if it times out"""
         chars = []
 
         while True:
             try:
+                # If we haven't received a response yet use the response_timeout
+                # to know when to stop looking for a response
+                # Otherwise, use the character_timeout to know when stop
+                # reading characters
+                if chars == []:
+                    timeout = response_timeout
+                else:
+                    timeout = character_timeout
                 char = self.read_nonblocking(1,timeout)
             except TIMEOUT:
                 break
 
             chars.append(char)
         
-        # Return false if we couldn't get anything, otherwise join characters
+        # If we didnt get any chars the response timed out
         if chars == []:
-            return False
-        else:
-            return ''.join(chars)
+            raise Exception("Program timed out , didnt receive a response after \
+                            %f " % (response_timeout))
+        
+        return ''.join(chars)
 
 def next_move(response):
     """ Function to determine next move """
@@ -47,15 +56,15 @@ parser.add_option("-l", "--larceny", dest="larceny", default="larceny",
 parser.add_option("-g", "--game", dest="game", help="Location of game file")
 parser.add_option("-c", "--charactertimeout", dest="character_timeout",
                   help="Time out for reading characters", type="float",
-                  default=0.25)
-parser.add_option("-t", "--totaltimeoutlimit", dest="total_timeout_limit",
+                  default=0.10)
+parser.add_option("-r", "--responsetimeout", dest="response_timeout",
                   help="Timeout for total reading from shell", type="float",
                   default=4.00)
 (options, args) = parser.parse_args()
 
 # Get important options
 character_timeout = options.character_timeout
-total_timeout_limit = options.total_timeout_limit
+response_timeout = options.response_timeout
 
 # Make sure they specific a game
 if options.game == None:
@@ -66,29 +75,17 @@ process = '%s -r6rs -program %s' % (options.larceny, options.game)
 
 # Start process
 with closing(spawn(process)) as child:
-    # Summing total time of timeouts (failed character getting)
-    total_timeouts = 0.0
-    
     # Start playing
     play_game = True
     
     # Make moves until you can't any more
     while play_game:
         # Get response
-        response = child.receive_response(character_timeout)
-        
-        # If we couldn't get a response, try again if we haven't reached
-        # max timeout
-        if response == False:
-            total_timeouts = total_timeouts + character_timeout
-            if total_timeouts < total_timeout_limit:
-                # Try again
-                continue
-            else:
-                raise Exception("Program timed out after %f" % (total_timeouts))
+        response = child.receive_response(response_timeout, character_timeout)
         
         # Display response
         print response
+        
         # Strip first line for decoding, it's either the Version number or the last move
         response = response[response.find('\n') + 1:len(response)]    
         
