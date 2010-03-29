@@ -1,3 +1,4 @@
+from castle import Castle, Location
 from contextlib import closing
 from json import loads
 from optparse import OptionParser
@@ -30,20 +31,30 @@ class spawn(spawn):
         
         return ''.join(chars)
 
-def next_move(response):
-    """ Function to determine next move """
-    # Encode into python dict
-    response_object = loads(response)
+def encode_response(current_location, castle, response):
+    # Add location to castle
+    castle.add_visited_location(current_location)
     
+    # Strip first line for decoding, it's either the Version number or the last move
+    response = response[response.find('\n') + 1:len(response)]    
+    return loads(response)
+
+def next_move(current_location, castle, response):
+    """ Function to determine next move, command to send
+    and new location"""
+
     # Determine exits
     try:
-        exits = response_object['location']['room']['exits']
+        exits = response['location']['room']['exits']
     except (KeyError, TypeError):
         # No exits in dict, don't know what to do!
         return False
     
+    direction_to_move = exits[0]
+    
     # Go to first exit
-    return ('(go %s)' % exits[0])
+    return ('(go %s)' % direction_to_move), \
+            current_location.next_location(direction_to_move)
 
 # Get options from command line
 parser = OptionParser()
@@ -69,6 +80,10 @@ if options.game == None:
 # Setup command to execute program
 process = '%s -r6rs -program %s' % (options.larceny, options.game)
 
+# Setup objects
+castle = Castle()
+current_location = Location(0,0,0)
+
 # Start process
 with closing(spawn(process)) as child:
     # Start playing
@@ -80,15 +95,16 @@ with closing(spawn(process)) as child:
         response = child.receive_response(response_timeout, character_timeout)
         
         # Display response
+        print "Current location", current_location
         print response
         
-        # Strip first line for decoding, it's either the Version number or the last move
-        response = response[response.find('\n') + 1:len(response)]    
-        
-        # Send next move
-        move = next_move(response)
+        # Encode response
+        response = encode_response(current_location, castle, response)
+        # Determine next move and update location
+        move, current_location = next_move(current_location, castle, response)
         if move == False:
             print "No exits, don't know what to do"
             break
     
         child.sendline(move)
+
