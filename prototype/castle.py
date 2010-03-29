@@ -38,7 +38,8 @@ class Castle:
         self.exits = []
     
     def add_visited_location(self, location):
-        self.visited_locations.append(location)
+        if location not in self.visited_locations:
+            self.visited_locations.append(location)
     
     def get_visited_locations(self):
         return self.visited_locations
