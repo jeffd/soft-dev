@@ -1575,6 +1575,34 @@ class spawn (object):
         raise ExceptionPexpect ('This method is no longer supported or allowed. Just assign a value to the logfile member variable.')
 
 ##############################################################################
+# The following method was added by Steve
+
+    def receive_response(self, response_timeout, character_timeout):
+        """ Receives characters until times out from
+        no more being sent, returns string if it gets anything,
+        throws Exception if it times out"""
+        chars = []
+        
+        # Get first character, using initial response timeout
+        try:
+            chars.append(self.read_nonblocking(1,response_timeout))
+        except TIMEOUT:
+            raise Exception("Program timed out , didnt receive a response after \
+                                        %f " % (response_timeout))
+        
+        # We've got at least one character of response
+        # Get rest of response, using different (shorter) character timeout
+        while True:
+            try:
+                char = self.read_nonblocking(1,character_timeout)
+            except TIMEOUT:
+                break
+
+            chars.append(char)
+        
+        return ''.join(chars)
+
+##############################################################################
 # End of spawn class
 ##############################################################################
 
