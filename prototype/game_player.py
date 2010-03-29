@@ -47,14 +47,29 @@ def next_move(current_location, castle, response):
     try:
         exits = response['location']['room']['exits']
     except (KeyError, TypeError):
-        # No exits in dict, don't know what to do!
-        return False
+        # FIXME: fix, make prettier, could be something else
+        
+        # No exits in dict, probably is an exit
+        castle.add_exit(current_location)
+        
+        # FIXME: if we have the frog we're done
+        # or maybe we should stop
+        print 'Found exit'
+        return '(stop)', current_location, False
     
-    direction_to_move = exits[0]
+    # We have exits, lets go somewhere we haven't been before
+    unexplored_moves = castle.unexplored_moves(current_location, exits)
+    if unexplored_moves == []:
+        # No unexplored moves, just use first exit
+        # TODO: improve
+        direction_to_move = exits[0]
+    else:
+        # Use first unexplored move
+        direction_to_move = unexplored_moves[0]
     
     # Go to first exit
     return ('(go %s)' % direction_to_move), \
-            current_location.next_location(direction_to_move)
+            current_location.next_location(direction_to_move), True
 
 # Get options from command line
 parser = OptionParser()
@@ -95,16 +110,15 @@ with closing(spawn(process)) as child:
         response = child.receive_response(response_timeout, character_timeout)
         
         # Display response
-        print "Current location", current_location
         print response
         
         # Encode response
         response = encode_response(current_location, castle, response)
+        
+        print "Current location", current_location
+        print "Visited Locations", castle.get_visited_locations()
+        
         # Determine next move and update location
-        move, current_location = next_move(current_location, castle, response)
-        if move == False:
-            print "No exits, don't know what to do"
-            break
-    
+        move, current_location, play_game = next_move(current_location, castle, response)
         child.sendline(move)
 
