@@ -1,15 +1,15 @@
 # Data structures for game player
 
-class Location:
+direction_mapping = {
+    'up': lambda x: Location(x[0]+1, x[1], x[2]),
+    'down' : lambda x: Location(x[0]-1, x[1], x[2]),
+    'east' : lambda x: Location(x[0], x[1]-1, x[2]),
+    'west' : lambda x: Location(x[0], x[1]+1, x[2]),
+    'north' : lambda x: Location(x[0], x[1], x[2]+1),
+    'south' : lambda x: Location(x[0], x[1], x[2]-1),
+    }
 
-    direction_mapping = {
-        'up': lambda x: Location(x[0]+1, x[1], x[2]),
-        'down' : lambda x: Location(x[0]-1, x[1], x[2]),
-        'east' : lambda x: Location(x[0], x[1]-1, x[2]),
-        'west' : lambda x: Location(x[0], x[1]+1, x[2]),
-        'north' : lambda x: Location(x[0], x[1], x[2]+1),
-        'south' : lambda x: Location(x[0], x[1], x[2]-1),
-        }
+class Location:
     
     def __init__(self, floor, x, y):
         self.location = (floor, x, y)
@@ -29,7 +29,7 @@ class Location:
         """ Returns the next location that will we be in given that
         we go 'direction' (String) """
         # <direction>  ::=  up  |  down  |  east  |  west  |  north  |  south
-        return self.direction_mapping[direction](self.location)
+        return direction_mapping[direction](self.location)
 
 class Castle:
     
