@@ -1,7 +1,6 @@
 
 
-class SimplePlayer:
-    
+class Player:    
     def __init__(self, castle, current_location):
         self.castle = castle
         self.current_location = current_location
@@ -14,6 +13,34 @@ class SimplePlayer:
         # before actually receiving the response
         self.current_location = new_location
         self.castle.add_visited_location(new_location)
+        
+    def next_move(self, response):
+        """ Function to determine next move, command to send
+        and new location"""
+        
+        # Determine if we want to pickup objects
+        if 'stuff' in response:
+            message_to_send = self.stuff_response(response['stuff'])
+            if message_to_send:
+                return message_to_send, True
+        
+        # Make sure we have a location
+        if not ('location' in response):
+            raise Exception("Location not found in response")
+        
+        # Response for outside the moat
+        if response['location'] == "outside the castle":
+            return self.outside_response()
+        
+        # Response for in the moat
+        if response['location'] == "in the moat":
+            # FIXME: What does in the moat mean?
+            raise Exception("Don't understand what to do in the moat")
+        
+        # Default room response
+        return self.room_response(response['location']['room'])
+
+class SimplePlayer(Player):
     
     def stuff_response(self, stuff):
         """ Returns message if we want to pickup anything,
@@ -55,29 +82,3 @@ class SimplePlayer:
         
         # Go to first exit
         return ('(go %s)' % direction_to_move), True
-        
-    def next_move(self, response):
-        """ Function to determine next move, command to send
-        and new location"""
-        
-        # Determine if we want to pickup objects
-        if 'stuff' in response:
-            message_to_send = self.stuff_response(response['stuff'])
-            if message_to_send:
-                return message_to_send, True
-        
-        # Make sure we have a location
-        if not ('location' in response):
-            raise Exception("Location not found in response")
-        
-        # Response for outside the moat
-        if response['location'] == "outside the castle":
-            return self.outside_response()
-        
-        # Response for in the moat
-        if response['location'] == "in the moat":
-            # FIXME: What does in the moat mean?
-            raise Exception("Don't understand what to do in the moat")
-        
-        # Default room response
-        return self.room_response(response['location']['room'])
