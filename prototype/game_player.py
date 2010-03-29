@@ -122,3 +122,6 @@ with closing(spawn(process)) as child:
         move, current_location, play_game = next_move(current_location, castle, response)
         child.sendline(move)
 
+    # Receive last response
+    response = child.read()
+    print response
