@@ -46,7 +46,8 @@ class SimplePlayer(Player):
         """ Returns message if we want to pickup anything,
         otherwise returns False """
         for thing in stuff:
-            if ('treasure' in thing) and ('value' in thing):
+            if ('treasure' in thing) and ('value' in thing) \
+                and (thing['treasure'] == 'gold'):
                 return '(carry (treasure "%s" %i))' \
                         % (thing['treasure'], thing['value'])
         
