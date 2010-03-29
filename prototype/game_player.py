@@ -10,27 +10,23 @@ class spawn(spawn):
         no more being sent, returns string if it gets anything,
         throws Exception if it times out"""
         chars = []
-
+        
+        # Get first character, using initial response timeout
+        try:
+            chars.append(self.read_nonblocking(1,response_timeout))
+        except TIMEOUT:
+            raise Exception("Program timed out , didnt receive a response after \
+                                        %f " % (response_timeout))
+        
+        # We've got at least one character of response
+        # Get rest of response, using different (shorter) character timeout
         while True:
             try:
-                # If we haven't received a response yet use the response_timeout
-                # to know when to stop looking for a response
-                # Otherwise, use the character_timeout to know when stop
-                # reading characters
-                if chars == []:
-                    timeout = response_timeout
-                else:
-                    timeout = character_timeout
-                char = self.read_nonblocking(1,timeout)
+                char = self.read_nonblocking(1,character_timeout)
             except TIMEOUT:
                 break
 
             chars.append(char)
-        
-        # If we didnt get any chars the response timed out
-        if chars == []:
-            raise Exception("Program timed out , didnt receive a response after \
-                            %f " % (response_timeout))
         
         return ''.join(chars)
 
