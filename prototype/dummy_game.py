@@ -45,7 +45,7 @@ class Room:
         return 'Location %s, Message %s' % (str(self.location), self.message)
     
     def print_message(self):
-        print message
+        print self.message
 
 class DummyCastle:
     
@@ -81,11 +81,7 @@ with open(options.castle_file, 'r') as castle_file:
                              location_convert('y'))
         room = Room(location, message)
         
-        #print 'room message', room.message
         dummy_castle.add_room(room)
-        print 'list', dummy_castle.list_of_rooms
 
 print "Version Test"
 dummy_castle.find_room(Location(0,0,0)).print_message()
-
-print dummy_castle.list_of_rooms
