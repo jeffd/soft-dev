@@ -115,21 +115,42 @@ while collect_input:
                 continue
     
     # See if they want to pickup anything
+    carried_item = False
     if "stuff" in response:
-        for stuff in response['stuff']:
-
-            if 'treasure' in stuff.keys():
-                if input == '(carry (treasure "%s" %i))' % \
-                                    (stuff['treasure'], \
-                                     stuff['value']):
-                    
-                    
-                    # Delete carried treasure and remove from message
-                    response['stuff'].remove(stuff)
-                    # Turn back into string and set message
-                    current_room.set_message(response)
-                    current_room.print_message()
-                    continue
+        for item in response['stuff']:
+        
+            # TODO: include artifact
+            print item.keys()
+            if ('frog' in item.keys()) and (input == '(carry (frog))'):
+                print item
+                carried_item = item
+                break
+            
+            item_int_mapping = {
+                'treasure' : 'value',
+                'weapon' : 'lethality',
+            }
+            for item_key in item_int_mapping.keys():
+                if item_key in item.keys():
+                    if input == '(carry (%s "%s" %i))' % \
+                                        (item_key,
+                                         item[item_key],
+                                         item[item_int_mapping[item_key]]):
+                        
+                        carried_item = item
+                        break
+            
+            if carried_item:
+                break
+        
+        if carried_item:
+            # Delete item from room
+            response['stuff'].remove(carried_item)
+            
+            # Update message with item taken away
+            current_room.set_message(response)
+            current_room.print_message()
+            continue
     
     
     
