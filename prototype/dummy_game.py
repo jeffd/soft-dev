@@ -25,7 +25,6 @@ with multiple rooms like:
 from castle import Location
 from json import loads, JSONEncoder
 from optparse import OptionParser
-from pprint import PrettyPrinter
 from xml.etree import ElementTree
 
 # Get options from command line
@@ -42,7 +41,6 @@ class Room:
     def __init__(self, location, message):
         self.location = location
         self.message = message
-        self.pp = PrettyPrinter()
         self.encoder = JSONEncoder(indent=4)
     
     def __repr__(self):
