@@ -1,28 +1,44 @@
-begin room
-location =
-(0,0,0)
-message =
-{ "location" : { "room" : { "purpose" : "pantry" ,
-                            "attributes" : [ "stone" ,
-                                             "straw-floor" ,
-                                             "fireplace east" ] ,
-                            "exits" : [ "south" ,
-                                        "up" ,
-                                        "north" ] } } }
-end room
-begin room
-location =
-(0, 0, 1)
-message = 
-{ "actors" : [ [ "minion" ,
-                 "unworthy" ] ] ,
-  "location" : { "room" : { "purpose" : "gallery" ,
-                            "attributes" : [ "bare-floor" ,
-                                             "stone" ,
-                                             "fireplace south" ] ,
-                            "exits" : [ "east" ,
-                                        "south" ,
-                                        "north" ,
-                                        "west" ,
-                                        "down" ] } } }
-end room
+<castle>
+    <room>
+        <location>
+            <floor>0</floor>
+            <x>0</x>
+            <y>0</y>
+        </location>
+        <message>
+            { "actors" : [ [ "minion" ,
+                         "unworthy" ] ] ,
+            "location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "bare-floor" ,
+                                                       "stone" ,
+                                                       "fireplace south" ] ,
+                                      "exits" : [ "east" ] } } }
+        </message>
+    </room>
+    <room>
+        <location>
+            <floor>0</floor>
+            <x>1</x>
+            <y>0</y>
+        </location>
+        <message>
+            { "actors" : [ [ "minion" ,
+                         "unworthy" ] ] ,
+            "location" : { "room" : { "purpose" : "studio" ,
+                                      "attributes" : [ "bare-floor" ,
+                                                       "stone" ,
+                                                       "fireplace south" ] ,
+                                      "exits" : [ "east" ] } } }
+        </message>
+    </room>
+    <room>
+        <location>
+            <floor>0</floor>
+            <x>2</x>
+            <y>0</y>
+        </location>
+        <message>
+            { "location" : "outside the castle" }
+        </message>
+    </room>
+</castle>
