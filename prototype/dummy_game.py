@@ -108,6 +108,20 @@ while collect_input:
                 new_location = current_room.location.next_location(exit)
                 current_room = dummy_castle.find_room(new_location)
                 current_room.print_message()
+                continue
+    
+    # See if they want to pickup anything
+    if "stuff" in response:
+        for stuff in response['stuff']:
+
+            if 'treasure' in stuff.keys():
+                if input == '(carry (treasure "%s" %i))' % \
+                                    (stuff['treasure'], \
+                                     stuff['value']):
+                    
+                    # TODO: delete carried treasure
+                    current_room.print_message()
+                    continue
     
     
     
