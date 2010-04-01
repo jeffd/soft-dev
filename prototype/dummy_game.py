@@ -23,6 +23,7 @@ with multiple rooms like:
 
 """
 from castle import Location
+from json import loads
 from optparse import OptionParser
 from xml.etree import ElementTree
 
@@ -44,6 +45,9 @@ class Room:
     def __repr__(self):
         return 'Location %s, Message %s' % (str(self.location), self.message)
     
+    def get_message(self):
+        return self.message
+
     def print_message(self):
         print self.message
 
@@ -84,4 +88,27 @@ with open(options.castle_file, 'r') as castle_file:
         dummy_castle.add_room(room)
 
 print "Version Test"
-dummy_castle.find_room(Location(0,0,0)).print_message()
+current_room = dummy_castle.find_room(Location(0,0,0))
+current_room.print_message()
+
+collect_input = True
+while collect_input:
+    input = raw_input("")
+    
+    # Convert message
+    response = loads(current_room.message)
+    
+    # See if they are going to go to an exit
+    if ("location" in response) and ("room" in response['location']) \
+        and ("exits" in response["location"]["room"]):
+        
+        exits = response["location"]["room"]["exits"]
+        for exit in exits:
+            if input == ('(go %s)' % (exit)):
+                new_location = current_room.location.next_location(exit)
+                current_room = dummy_castle.find_room(new_location)
+                current_room.print_message()
+    
+    
+    
+    
