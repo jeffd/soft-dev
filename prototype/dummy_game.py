@@ -23,8 +23,9 @@ with multiple rooms like:
 
 """
 from castle import Location
-from json import loads
+from json import loads, JSONEncoder
 from optparse import OptionParser
+from pprint import PrettyPrinter
 from xml.etree import ElementTree
 
 # Get options from command line
@@ -45,6 +46,9 @@ class Room:
     def __repr__(self):
         return 'Location %s, Message %s' % (str(self.location), self.message)
     
+    def set_message(self, message):
+        self.message = message
+        
     def get_message(self):
         return self.message
 
@@ -91,6 +95,10 @@ print "Version Test"
 current_room = dummy_castle.find_room(Location(0,0,0))
 current_room.print_message()
 
+# Setup objects that don't need to be recreated every loop
+encoder = JSONEncoder()
+pp = PrettyPrinter()
+
 collect_input = True
 while collect_input:
     input = raw_input("")
@@ -119,7 +127,11 @@ while collect_input:
                                     (stuff['treasure'], \
                                      stuff['value']):
                     
-                    # TODO: delete carried treasure
+                    
+                    # Delete carried treasure and remove from message
+                    response['stuff'].remove(stuff)
+                    # Turn back into string and set messag
+                    current_room.set_message(encoder.encode(response))
                     current_room.print_message()
                     continue
     
