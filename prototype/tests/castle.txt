@@ -24,6 +24,8 @@
         <message>
             { "actors" : [ [ "minion" ,
                          "unworthy" ] ] ,
+            "stuff" : [ { "treasure" : "coin" ,
+                "value" : 6 } ],
             "location" : { "room" : { "purpose" : "studio" ,
                                       "attributes" : [ "bare-floor" ,
                                                        "stone" ,
