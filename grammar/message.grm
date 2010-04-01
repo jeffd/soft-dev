@@ -1,0 +1,23 @@
+msg  ::=  ("go" <direction>)
+       |  ("stop")
+       |  ("enter")
+       |  ("enter-randomly")
+       |  ("carry" <item>)
+       |  ("drop" <item>)
+
+direction  ::=  "up"  |  "down"  |  "east"  |  "west"  |  "north"  |  "south"
+
+item  ::=  ("frog")
+        |  ("treasure" <string> <int>)
+        |  ("weapon" <string> <int>)
+        |  ("artifact" <string>)
+        |  ("artifact" <string> <strings>)
+
+strings ::=  <string>
+          |  <string> <strings>
+
+term  ::=  (<msg><spaces><item>)
+
+syntax ::= <token "("> <expression> <token ")">
+
+identifier ::=  (<letter> | <digit>)
