@@ -42,6 +42,8 @@ class Room:
     def __init__(self, location, message):
         self.location = location
         self.message = message
+        self.pp = PrettyPrinter()
+        self.encoder = JSONEncoder(indent=4)
     
     def __repr__(self):
         return 'Location %s, Message %s' % (str(self.location), self.message)
@@ -53,7 +55,7 @@ class Room:
         return self.message
 
     def print_message(self):
-        print self.message
+        print self.encoder.encode(self.message)
 
 class DummyCastle:
     
@@ -81,7 +83,7 @@ with open(options.castle_file, 'r') as castle_file:
     
     for room in rooms:
         location = room.find('location')
-        message = room.find('message').text.strip()
+        message = loads(room.find('message').text.strip())
         
         location_convert = lambda x: int(location.find(x).text.strip())
         location = Location(location_convert('floor'),
@@ -95,16 +97,12 @@ print "Version Test"
 current_room = dummy_castle.find_room(Location(0,0,0))
 current_room.print_message()
 
-# Setup objects that don't need to be recreated every loop
-encoder = JSONEncoder()
-pp = PrettyPrinter()
-
 collect_input = True
 while collect_input:
     input = raw_input("")
     
     # Convert message
-    response = loads(current_room.message)
+    response = current_room.message
     
     # See if they are going to go to an exit
     if ("location" in response) and ("room" in response['location']) \
@@ -130,8 +128,8 @@ while collect_input:
                     
                     # Delete carried treasure and remove from message
                     response['stuff'].remove(stuff)
-                    # Turn back into string and set messag
-                    current_room.set_message(encoder.encode(response))
+                    # Turn back into string and set message
+                    current_room.set_message(response)
                     current_room.print_message()
                     continue
     
