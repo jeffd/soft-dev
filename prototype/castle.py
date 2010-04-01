@@ -3,8 +3,8 @@
 direction_mapping = {
     'up': lambda x: Location(x[0]+1, x[1], x[2]),
     'down' : lambda x: Location(x[0]-1, x[1], x[2]),
-    'east' : lambda x: Location(x[0], x[1]-1, x[2]),
-    'west' : lambda x: Location(x[0], x[1]+1, x[2]),
+    'east' : lambda x: Location(x[0], x[1]+1, x[2]),
+    'west' : lambda x: Location(x[0], x[1]-1, x[2]),
     'north' : lambda x: Location(x[0], x[1], x[2]+1),
     'south' : lambda x: Location(x[0], x[1], x[2]-1),
     }
