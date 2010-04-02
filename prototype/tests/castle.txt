@@ -1,10 +1,7 @@
 <castle>
     <room id="A">
         <message>
-            { "actors" : [ [ "minion" ,
-                         "unworthy" ] ] ,
-            "stuff" : [ { "frog" : [ ] } ],
-            "location" : { "room" : { "purpose" : "gallery" ,
+            {"location" : { "room" : { "purpose" : "gallery" ,
                                       "attributes" : [ "bare-floor" ,
                                                        "stone" ,
                                                        "fireplace south" ] ,
