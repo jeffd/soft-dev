@@ -18,22 +18,26 @@ parser.add_option("-c", "--charactertimeout", dest="character_timeout",
 parser.add_option("-r", "--responsetimeout", dest="response_timeout",
                   help="Timeout for total reading from shell", type="float",
                   default=4.00)
+parser.add_option("-t", "--testcastle", dest="test_castle", metavar="FILE",
+                  help="Run in test mode, with specified castle file")
 (options, args) = parser.parse_args()
 
 # Get important options
 character_timeout = options.character_timeout
 response_timeout = options.response_timeout
 
-# Make sure they specific a game
-if options.game == None:
-    parser.error("Please specify a game location, see --help for details")
-
-# Setup command to execute program
-process = '%s -r6rs -program %s' % (options.larceny, options.game)
+if options.test_castle:
+    # Setup test file with specified castle
+    process = "python dummy_game.py -c %s" % (options.test_castle)
+else:
+    # Make sure they specific a game
+    if options.game == None:
+        parser.error("Please specify a game location, see --help for details")
+    
+    # Setup command to execute program
+    process = '%s -r6rs -program %s' % (options.larceny, options.game)
 
 # Setup objects
-#castle = Castle()
-#current_location = Location(0,0,0)
 player = BreadcrumbPlayer()
 
 # Start process
@@ -53,9 +57,6 @@ with closing(spawn(process)) as child:
         # Strip first line for decoding, it's either the Version number or the last move
         response = response[response.find('\n') + 1:len(response)]
         response = loads(response)
-
-        #print "Current location", player.current_location
-        #print "Visited Locations", player.castle.get_visited_locations()
 
         # Determine next move and update location
         move, play_game = player.handle_response(response)
