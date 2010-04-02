@@ -62,6 +62,7 @@ class DummyRoom:
         self.message = message
         # exits is a dict exits["east"] = "A"
         self.exits = exits
+        self.encoder = JSONEncoder(indent=4)
     
     def __repr__(self):
         return 'Room %s Exits %s' % (self.id, str(self.exits))
@@ -73,8 +74,11 @@ class DummyRoom:
         return self.message
 
     def print_message(self):
-        print self.message
+        print self.encoder.encode(self.message)
 
+    def get_exit_room_id(self, direction):
+        return self.exits[direction]
+    
 class DummyCastle():
     
     def __init__(self):
@@ -121,7 +125,7 @@ with open(options.castle_file, 'r') as castle_file:
             exits_csv = ','.join(['"%s"' % (x) for x in exits.keys()])
             message = message.replace("|EXITS|", exits_csv)
         
-        room = DummyRoom(id, message, exits)
+        room = DummyRoom(id, loads(message), exits)
         
         dummy_castle.add_room(room)
 
@@ -129,15 +133,11 @@ print "Version Test"
 current_room = dummy_castle.get_room_by_index(0)
 current_room.print_message()
 
-sys.exit()
-
 collect_input = True
 while collect_input:
     input = raw_input("")
     
-    # Convert message
-    response = current_room.message
-    
+    response = current_room.get_message()
     # See if they are going to go to an exit
     if ("location" in response) and ("room" in response['location']) \
         and ("exits" in response["location"]["room"]):
@@ -145,7 +145,7 @@ while collect_input:
         exits = response["location"]["room"]["exits"]
         for exit in exits:
             if input == ('(go %s)' % (exit)):
-                new_location = current_room.location.next_location(exit)
+                new_location = current_room.get_exit_room_id(exit)
                 current_room = dummy_castle.find_room(new_location)
                 current_room.print_message()
                 continue
@@ -156,9 +156,7 @@ while collect_input:
         for item in response['stuff']:
         
             # TODO: include artifact
-            print item.keys()
             if ('frog' in item.keys()) and (input == '(carry (frog))'):
-                print item
                 carried_item = item
                 break
             
