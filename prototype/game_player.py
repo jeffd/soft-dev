@@ -20,6 +20,9 @@ parser.add_option("-r", "--responsetimeout", dest="response_timeout",
                   default=4.00)
 parser.add_option("-t", "--testcastle", dest="test_castle", metavar="FILE",
                   help="Run in test mode, with specified castle file")
+parser.add_option("-q", "--quiet", dest="quiet_mode", action="store_true", \
+                  help="Quiet mode, does not display game output, useful for \
+                  testing")
 (options, args) = parser.parse_args()
 
 # Get important options
@@ -51,7 +54,8 @@ with closing(spawn(process)) as child:
         response = child.receive_response(response_timeout, character_timeout)
 
         # Display response
-        print response
+        if not options.quiet_mode:
+            print response
 
         # Encode response
         # Strip first line for decoding, it's either the Version number or the last move
@@ -61,6 +65,11 @@ with closing(spawn(process)) as child:
         # Determine next move and update location
         move, play_game = player.handle_response(response)
         child.sendline(move)
+        
+        # If we're in quiet mode we ened to explicitly print the move
+        # because its not in the response anymore
+        if options.quiet_mode:
+            print move
 
     # Receive last response
     response = child.read()
