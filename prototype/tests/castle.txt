@@ -3,7 +3,6 @@
         <message>
             {"location" : { "room" : { "purpose" : "gallery" ,
                                       "attributes" : [ "bare-floor" ,
-                                                       "stone" ,
                                                        "fireplace south" ] ,
                                       "exits" : [ |EXITS| ] } } }
         </message>
