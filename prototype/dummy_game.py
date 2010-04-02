@@ -83,6 +83,12 @@ class DummyCastle():
     
     def __init__(self):
         self.list_of_rooms = []
+        self.current_room = None
+        self.previous_room = None
+
+    def update_current_room(self, room):
+        self.previous_room = self.current_room
+        self.current_room = room
     
     def add_room(self, room):
         self.list_of_rooms.append(room)
@@ -130,14 +136,32 @@ with open(options.castle_file, 'r') as castle_file:
         dummy_castle.add_room(room)
 
 print "Version Test"
-current_room = dummy_castle.get_room_by_index(0)
-current_room.print_message()
+dummy_castle.previous_room = None
+dummy_castle.current_room = dummy_castle.get_room_by_index(0)
 
 collect_input = True
 while collect_input:
-    input = raw_input("")
+    next_iter = False
     
-    response = current_room.get_message()
+    # Print current message
+    dummy_castle.current_room.print_message()
+    
+    # Get input
+    input = raw_input("")
+    print 'got input'
+    
+    response = dummy_castle.current_room.get_message()
+    
+    # If they're outside the castle and say (enter), put them in the
+    # previous room
+    
+    if ("location" in response) and \
+        (response["location"] == "outside the castle") and \
+        (input == "(enter)"):
+        dummy_castle.update_current_room(dummy_castle.previous_room)
+        continue
+    
+        
     # See if they are going to go to an exit
     if ("location" in response) and ("room" in response['location']) \
         and ("exits" in response["location"]["room"]):
@@ -145,11 +169,14 @@ while collect_input:
         exits = response["location"]["room"]["exits"]
         for exit in exits:
             if input == ('(go %s)' % (exit)):
-                new_location = current_room.get_exit_room_id(exit)
-                current_room = dummy_castle.find_room(new_location)
-                current_room.print_message()
-                continue
-    
+                new_location = dummy_castle.current_room.get_exit_room_id(exit)
+                dummy_castle.update_current_room(dummy_castle.find_room(new_location))
+                next_iter = True
+                break
+
+    if next_iter:
+        continue
+
     # See if they want to pickup anything
     carried_item = False
     if "stuff" in response:
@@ -182,10 +209,10 @@ while collect_input:
             response['stuff'].remove(carried_item)
             
             # Update message with item taken away
-            current_room.set_message(response)
-            current_room.print_message()
+            dummy_castle.current_room.set_message(response)
             continue
     
-    
+    print '{ error : "Command %s didn\'t make sense here." } ' % (input)
+    sys.exit()
     
     
