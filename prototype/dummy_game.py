@@ -148,13 +148,15 @@ while collect_input:
     
     # Get input
     input = raw_input("")
-    print 'got input'
     
     response = dummy_castle.current_room.get_message()
     
     # If they're outside the castle and say (enter), put them in the
     # previous room
-    
+    if input == "(stop)":
+        print "You said stop"
+        break
+        
     if ("location" in response) and \
         (response["location"] == "outside the castle") and \
         (input == "(enter)"):
