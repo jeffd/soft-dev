@@ -1,46 +1,38 @@
 <castle>
-    <room>
-        <location>
-            <floor>0</floor>
-            <x>0</x>
-            <y>0</y>
-        </location>
+    <room id="A">
         <message>
             { "actors" : [ [ "minion" ,
                          "unworthy" ] ] ,
+            "stuff" : [ { "frog" : [ ] } ],
             "location" : { "room" : { "purpose" : "gallery" ,
                                       "attributes" : [ "bare-floor" ,
                                                        "stone" ,
                                                        "fireplace south" ] ,
-                                      "exits" : [ "east" ] } } }
+                                      "exits" : [ |EXITS| ] } } }
         </message>
+        <exits>
+            <east>B</east>
+        </exits>
     </room>
-    <room>
-        <location>
-            <floor>0</floor>
-            <x>1</x>
-            <y>0</y>
-        </location>
+    <room id="B">
         <message>
             { "actors" : [ [ "minion" ,
                          "unworthy" ] ] ,
-            "stuff" : [ { "treasure" : "coin" ,
-                "value" : 6 } ],
-            "location" : { "room" : { "purpose" : "studio" ,
+            "stuff" : [ { "frog" : [ ] } ],
+            "location" : { "room" : { "purpose" : "gallery" ,
                                       "attributes" : [ "bare-floor" ,
                                                        "stone" ,
                                                        "fireplace south" ] ,
-                                      "exits" : [ "east" ] } } }
+                                      "exits" : [ |EXITS| ] } } }
         </message>
+        <exits>
+            <west>A</west>
+            <east>C</east>
+        </exits>
     </room>
-    <room>
-        <location>
-            <floor>0</floor>
-            <x>2</x>
-            <y>0</y>
-        </location>
+    <room id="C">
         <message>
-            { "location" : "outside the castle" }
+            {"location" : "outside the castle"}
         </message>
     </room>
 </castle>

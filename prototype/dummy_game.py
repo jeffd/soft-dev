@@ -3,29 +3,48 @@ This program emulates the game playing program, by using a castle file defined
 with multiple rooms like:
 
 <castle>
-    <room>
-        <location>
-            <floor>0</floor>
-            <x>0</x>
-            <y>0</y>
-        </location>
+    <room id="A">
         <message>
             { "actors" : [ [ "minion" ,
                          "unworthy" ] ] ,
+            "stuff" : [ { "frog" : [ ] } ],
             "location" : { "room" : { "purpose" : "gallery" ,
                                       "attributes" : [ "bare-floor" ,
                                                        "stone" ,
                                                        "fireplace south" ] ,
-                                      "exits" : [ "east" ] } } }
+                                      "exits" : [ <exits> ] } } }
         </message>
+        <exits>
+            <east>B</east>
+        </exits>
+    </room>
+    <room id="B">
+        <message>
+            { "actors" : [ [ "minion" ,
+                         "unworthy" ] ] ,
+            "stuff" : [ { "frog" : [ ] } ],
+            "location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "bare-floor" ,
+                                                       "stone" ,
+                                                       "fireplace south" ] ,
+                                      "exits" : [ <exits> ] } } }
+        </message>
+        <exits>
+            <west>A</west>
+            <east>C</east>
+        </exits>
+    </room>
+    <room id="C">
+        {"location" : "outside the castle"}
     </room>
 </castle>
 
 """
-from castle import Location
 from json import loads, JSONEncoder
 from optparse import OptionParser
 from xml.etree import ElementTree
+
+import sys
 
 # Get options from command line
 parser = OptionParser()
@@ -36,15 +55,16 @@ parser.add_option("-c", "--castle", dest="castle_file",
 if options.castle_file == None:
     parser.error('Please specify a castle to use')
 
-class Room:
+class DummyRoom:
     
-    def __init__(self, location, message):
-        self.location = location
+    def __init__(self, id, message, exits):
+        self.id = id
         self.message = message
-        self.encoder = JSONEncoder(indent=4)
+        # exits is a dict exits["east"] = "A"
+        self.exits = exits
     
     def __repr__(self):
-        return 'Location %s, Message %s' % (str(self.location), self.message)
+        return 'Room %s Exits %s' % (self.id, str(self.exits))
     
     def set_message(self, message):
         self.message = message
@@ -53,9 +73,9 @@ class Room:
         return self.message
 
     def print_message(self):
-        print self.encoder.encode(self.message)
+        print self.message
 
-class DummyCastle:
+class DummyCastle():
     
     def __init__(self):
         self.list_of_rooms = []
@@ -63,12 +83,14 @@ class DummyCastle:
     def add_room(self, room):
         self.list_of_rooms.append(room)
     
-    def find_room(self, location):
+    def find_room(self, room_id):
         for room in self.list_of_rooms:
-            if room.location == location:
+            if room.id == room_id:
                 return room
-        
         return False
+    
+    def get_room_by_index(self, index):
+        return self.list_of_rooms[index]
 
 dummy_castle = DummyCastle()
 
@@ -80,20 +102,34 @@ with open(options.castle_file, 'r') as castle_file:
     rooms = et.findall('room')
     
     for room in rooms:
-        location = room.find('location')
-        message = loads(room.find('message').text.strip())
+        # Get id
+        id = room.attrib['id']
         
-        location_convert = lambda x: int(location.find(x).text.strip())
-        location = Location(location_convert('floor'),
-                             location_convert('x'),
-                             location_convert('y'))
-        room = Room(location, message)
+        # Get message 
+        message = room.find('message').text.strip()
+        
+        # Add exits to dict if we got 'em
+        exits_et = room.find('exits')
+        exits = {}
+        if exits_et:
+            exits = {}
+            
+            for exit_el in exits_et.getchildren():
+                exits[exit_el.tag] = exit_el.text
+            
+            # Replace |EXITS| in message with a csv of exits
+            exits_csv = ','.join(['"%s"' % (x) for x in exits.keys()])
+            message = message.replace("|EXITS|", exits_csv)
+        
+        room = DummyRoom(id, message, exits)
         
         dummy_castle.add_room(room)
 
 print "Version Test"
-current_room = dummy_castle.find_room(Location(0,0,0))
+current_room = dummy_castle.get_room_by_index(0)
 current_room.print_message()
+
+sys.exit()
 
 collect_input = True
 while collect_input:
