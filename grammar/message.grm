@@ -13,11 +13,25 @@ item  ::=  ("frog")
         |  ("artifact" <string>)
         |  ("artifact" <string> <strings>)
 
-strings ::=  <string>
-          |  <string> <strings>
 
-term  ::=  (<msg><spaces><item>)
+start  ::= <parenexpr>
+         | <expr>
+         | <term>
 
-syntax ::= <token "("> <expression> <token ")">
+parenexpr  ::= '(' <ws0> (<parenexpr>|<expr>):e <ws0> ')' => e
 
-identifier ::=  (<letter> | <digit>)
+expr       ::= (<parenexpr>|<expr>|<item>):a <ws1>
+               <msg>:m <ws1>
+               (<parenexpr>|<term>|<expr>):b
+                                                          => (m,a,b)
+
+term    ::= <number>
+          | <variable>
+
+variable   ::= <letter>+:c                                => ''.join(c)
+
+number     ::= <digit>+:c                                 => int(''.join(c))
+
+ws1          ::= <ws>+:s
+ws0          ::= <ws>*:s
+ws           ::= ' ' | '\t' | '\n'
