@@ -122,7 +122,6 @@ with open(options.castle_file, 'r') as castle_file:
         exits_et = room.find('exits')
         exits = {}
         if exits_et:
-            exits = {}
             
             for exit_el in exits_et.getchildren():
                 exits[exit_el.tag] = exit_el.text
@@ -135,13 +134,15 @@ with open(options.castle_file, 'r') as castle_file:
         
         dummy_castle.add_room(room)
 
-print "Version Test"
+print "Version Test | Castle ", options.castle_file
 dummy_castle.previous_room = None
 dummy_castle.current_room = dummy_castle.get_room_by_index(0)
 
 collect_input = True
 while collect_input:
-    next_iter = False
+    
+    # Get current message
+    response = dummy_castle.current_room.get_message()
     
     # Print current message
     dummy_castle.current_room.print_message()
@@ -149,14 +150,13 @@ while collect_input:
     # Get input
     input = raw_input("")
     
-    response = dummy_castle.current_room.get_message()
-    
-    # If they're outside the castle and say (enter), put them in the
-    # previous room
+    # Break if sent (stop)
     if input == "(stop)":
         print "You said stop"
         break
-        
+ 
+    # If they're outside the castle and say (enter), put them in the
+    # previous room       
     if ("location" in response) and \
         (response["location"] == "outside the castle") and \
         (input == "(enter)"):
@@ -168,6 +168,8 @@ while collect_input:
     if ("location" in response) and ("room" in response['location']) \
         and ("exits" in response["location"]["room"]):
         
+        next_iter = False
+        
         exits = response["location"]["room"]["exits"]
         for exit in exits:
             if input == ('(go %s)' % (exit)):
@@ -176,19 +178,20 @@ while collect_input:
                 next_iter = True
                 break
 
-    if next_iter:
-        continue
+        if next_iter:
+            continue
 
     # See if they want to pickup anything
     carried_item = False
     if "stuff" in response:
         for item in response['stuff']:
         
-            # TODO: include artifact
+            # See if they're picking up a frog
             if ('frog' in item.keys()) and (input == '(carry (frog))'):
                 carried_item = item
                 break
             
+            # See if they're picking up a treasure or a weapon
             item_int_mapping = {
                 'treasure' : 'value',
                 'weapon' : 'lethality',
@@ -205,10 +208,24 @@ while collect_input:
             
             if carried_item:
                 break
+            
+            # See if they're picking up an artifact
+            if ('artifact' in item.keys()) and ('description' in item.keys()):
+                artifact_name, artifact_description = item['artifact'], \
+                                                      item['description']
+                print artifact_name, artifact_description
+                if input == '(carry (artifact %s %s))' \
+                          % (artifact_name, ', '.join(artifact_description)):
+                    carried_item = item
+                    break
         
         if carried_item:
             # Delete item from room
             response['stuff'].remove(carried_item)
+            
+            # If there's no more stuff left, delete key
+            if len(response['stuff']) == 0:
+                del response['stuff']
             
             # Update message with item taken away
             dummy_castle.current_room.set_message(response)
