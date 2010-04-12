@@ -250,7 +250,7 @@ while collect_input:
                                                       item['description']
 
                 if input == '(carry (artifact %s %s))' \
-                          % (artifact_name, ', '.join(artifact_description)):
+                          % (artifact_name, ' '.join(artifact_description)):
                     carried_item = item
                     break
         
