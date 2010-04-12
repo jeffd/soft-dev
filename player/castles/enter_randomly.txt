@@ -4,7 +4,8 @@
             {"stuff" : [ { "artifact" : "scroll" ,
                 "description" : [ "faded" ] } ],
              "location" : { "room" : { "purpose" : "gallery" ,
-                                      "attributes" : [ "bare-floor" ,
+                                      "attributes" : [ "A",
+                                                       "bare-floor" ,
                                                        "fireplace south" ] ,
                                       "exits" : [ |EXITS| ] } } }
         </message>
@@ -17,7 +18,8 @@
             { "actors" : [ [ "minion" ,
                          "unworthy" ] ] ,
             "location" : { "room" : { "purpose" : "gallery" ,
-                                      "attributes" : [ "bare-floor" ,
+                                      "attributes" : [ "B",
+                                                       "bare-floor" ,
                                                        "stone" ,
                                                        "fireplace south" ] ,
                                       "exits" : [ |EXITS| ] } } }
