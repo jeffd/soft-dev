@@ -1,0 +1,18 @@
+<castle>
+    <room id="A">
+        <message>
+            {"location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "A" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <north>OUTSIDE</north>
+        </exits>
+    </room>
+
+    <room id="OUTSIDE">
+        <message>
+            {"location" : "outside the castle"}
+        </message>
+    </room>
+</castle>

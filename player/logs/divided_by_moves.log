@@ -1,0 +1,152 @@
+Version 8
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "painted red" ,
+                                             "fireplace west" ,
+                                             "bare-floor" ,
+                                             "wainscoted" ] ,
+                            "exits" : [ "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 1
+==== FOUND EXITS: {}
+(go north)
+{ "actors" : [ [ "princess" ,
+                 "Leah" ] ] ,
+  "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "fireplace west" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 2
+==== FOUND EXITS: {}
+(go west)
+{ "location" : { "room" : { "purpose" : "bathroom" ,
+                            "attributes" : [ "stone" ,
+                                             "wainscoted" ,
+                                             "straw-floor" ,
+                                             "tapestry south purple" ,
+                                             "fireplace north" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 3
+==== FOUND EXITS: {}
+(go north)
+{ "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "rug yellow" ,
+                                             "tapestry north brown" ,
+                                             "whitewashed" ,
+                                             "painted yellow" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 4
+==== FOUND EXITS: {}
+(go east)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "straw-floor" ,
+                                             "tapestry east gold" ,
+                                             "painted gold" ,
+                                             "stone" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ,
+                                        "west" ] } } ,
+  "actors" : [ [ "hamster" ,
+                 "small" ] ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 5
+==== FOUND EXITS: {}
+(go north)
+{ "location" : { "room" : { "purpose" : "storeroom" ,
+                            "attributes" : [ "tapestry east red" ,
+                                             "wainscoted" ,
+                                             "painted brown" ,
+                                             "rug blue" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 6
+==== FOUND EXITS: {}
+(go west)
+{ "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "tapestry east brown" ,
+                                             "straw-floor" ,
+                                             "fireplace south" ,
+                                             "whitewashed" ,
+                                             "painted green" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 7
+==== FOUND EXITS: {}
+(go west)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "straw-floor" ,
+                                             "wainscoted" ,
+                                             "tapestry south green" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ,
+                                        "east" ] } } ,
+  "stuff" : [ { "treasure" : "art" ,
+                "value" : 21 } ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 8
+==== FOUND EXITS: {}
+(go north)
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "painted purple" ,
+                                             "straw-floor" ,
+                                             "tapestry south blue" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 9
+==== FOUND EXITS: {}
+(go north)
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "stone" ,
+                                             "wainscoted" ,
+                                             "painted green" ,
+                                             "fireplace south" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ,
+                                        "east" ,
+                                        "west" ] } } ,
+  "actors" : [ [ "noble" ,
+                 "Befuddled" ] ,
+               [ "minion" ,
+                 "undistinguished" ] ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 10
+==== FOUND EXITS: {}
+(go west)
+{ "location" : "outside the castle" }
+
+(stop)
+{ "condolences" : { "hoard" : [  ] ,
+                    "score" : 20200 ,
+                    "chronicle" : [ { "202 rooms" : [ "minion" ,
+                                                      "accountant" ] } ,
+                                    { "10 moves" : [ "minion" ,
+                                                     "accountant" ] } ] } }
+

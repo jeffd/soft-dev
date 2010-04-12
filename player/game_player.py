@@ -1,11 +1,13 @@
-#from castle import Castle, Location
-from contextlib import closing
+#!/usr/bin/env python
+
+import time
+import logging
 from json import loads
 from optparse import OptionParser
-from pexpect import spawn, TIMEOUT
-#from players import SimplePlayer
-from player_new import BreadcrumbPlayer
+from contextlib import closing
 
+from player import BreadcrumbPlayer
+from pexpect import spawn
 
 # Get options from command line
 parser = OptionParser()
@@ -20,15 +22,17 @@ parser.add_option("-r", "--responsetimeout", dest="response_timeout",
                   default=4.00)
 parser.add_option("-t", "--testcastle", dest="test_castle", metavar="FILE",
                   help="Run in test mode, with specified castle file")
-parser.add_option("-q", "--quiet", dest="quiet_mode", action="store_true", \
-                  help="Quiet mode, does not display game output, useful for \
-                  testing")
-(options, args) = parser.parse_args()
+parser.add_option("-d", "--debug", action='store_true', dest="debug",
+                  default=False, help="Should we log DEBUG level information?")
+parser.add_option("-i", "--info", dest="info", action='store_true',
+                  default=False, help="Should we log INFO level information?")
+options, args = parser.parse_args()
 
 # Get important options
 character_timeout = options.character_timeout
 response_timeout = options.response_timeout
 
+# Determine if we are running our tester, or the actual game program
 if options.test_castle:
     # Setup test file with specified castle
     process = "python dummy_game.py -c %s" % (options.test_castle)
@@ -36,12 +40,24 @@ else:
     # Make sure they specific a game
     if options.game == None:
         parser.error("Please specify a game location, see --help for details")
-    
     # Setup command to execute program
     process = '%s -r6rs -program %s' % (options.larceny, options.game)
 
-# Setup objects
+# Setup the player
 player = BreadcrumbPlayer()
+
+# Setup logging
+if options.debug or options.info:
+    if options.debug:
+        level = logging.DEBUG
+    elif options.info:
+        level = logging.INFO
+    else:
+        level = logging.WARN
+    logging.basicConfig(level=level,
+                        format='%(asctime)s %(levelname)s %(message)s',
+                        filename='./gamelog-%s.log' % int(time.time()),
+                        filemode='w')
 
 # Start process
 with closing(spawn(process)) as child:
@@ -53,24 +69,22 @@ with closing(spawn(process)) as child:
         # Get response
         response = child.receive_response(response_timeout, character_timeout)
 
-        # Display response
-        if not options.quiet_mode:
-            print response
-
         # Encode response
         # Strip first line for decoding, it's either the Version number or the last move
-        response = response[response.find('\n') + 1:len(response)]
+        response = response[response.find('\n') + 1:]
+
+        # log the response
+        logging.debug("Response:\n" + response)
+
+        # Validate the response
+        # blah here
         response = loads(response)
 
-        # Determine next move and update location
-        move, play_game = player.handle_response(response)
-        child.sendline(move)
-        
-        # If we're in quiet mode we ened to explicitly print the move
-        # because its not in the response anymore
-        if options.quiet_mode:
-            print move
+        # Determine next move and tell the game program
+        next_move = player.handle_response(response)
+        play_game = next_move != '(stop)'
+        child.sendline(next_move)
 
     # Receive last response
     response = child.read()
-    print response
+    logging.info("Final Response:\n" + response)

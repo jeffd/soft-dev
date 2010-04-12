@@ -1,0 +1,22 @@
+<castle>
+    <room id="A">
+        <message>
+            {"location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "A" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <east>B</east>
+        </exits>
+    </room>
+    <room id="B">
+        <message>
+            {"location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "B" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <west>A</west>
+        </exits>
+    </room>
+</castle>

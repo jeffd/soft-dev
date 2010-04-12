@@ -1,0 +1,127 @@
+Version 8
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "rug purple" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ,
+                                        "north" ,
+                                        "up" ,
+                                        "down" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 1
+==== FOUND EXITS: {}
+(go down)
+{ "location" : { "room" : { "purpose" : "bower" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "bare-floor" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ,
+                                        "up" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 2
+==== FOUND EXITS: {}
+(go east)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "stone" ,
+                                             "wainscoted" ,
+                                             "whitewashed" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "up" ] } } ,
+  "stuff" : [ { "treasure" : "jewel" ,
+                "value" : 18 } ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 3
+==== FOUND EXITS: {}
+(go up)
+{ "location" : { "room" : { "purpose" : "storeroom" ,
+                            "attributes" : [ "fireplace west" ,
+                                             "straw-floor" ,
+                                             "stone" ] ,
+                            "exits" : [ "south" ,
+                                        "down" ,
+                                        "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 4
+==== FOUND EXITS: {}
+(go west)
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "stone" ,
+                                             "rug purple" ] ,
+                            "exits" : [ "north" ,
+                                        "east" ,
+                                        "west" ,
+                                        "up" ,
+                                        "down" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 4
+==== FOUND EXITS: {}
+(go west)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "rug brown" ,
+                                             "whitewashed" ,
+                                             "stone" ,
+                                             "wainscoted" ] ,
+                            "exits" : [ "up" ,
+                                        "down" ,
+                                        "north" ,
+                                        "west" ,
+                                        "east" ,
+                                        "south" ] } } ,
+  "stuff" : [ { "frog" : [  ] } ] }
+
+===== ACTING ON ITEM ====
+(carry (frog))
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "whitewashed" ,
+                                             "stone" ,
+                                             "rug brown" ] ,
+                            "exits" : [ "up" ,
+                                        "east" ,
+                                        "north" ,
+                                        "down" ,
+                                        "west" ,
+                                        "south" ] } } ,
+  "actors" : [ [ "dog" ,
+                 "poodle" ] ] }
+
+==== HAVE FROG? : True
+==== VISITED ROOMS: 5
+==== FOUND EXITS: {}
+(go down)
+{ "location" : { "room" : { "purpose" : "pantry" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "wainscoted" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "north" ,
+                                        "up" ,
+                                        "south" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : True
+==== VISITED ROOMS: 6
+==== FOUND EXITS: {}
+(go west)
+{ "location" : "outside the castle" }
+
+(stop)
+{ "congratulations" : { "chronicle" : [ { "117 rooms" : [ "minion" ,
+                                                          "cook" ] } ,
+                                        { "8 moves" : [ "minion" ,
+                                                        "cook" ] } ,
+                                        { "rescued" : { "frog" : [  ] } } ] ,
+                        "hoard" : [ { "frog" : [  ] } ] ,
+                        "score" : 731250 } }
+

@@ -1,0 +1,1662 @@
+Version 8
+{ "location" : { "room" : { "purpose" : "pantry" ,
+                            "attributes" : [ "built 8005" ,
+                                             "whitewashed" ,
+                                             "wainscoted" ,
+                                             "bare-floor" ,
+                                             "stone" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 1
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east']
+(go west)
+{ "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "painted brown" ,
+                                             "tapestry west green" ,
+                                             "rug purple" ] ,
+                            "exits" : [ "east" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 2
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "bower" ,
+                            "attributes" : [ "tapestry east gold" ,
+                                             "fireplace north" ,
+                                             "rug brown" ] ,
+                            "exits" : [ "east" ,
+                                        "south" ,
+                                        "west" ] } } ,
+  "stuff" : [ { "treasure" : "gold" ,
+                "value" : 15 } ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 3
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east']
+(go west)
+{ "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "fireplace west" ,
+                                             "stone" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 4
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east']
+(go west)
+{ "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "rug brown" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 5
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south']
+(go north)
+{ "actors" : [ [ "guard" ,
+                 "khaki" ] ] ,
+  "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "stone" ,
+                                             "rug purple" ,
+                                             "wainscoted" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 6
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west']
+(go east)
+{ "location" : { "room" : { "purpose" : "bower" ,
+                            "attributes" : [ "stone" ,
+                                             "rug purple" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "north" ,
+                                        "west" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 7
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west']
+(go east)
+{ "stuff" : [ { "artifact" : "scroll" ,
+                "description" : [ "battered" ] } ] ,
+  "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "fireplace east" ,
+                                             "stone" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "east" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 8
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west']
+(go east)
+{ "location" : { "room" : { "purpose" : "chapel" ,
+                            "attributes" : [ "tapestry east red" ,
+                                             "rug green" ,
+                                             "fireplace north" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 9
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "storeroom" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "painted yellow" ,
+                                             "stone" ,
+                                             "wainscoted" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "chapel" ,
+                            "attributes" : [ "tapestry east red" ,
+                                             "fireplace north" ,
+                                             "rug green" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 10
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "wainscoted" ,
+                                             "bare-floor" ,
+                                             "painted red" ,
+                                             "stone" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 11
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'east']
+(go west)
+{ "stuff" : [ { "treasure" : "gold" ,
+                "value" : 15 } ] ,
+  "location" : { "room" : { "purpose" : "bower" ,
+                            "attributes" : [ "rug brown" ,
+                                             "fireplace north" ,
+                                             "tapestry east gold" ] ,
+                            "exits" : [ "east" ,
+                                        "south" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "stone" ,
+                                             "bare-floor" ,
+                                             "wainscoted" ,
+                                             "painted red" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 11
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "pantry" ,
+                            "attributes" : [ "stone" ,
+                                             "built 8005" ,
+                                             "whitewashed" ,
+                                             "bare-floor" ,
+                                             "wainscoted" ] ,
+                            "exits" : [ "east" ,
+                                        "north" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 11
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west']
+(go east)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "wainscoted" ,
+                                             "stone" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ,
+                                        "east" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 12
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west']
+(go east)
+{ "actors" : [ [ "dragon" ,
+                 "puff" ] ] ,
+  "location" : { "room" : { "purpose" : "storeroom" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "wainscoted" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ,
+                                        "east" ,
+                                        "south" ] } } ,
+  "stuff" : [ { "weapon" : "revolver" ,
+                "lethality" : 6 } ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 13
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west']
+(go east)
+{ "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "bare-floor" ,
+                                             "wainscoted" ] ,
+                            "exits" : [ "east" ,
+                                        "south" ,
+                                        "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 14
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'west']
+(go east)
+{ "stuff" : [ { "weapon" : "shotgun" ,
+                "lethality" : 10 } ] ,
+  "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "stone" ,
+                                             "wainscoted" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 15
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'west', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "pantry" ,
+                            "attributes" : [ "stone" ,
+                                             "fireplace west" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "east" ,
+                                        "south" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 16
+==== FOUND EXITS: 0
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'west', 'north', 'west']
+(go east)
+{ "location" : "outside the castle" }
+
+===== FOUND EXIT! =====
+(enter)
+{ "location" : { "room" : { "purpose" : "pantry" ,
+                            "attributes" : [ "straw-floor" ,
+                                             "fireplace west" ,
+                                             "stone" ] ,
+                            "exits" : [ "north" ,
+                                        "east" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 16
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'west', 'north', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "bathroom" ,
+                            "attributes" : [ "stone" ,
+                                             "straw-floor" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 17
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'west', 'north', 'north', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "straw-floor" ,
+                                             "stone" ,
+                                             "built 8008" ] ,
+                            "exits" : [ "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "bathroom" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "straw-floor" ,
+                                             "stone" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "pantry" ,
+                            "attributes" : [ "stone" ,
+                                             "fireplace west" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "east" ,
+                                        "south" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "wainscoted" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ] } } ,
+  "stuff" : [ { "weapon" : "shotgun" ,
+                "lethality" : 10 } ] }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "actors" : [ [ "minion" ,
+                 "unexceptional" ] ] ,
+  "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "stone" ,
+                                             "whitewashed" ,
+                                             "wainscoted" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ,
+                                        "east" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 18
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "rug blue" ,
+                                             "whitewashed" ,
+                                             "wainscoted" ,
+                                             "stone" ] ,
+                            "exits" : [ "east" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 19
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'south', 'west']
+(go east)
+{ "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "bare-floor" ,
+                                             "stone" ] ,
+                            "exits" : [ "north" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 20
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'south', 'west', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "stone" ,
+                                             "straw-floor" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "west" ] } } ,
+  "actors" : [ [ "guard" ,
+                 "infantryman" ] ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 21
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'south', 'west', 'south', 'east']
+(go west)
+{ "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "rug brown" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "west" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 22
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'south', 'west', 'south', 'east', 'east']
+(go west)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "stone" ,
+                                             "whitewashed" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 23
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'south', 'west', 'south', 'east', 'east', 'east']
+(go west)
+{ "location" : { "room" : { "purpose" : "storeroom" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "wainscoted" ,
+                                             "painted red" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "east" ] } } ,
+  "stuff" : [ { "weapon" : "sword" ,
+                "lethality" : 6 } ] }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "wainscoted" ,
+                                             "stone" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "south" ,
+                                        "west" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 24
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'south', 'west', 'south', 'east', 'east', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "stone" ,
+                                             "wainscoted" ,
+                                             "bare-floor" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ] } } ,
+  "stuff" : [ { "weapon" : "rock" ,
+                "lethality" : 1 } ] ,
+  "actors" : [ [ "dragon" ,
+                 "puff" ] ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 25
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'south', 'west', 'south', 'east', 'east', 'north', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "storeroom" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "whitewashed" ,
+                                             "bare-floor" ,
+                                             "stone" ] ,
+                            "exits" : [ "south" ,
+                                        "west" ,
+                                        "east" ,
+                                        "north" ] } } ,
+  "stuff" : [ { "weapon" : "revolver" ,
+                "lethality" : 6 } ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 25
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'south', 'west', 'south', 'east', 'east', 'north', 'north', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "whitewashed" ,
+                                             "stone" ] ,
+                            "exits" : [ "east" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 26
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'south', 'west', 'south', 'east', 'east', 'north', 'north', 'north', 'west']
+(go east)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "stone" ,
+                                             "rug purple" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 27
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'west', 'west', 'south', 'west', 'south', 'east', 'east', 'north', 'north', 'north', 'west', 'south']
+(go north)
+{ "actors" : [ [ "minion" ,
+                 "unexceptional" ] ] ,
+  "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "whitewashed" ,
+                                             "stone" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ,
+                                        "east" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "rug purple" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "north" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "stone" ,
+                                             "bare-floor" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "east" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "storeroom" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "wainscoted" ,
+                                             "stone" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "east" ,
+                                        "south" ,
+                                        "north" ,
+                                        "west" ] } } ,
+  "stuff" : [ { "weapon" : "revolver" ,
+                "lethality" : 6 } ] }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "stone" ,
+                                             "whitewashed" ,
+                                             "wainscoted" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ] } } ,
+  "stuff" : [ { "weapon" : "rock" ,
+                "lethality" : 1 } ] }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "actors" : [ [ "dragon" ,
+                 "puff" ] ] ,
+  "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "stone" ,
+                                             "straw-floor" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "wainscoted" ,
+                                             "stone" ,
+                                             "rug brown" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ] } } ,
+  "actors" : [ [ "guard" ,
+                 "infantryman" ] ] }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "actors" : [ [ "guard" ,
+                 "infantryman" ] ] ,
+  "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "stone" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "rug blue" ,
+                                             "stone" ,
+                                             "wainscoted" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "actors" : [ [ "minion" ,
+                 "unexceptional" ] ] ,
+  "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "whitewashed" ,
+                                             "wainscoted" ,
+                                             "stone" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ,
+                                        "west" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "stuff" : [ { "weapon" : "revolver" ,
+                "lethality" : 6 } ] ,
+  "location" : { "room" : { "purpose" : "storeroom" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "wainscoted" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ,
+                                        "east" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "straw-floor" ,
+                                             "wainscoted" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "east" ,
+                                        "south" ,
+                                        "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 27
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'south']
+(go north)
+{ "stuff" : [ { "treasure" : "virtue" ,
+                "value" : 26 } ] ,
+  "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "straw-floor" ,
+                                             "wainscoted" ,
+                                             "stone" ,
+                                             "whitewashed" ,
+                                             "built 8003" ] ,
+                            "exits" : [ "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "whitewashed" ,
+                                             "stone" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ,
+                                        "south" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 28
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'west', 'north', 'north', 'west', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "rug blue" ,
+                                             "whitewashed" ,
+                                             "stone" ,
+                                             "wainscoted" ] ,
+                            "exits" : [ "north" ] } } ,
+  "stuff" : [ { "weapon" : "pistol" ,
+                "lethality" : 5 } ] }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "stone" ,
+                                             "straw-floor" ,
+                                             "wainscoted" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "north" ,
+                                        "east" ,
+                                        "south" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "location" : { "room" : { "purpose" : "pantry" ,
+                            "attributes" : [ "built 8005" ,
+                                             "bare-floor" ,
+                                             "whitewashed" ,
+                                             "wainscoted" ,
+                                             "stone" ] ,
+                            "exits" : [ "north" ,
+                                        "west" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "stone" ,
+                                             "bare-floor" ,
+                                             "whitewashed" ,
+                                             "painted red" ,
+                                             "wainscoted" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "chapel" ,
+                            "attributes" : [ "tapestry east red" ,
+                                             "rug green" ,
+                                             "fireplace north" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "stuff" : [ { "artifact" : "scroll" ,
+                "description" : [ "battered" ] } ] ,
+  "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "stone" ,
+                                             "fireplace east" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 29
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'west', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "pantry" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "painted gold" ,
+                                             "tapestry west blue" ] ,
+                            "exits" : [ "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "stuff" : [ { "artifact" : "scroll" ,
+                "description" : [ "battered" ] } ] ,
+  "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "stone" ,
+                                             "straw-floor" ,
+                                             "fireplace east" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "location" : { "room" : { "purpose" : "bower" ,
+                            "attributes" : [ "stone" ,
+                                             "rug purple" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 30
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "fireplace east" ,
+                                             "stone" ,
+                                             "rug green" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 31
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'south', 'west', 'south', 'east']
+(go west)
+{ "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "rug green" ] ,
+                            "exits" : [ "east" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "location" : { "room" : { "purpose" : "hall" ,
+                            "attributes" : [ "fireplace east" ,
+                                             "stone" ,
+                                             "rug green" ] ,
+                            "exits" : [ "south" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "bower" ,
+                            "attributes" : [ "stone" ,
+                                             "rug purple" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "west" ,
+                                        "east" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "rug purple" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "stone" ,
+                                             "rug brown" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ,
+                                        "north" ] } } ,
+  "actors" : [ [ "guard" ,
+                 "khaki" ] ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 32
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "rug brown" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "east" ,
+                                        "south" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 33
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west']
+(go east)
+{ "location" : { "room" : { "purpose" : "chapel" ,
+                            "attributes" : [ "stone" ,
+                                             "rug purple" ,
+                                             "fireplace west" ] ,
+                            "exits" : [ "south" ,
+                                        "west" ] } } ,
+  "stuff" : [ { "weapon" : "dart" ,
+                "lethality" : 2 } ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 34
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "stone" ,
+                                             "straw-floor" ,
+                                             "fireplace west" ] ,
+                            "exits" : [ "north" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 35
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east']
+(go west)
+{ "stuff" : [ { "artifact" : "dust bunny" ,
+                "description" : [ "harmless" ] } ,
+              { "weapon" : "rock" ,
+                "lethality" : 1 } ] ,
+  "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "rug brown" ,
+                                             "stone" ,
+                                             "built 8006" ] ,
+                            "exits" : [ "west" ,
+                                        "east" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 36
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east']
+(go west)
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "wainscoted" ,
+                                             "stone" ,
+                                             "rug gold" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 37
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "bare-floor" ,
+                                             "stone" ,
+                                             "built 8004" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 38
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'south', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "whitewashed" ,
+                                             "stone" ] ,
+                            "exits" : [ "south" ] } } ,
+  "stuff" : [ { "weapon" : "rocket launcher" ,
+                "lethality" : 25 } ] }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "built 8004" ,
+                                             "whitewashed" ,
+                                             "bare-floor" ,
+                                             "stone" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "rug gold" ,
+                                             "wainscoted" ,
+                                             "whitewashed" ,
+                                             "stone" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 39
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "tapestry east red" ,
+                                             "fireplace north" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "east" ,
+                                        "north" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 40
+==== FOUND EXITS: 1
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'east']
+(go west)
+{ "location" : "outside the castle" }
+
+===== FOUND EXIT! =====
+(enter)
+{ "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "tapestry east red" ,
+                                             "straw-floor" ,
+                                             "fireplace north" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ,
+                                        "east" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 40
+==== FOUND EXITS: 2
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west']
+(go east)
+{ "location" : { "room" : { "purpose" : "garderobe" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "whitewashed" ,
+                                             "painted yellow" ,
+                                             "rug green" ] ,
+                            "exits" : [ "south" ,
+                                        "west" ,
+                                        "east" ] } } ,
+  "stuff" : [ { "treasure" : "virtue" ,
+                "value" : 6 } ] }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 41
+==== FOUND EXITS: 2
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west']
+(go east)
+{ "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "whitewashed" ,
+                                             "stone" ,
+                                             "rug yellow" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 42
+==== FOUND EXITS: 2
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "rug yellow" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 43
+==== FOUND EXITS: 2
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north', 'east']
+(go west)
+{ "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 44
+==== FOUND EXITS: 2
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north', 'east', 'east']
+(go west)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "stone" ,
+                                             "straw-floor" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "north" ,
+                                        "east" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 45
+==== FOUND EXITS: 2
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north', 'east', 'east', 'east']
+(go west)
+{ "location" : "outside the castle" }
+
+===== FOUND EXIT! =====
+(enter)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "stone" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 45
+==== FOUND EXITS: 3
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north', 'east', 'east', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "straw-floor" ,
+                                             "tapestry east red" ,
+                                             "fireplace north" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ,
+                                        "west" ,
+                                        "east" ] } } ,
+  "actors" : [ [ "guard" ,
+                 "officer" ] ] }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "kitchen" ,
+                            "attributes" : [ "stone" ,
+                                             "straw-floor" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "east" ,
+                                        "north" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "north" ,
+                                        "west" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 45
+==== FOUND EXITS: 3
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north', 'east', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "garderobe" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "wainscoted" ,
+                                             "rug green" ,
+                                             "painted yellow" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ,
+                                        "west" ] } } ,
+  "stuff" : [ { "treasure" : "virtue" ,
+                "value" : 6 } ] }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "stone" ,
+                                             "bare-floor" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "west" ,
+                                        "east" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "rug yellow" ,
+                                             "stone" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 45
+==== FOUND EXITS: 3
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north', 'west']
+(go east)
+{ "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "stone" ,
+                                             "fireplace west" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 46
+==== FOUND EXITS: 3
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north', 'west', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "stone" ,
+                                             "rug brown" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 47
+==== FOUND EXITS: 3
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north', 'west', 'south', 'south']
+(go north)
+{ "stuff" : [ { "weapon" : "sword" ,
+                "lethality" : 4 } ] ,
+  "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "tapestry east red" ,
+                                             "rug brown" ,
+                                             "fireplace north" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 48
+==== FOUND EXITS: 3
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north', 'west', 'south', 'south', 'west']
+(go east)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "wainscoted" ,
+                                             "painted blue" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "south" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 49
+==== FOUND EXITS: 3
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north', 'west', 'south', 'south', 'west', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "fireplace west" ,
+                                             "straw-floor" ,
+                                             "stone" ,
+                                             "built 8007" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 50
+==== FOUND EXITS: 3
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'east', 'north', 'west', 'west', 'north', 'west', 'south', 'south', 'west', 'north', 'north']
+(go south)
+{ "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "tapestry east green" ,
+                                             "straw-floor" ,
+                                             "fireplace south" ] ,
+                            "exits" : [ "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "stone" ,
+                                             "straw-floor" ,
+                                             "built 8007" ,
+                                             "fireplace west" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "painted blue" ,
+                                             "whitewashed" ,
+                                             "stone" ,
+                                             "wainscoted" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "south" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "stuff" : [ { "weapon" : "sword" ,
+                "lethality" : 4 } ] ,
+  "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "fireplace north" ,
+                                             "tapestry east red" ,
+                                             "rug brown" ] ,
+                            "exits" : [ "east" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "rug brown" ,
+                                             "stone" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "stone" ,
+                                             "fireplace west" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "north" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "location" : { "room" : { "purpose" : "oubliette" ,
+                            "attributes" : [ "rug yellow" ,
+                                             "stone" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "actors" : [ [ "guard" ,
+                 "officer" ] ] ,
+  "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "wainscoted" ,
+                                             "stone" ,
+                                             "rug yellow" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "stuff" : [ { "treasure" : "virtue" ,
+                "value" : 6 } ] ,
+  "location" : { "room" : { "purpose" : "garderobe" ,
+                            "attributes" : [ "rug green" ,
+                                             "wainscoted" ,
+                                             "whitewashed" ,
+                                             "painted yellow" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "fireplace north" ,
+                                             "tapestry east red" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ,
+                                        "south" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "rug gold" ,
+                                             "stone" ,
+                                             "wainscoted" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "north" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "stuff" : [ { "artifact" : "dust bunny" ,
+                "description" : [ "harmless" ] } ,
+              { "weapon" : "rock" ,
+                "lethality" : 1 } ] ,
+  "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "rug brown" ,
+                                             "built 8006" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 51
+==== FOUND EXITS: 3
+==== WAY BACK HOME: ['east', 'south', 'east', 'east', 'north', 'west', 'north', 'east', 'south']
+(go north)
+{ "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "stone" ,
+                                             "whitewashed" ,
+                                             "rug brown" ] ,
+                            "exits" : [ "north" ,
+                                        "east" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "stuff" : [ { "weapon" : "rock" ,
+                "lethality" : 1 } ,
+              { "artifact" : "dust bunny" ,
+                "description" : [ "harmless" ] } ] ,
+  "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "built 8006" ,
+                                             "stone" ,
+                                             "whitewashed" ,
+                                             "rug brown" ] ,
+                            "exits" : [ "north" ,
+                                        "west" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "straw-floor" ,
+                                             "stone" ,
+                                             "fireplace west" ] ,
+                            "exits" : [ "north" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "chapel" ,
+                            "attributes" : [ "stone" ,
+                                             "rug purple" ,
+                                             "fireplace west" ] ,
+                            "exits" : [ "south" ,
+                                        "west" ] } } ,
+  "stuff" : [ { "weapon" : "dart" ,
+                "lethality" : 2 } ] }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go west)
+{ "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "rug brown" ,
+                                             "whitewashed" ,
+                                             "stone" ] ,
+                            "exits" : [ "east" ,
+                                        "north" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go north)
+{ "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "stone" ,
+                                             "rug brown" ,
+                                             "whitewashed" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ,
+                                        "north" ] } } ,
+  "actors" : [ [ "guard" ,
+                 "khaki" ] ] }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "fireplace west" ,
+                                             "stone" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "stuff" : [ { "treasure" : "gold" ,
+                "value" : 15 } ] ,
+  "location" : { "room" : { "purpose" : "bower" ,
+                            "attributes" : [ "fireplace north" ,
+                                             "rug brown" ,
+                                             "tapestry east gold" ] ,
+                            "exits" : [ "west" ,
+                                        "east" ,
+                                        "south" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go south)
+{ "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "rug purple" ,
+                                             "painted brown" ,
+                                             "tapestry west green" ] ,
+                            "exits" : [ "north" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+===== GOING BACKWARDS ON PATH =====
+(go east)
+{ "location" : { "room" : { "purpose" : "pantry" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "wainscoted" ,
+                                             "bare-floor" ,
+                                             "stone" ,
+                                             "built 8005" ] ,
+                            "exits" : [ "north" ,
+                                        "west" ,
+                                        "east" ] } } }
+
+==== HAVE FROG? : False
+=== NEW EXIT PATH: ['west', 'south', 'west', 'west', 'south', 'east', 'south', 'west', 'west', 'north', 'west']
+(go west)
+{ "location" : { "room" : { "purpose" : "wardrobe" ,
+                            "attributes" : [ "tapestry west green" ,
+                                             "painted brown" ,
+                                             "rug purple" ] ,
+                            "exits" : [ "north" ,
+                                        "east" ] } } }
+
+===== FOLLOWING OVERRIDE PATH ====
+(go north)
+{ "location" : { "room" : { "purpose" : "bower" ,
+                            "attributes" : [ "fireplace north" ,
+                                             "rug brown" ,
+                                             "tapestry east gold" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ,
+                                        "east" ] } } ,
+  "stuff" : [ { "treasure" : "gold" ,
+                "value" : 15 } ] }
+
+===== FOLLOWING OVERRIDE PATH ====
+(go west)
+{ "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "fireplace west" ,
+                                             "bare-floor" ,
+                                             "stone" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ] } } }
+
+===== FOLLOWING OVERRIDE PATH ====
+(go west)
+{ "actors" : [ [ "guard" ,
+                 "khaki" ] ] ,
+  "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "rug brown" ,
+                                             "stone" ] ,
+                            "exits" : [ "north" ,
+                                        "south" ,
+                                        "east" ] } } }
+
+===== FOLLOWING OVERRIDE PATH ====
+(go south)
+{ "location" : { "room" : { "purpose" : "gallery" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "rug brown" ,
+                                             "stone" ] ,
+                            "exits" : [ "east" ,
+                                        "north" ,
+                                        "south" ] } } }
+
+===== FOLLOWING OVERRIDE PATH ====
+(go east)
+{ "stuff" : [ { "weapon" : "dart" ,
+                "lethality" : 2 } ] ,
+  "location" : { "room" : { "purpose" : "chapel" ,
+                            "attributes" : [ "fireplace west" ,
+                                             "rug purple" ,
+                                             "stone" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ] } } }
+
+===== FOLLOWING OVERRIDE PATH ====
+(go south)
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "stone" ,
+                                             "fireplace west" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "north" ,
+                                        "west" ] } } }
+
+===== FOLLOWING OVERRIDE PATH ====
+(go west)
+{ "stuff" : [ { "artifact" : "dust bunny" ,
+                "description" : [ "harmless" ] } ,
+              { "weapon" : "rock" ,
+                "lethality" : 1 } ] ,
+  "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "stone" ,
+                                             "built 8006" ,
+                                             "rug brown" ] ,
+                            "exits" : [ "east" ,
+                                        "west" ,
+                                        "north" ] } } }
+
+===== FOLLOWING OVERRIDE PATH ====
+(go west)
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "stone" ,
+                                             "wainscoted" ,
+                                             "rug gold" ] ,
+                            "exits" : [ "south" ,
+                                        "east" ,
+                                        "north" ] } } }
+
+===== FOLLOWING OVERRIDE PATH ====
+(go south)
+{ "location" : { "room" : { "purpose" : "bedchamber" ,
+                            "attributes" : [ "tapestry east red" ,
+                                             "fireplace north" ,
+                                             "straw-floor" ] ,
+                            "exits" : [ "west" ,
+                                        "south" ,
+                                        "east" ,
+                                        "north" ] } } ,
+  "actors" : [ [ "guard" ,
+                 "officer" ] ] }
+
+===== HAPPENED UPON AN EXIT WITH THE FROG. SEEYA! =====
+(go west)
+{ "location" : "outside the castle" }
+
+(stop)
+{ "condolences" : { "hoard" : [  ] ,
+                    "chronicle" : [ { "150 rooms" : [ "minion" ,
+                                                      "unexceptional" ] } ,
+                                    { "131 moves" : [ "minion" ,
+                                                      "unexceptional" ] } ] ,
+                    "score" : 1145 } }
+

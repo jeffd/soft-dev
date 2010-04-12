@@ -1,0 +1,33 @@
+Version 8
+{ "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "whitewashed" ,
+                                             "stone" ,
+                                             "wainscoted" ] ,
+                            "exits" : [ "west" ] } } ,
+  "stuff" : [ { "frog" : [  ] } ] }
+
+===== ACTING ON ITEM ====
+(carry (frog))
+{ "location" : { "room" : { "purpose" : "keep" ,
+                            "attributes" : [ "whitewashed" ,
+                                             "stone" ,
+                                             "wainscoted" ,
+                                             "bare-floor" ] ,
+                            "exits" : [ "west" ] } } }
+
+==== HAVE FROG? : True
+==== VISITED ROOMS: 1
+==== FOUND EXITS: {}
+(go west)
+{ "location" : "outside the castle" }
+
+(stop)
+{ "congratulations" : { "hoard" : [ { "frog" : [  ] } ] ,
+                        "chronicle" : [ { "10 rooms" : [ "minion" ,
+                                                         "unworthy" ] } ,
+                                        { "2 moves" : [ "minion" ,
+                                                        "unworthy" ] } ,
+                                        { "rescued" : { "frog" : [  ] } } ] ,
+                        "score" : 250000 } }
+

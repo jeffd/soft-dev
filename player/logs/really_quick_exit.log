@@ -1,0 +1,24 @@
+Version 8
+{ "location" : { "room" : { "purpose" : "bower" ,
+                            "attributes" : [ "bare-floor" ,
+                                             "whitewashed" ,
+                                             "stone" ,
+                                             "fireplace east" ,
+                                             "tapestry north red" ] ,
+                            "exits" : [ "west" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 1
+==== FOUND EXITS: {}
+(go west)
+{ "location" : "outside the castle" }
+
+(stop)
+{ "condolences" : { "chronicle" : [ { "4 rooms" : [ "minion" ,
+                                                    "accountant" ] } ,
+                                    { "1 moves" : [ "minion" ,
+                                                    "accountant" ] } ] ,
+                    "score" : 4000 ,
+                    "hoard" : [  ] } }
+

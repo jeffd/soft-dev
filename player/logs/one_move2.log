@@ -1,0 +1,22 @@
+Version 8
+{ "location" : { "room" : { "purpose" : "dungeon" ,
+                            "attributes" : [ "painted brown" ,
+                                             "tapestry west purple" ,
+                                             "rug green" ] ,
+                            "exits" : [ "east" ,
+                                        "north" ] } } }
+
+==== HAVE FROG? : False
+==== VISITED ROOMS: 1
+==== FOUND EXITS: {}
+(go east)
+{ "location" : "outside the castle" }
+
+(stop)
+{ "condolences" : { "score" : 221000 ,
+                    "chronicle" : [ { "221 rooms" : [ "minion" ,
+                                                      "average" ] } ,
+                                    { "1 moves" : [ "minion" ,
+                                                    "average" ] } ] ,
+                    "hoard" : [  ] } }
+

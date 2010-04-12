@@ -1,0 +1,106 @@
+<castle>
+    <room id="C">
+        <message>
+            {"location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "C" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <west>B</west>
+            <south>F</south>
+        </exits>
+    </room>
+    <room id="A">
+        <message>
+            {"location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "A" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <north>OUTSIDE</north>
+            <south>D</south>
+        </exits>
+    </room>
+    <room id="B">
+        <message>
+            {"location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "B" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <east>C</east>
+        </exits>
+    </room>
+    <room id="D">
+        <message>
+            {"location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "D" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <north>A</north>
+            <south>G</south>
+        </exits>
+    </room>
+    <room id="E">
+        <message>
+            {"location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "E" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <south>H</south>
+        </exits>
+    </room>
+    <room id="F">
+        <message>
+            {"location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "F" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <north>C</north>
+            <east>OUTSIDE</east>
+        </exits>
+    </room>
+    <room id="G">
+        <message>
+            {"location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "G" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <north>D</north>
+            <east>H</east>
+        </exits>
+    </room>
+    <room id="H">
+        <message>
+            {"location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "H" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <north>E</north>
+            <east>I</east>
+            <west>G</west>
+        </exits>
+    </room>
+    <room id="I">
+        <message>
+            { "stuff" : [ { "frog" : [ ] } ],
+              "location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "I" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <west>H</west>
+        </exits>
+    </room>
+
+    <room id="OUTSIDE">
+        <message>
+            {"location" : "outside the castle"}
+        </message>
+    </room>
+</castle>
