@@ -1,0 +1,59 @@
+<castle>
+    <room id="A">
+        <message>
+            {"stuff" : [ { "artifact" : "scroll" ,
+                "description" : [ "faded" ] } ],
+             "location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "bare-floor" ,
+                                                       "fireplace south" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <east>B</east>
+        </exits>
+    </room>
+    <room id="B">
+        <message>
+            { "actors" : [ [ "minion" ,
+                         "unworthy" ] ] ,
+            "location" : { "room" : { "purpose" : "gallery" ,
+                                      "attributes" : [ "bare-floor" ,
+                                                       "stone" ,
+                                                       "fireplace south" ] ,
+                                      "exits" : [ |EXITS| ] } } }
+        </message>
+        <exits>
+            <west>A</west>
+            <east>EXIT</east>
+        </exits>
+    </room>
+    <room id="EXIT">
+        <message>
+            {"location" : "outside the castle"}
+        </message>
+    </room>
+    <room id="D">
+        <message>
+            {"location" : { "room" : { "purpose" : "nada" ,
+                                      "attributes" : [ "D" ] ,
+                                      "exits" : [ |EXITS| ] } }
+                                      }
+        </message>
+        <exits>
+            <west>E</west>
+            <north>EXIT</north>
+        </exits>
+    </room>
+    <room id="E">
+        <message>
+            {"stuff" : [ { "frog" : [ ] } ],
+            "location" : { "room" : { "purpose" : "nada" ,
+                                      "attributes" : [ "E" ] ,
+                                      "exits" : [ |EXITS| ] } }
+                                      }
+        </message>
+        <exits>
+            <east>D</east>
+        </exits>
+    </room>
+</castle>
