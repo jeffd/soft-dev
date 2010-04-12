@@ -60,7 +60,8 @@ class DummyRoom:
     
     def __init__(self, id, message, exits):
         self.id = id
-        self.message = message
+        self.is_outside = False
+        self.set_message(message)
         # exits is a dict exits["east"] = "A"
         self.exits = exits
         self.encoder = JSONEncoder(indent=4)
@@ -69,7 +70,12 @@ class DummyRoom:
         return 'Room %s Exits %s' % (self.id, str(self.exits))
     
     def set_message(self, message):
+        # Assign message
         self.message = message
+        
+        # Mark as outside if that's the case
+        if ('location' in message) and (message['location'] == 'outside the castle'):
+            self.is_outside = True
         
     def get_message(self):
         return self.message
@@ -103,18 +109,25 @@ class DummyCastle():
     def get_room_by_index(self, index):
         return self.list_of_rooms[index]
     
-    def get_random_room(self):
-         return self.get_room_by_index(randint(0, len(self.list_of_rooms) - 1))
-    
-    def set_random_room_not_outside(self):
+    def get_outside_exit_rooms(self):
+        """ Returns a list of ids all rooms with exits to outside """
+        list = []
         
-        # Get random room, make sure its not outside
-        while True:
-            random_room = self.get_random_room()
-            message = random_room.get_message()
-            if not (('location' in message) and \
-               (message['location'] == "outside the castle")):
-                break
+        for room in self.list_of_rooms:
+            # See if exits include outside
+            for exit_direction in room.exits:
+                exit = self.find_room(room.exits[exit_direction])
+                if exit.is_outside:
+                    list.append(room.id)
+        
+        return list
+
+    def set_random_room_accessible_outside(self):
+        """ Sets the current room to a random room that has an exit outside """
+        possible_rooms = self.get_outside_exit_rooms()
+        
+        random_room_id = possible_rooms[(randint(0, len(possible_rooms) - 1))]
+        random_room = self.find_room(random_room_id)
         
         self.update_current_room(random_room)
             
@@ -182,7 +195,7 @@ while collect_input:
         
         # If they say (enter-randomly) put them in a random room
         if input == "(enter-randomly)":
-            dummy_castle.set_random_room_not_outside()
+            dummy_castle.set_random_room_accessible_outside()
             continue
     
         
@@ -235,7 +248,7 @@ while collect_input:
             if ('artifact' in item.keys()) and ('description' in item.keys()):
                 artifact_name, artifact_description = item['artifact'], \
                                                       item['description']
-                print artifact_name, artifact_description
+
                 if input == '(carry (artifact %s %s))' \
                           % (artifact_name, ', '.join(artifact_description)):
                     carried_item = item
