@@ -42,6 +42,7 @@ with multiple rooms like:
 """
 from json import loads, JSONEncoder
 from optparse import OptionParser
+from random import randint
 from xml.etree import ElementTree
 
 import sys
@@ -101,6 +102,22 @@ class DummyCastle():
     
     def get_room_by_index(self, index):
         return self.list_of_rooms[index]
+    
+    def get_random_room(self):
+         return self.get_room_by_index(randint(0, len(self.list_of_rooms) - 1))
+    
+    def set_random_room_not_outside(self):
+        
+        # Get random room, make sure its not outside
+        while True:
+            random_room = self.get_random_room()
+            message = random_room.get_message()
+            if not (('location' in message) and \
+               (message['location'] == "outside the castle")):
+                break
+        
+        self.update_current_room(random_room)
+            
 
 dummy_castle = DummyCastle()
 
@@ -155,13 +172,18 @@ while collect_input:
         print "You said stop"
         break
  
-    # If they're outside the castle and say (enter), put them in the
-    # previous room       
-    if ("location" in response) and \
-        (response["location"] == "outside the castle") and \
-        (input == "(enter)"):
-        dummy_castle.update_current_room(dummy_castle.previous_room)
-        continue
+    # Handle outside the castle responses
+    if ("location" in response) and (response["location"] == "outside the castle"):
+        
+        # If they say (enter) put them in the previous room
+        if input == "(enter)":
+            dummy_castle.update_current_room(dummy_castle.previous_room)
+            continue
+        
+        # If they say (enter-randomly) put them in a random room
+        if input == "(enter-randomly)":
+            dummy_castle.set_random_room_not_outside()
+            continue
     
         
     # See if they are going to go to an exit
