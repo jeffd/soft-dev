@@ -45,8 +45,6 @@ from optparse import OptionParser
 from random import randint
 from xml.etree import ElementTree
 
-import sys
-
 # Get options from command line
 parser = OptionParser()
 parser.add_option("-c", "--castle", dest="castle_file",
@@ -168,8 +166,7 @@ print "Version Test | Castle ", options.castle_file
 dummy_castle.previous_room = None
 dummy_castle.current_room = dummy_castle.get_room_by_index(0)
 
-collect_input = True
-while collect_input:
+while True:
     
     # Get current message
     response = dummy_castle.current_room.get_message()
@@ -267,6 +264,6 @@ while collect_input:
             continue
     
     print '{ error : "Command %s didn\'t make sense here." } ' % (input)
-    sys.exit()
+    break
     
     
