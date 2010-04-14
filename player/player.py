@@ -12,7 +12,7 @@ class WinMessage(object):
         self._message = message
         self._score = message['score']
 
-        self._hoard, self._chronicle = False
+        self._hoard, self._chronicle = False, False
         if 'hoard' in message:
             self._hoard = message['hoard']
         
@@ -31,10 +31,10 @@ class WinMessage(object):
     def chronicle(self):
         return self._chronicle
 
-def LossMessage(object):
+class LossMessage(object):
     
     def __init__(self, message):
-        self._error, self._win = False
+        self._error, self._win = False, False
         
         if "error" in message:
             self._error = message['error']
@@ -226,11 +226,16 @@ class Player(object):
             playing
         '''
         if 'congratulations' in json:
-            win = WinMessage(json)
+            win = WinMessage(json['congratulations'])
+            logging.info('You won. Score:' + str(win.score) + \
+                         ' Hoard: ' + str(win.hoard) + \
+                         ' Chronicle: ' + str(win.chronicle))
             return False
         
         if 'condolences' in json:
-            loss = LossMessage(json)
+            loss = LossMessage(json['condolences'])
+            logging.info('You lost. Error: ' + loss.error + \
+                         '\n Win: ' + str(loss.win))
             return False
         
         location, items, threats = None, None, None
