@@ -245,8 +245,9 @@ while True:
             if ('artifact' in item.keys()) and ('description' in item.keys()):
                 artifact_name, artifact_description = item['artifact'], \
                                                       item['description']
-
-                if input == '(carry (artifact %s %s))' \
+                # Add quotes around artifact descriptions
+                artifact_description = map(lambda x: '"%s"' % x, artifact_description)
+                if input == '(carry (artifact "%s" %s))' \
                           % (artifact_name, ' '.join(artifact_description)):
                     carried_item = item
                     break
