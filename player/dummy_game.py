@@ -264,7 +264,7 @@ while True:
             dummy_castle.current_room.set_message(response)
             continue
     
-    print '{ error : "Command %s didn\'t make sense here." } ' % (input)
+    print '{ "error" : "Command %s didn\'t make sense here." } ' % (input)
     break
     
     
