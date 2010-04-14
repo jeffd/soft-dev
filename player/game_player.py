@@ -89,9 +89,10 @@ with closing(spawn(process)) as child:
 
         # Determine next move and tell the game program
         next_move = player.handle_response(response)
-        play_game = next_move != '(stop)'
-        child.sendline(next_move)
-
-    # Receive last response
-    response = child.read()
-    logging.info("Final Response:\n" + response)
+        
+        # If next_move is false then stop playing
+        if next_move == False:
+            break
+        
+        #child.sendline(next_move)
+        child.sendline("(go east)")

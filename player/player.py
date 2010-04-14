@@ -5,6 +5,52 @@ import logging
 
 __all__ = ['Location', 'Player', 'BreadcrumbPlayer']
 
+class WinMessage(object):
+    ''' Represents a win message '''
+    
+    def __init__(self, message):
+        self._message = message
+        self._score = message['score']
+
+        self._hoard, self._chronicle = False
+        if 'hoard' in message:
+            self._hoard = message['hoard']
+        
+        if 'chronicle' in message:
+            self._chronicle = message['chronicle']
+    
+    @property
+    def score(self):
+        return self._score
+    
+    @property
+    def hoard(self):
+        return self._hoard
+    
+    @property
+    def chronicle(self):
+        return self._chronicle
+
+def LossMessage(object):
+    
+    def __init__(self, message):
+        self._error, self._win = False
+        
+        if "error" in message:
+            self._error = message['error']
+        
+        if "win" in message:
+            self._win = WinMessage(message)
+    
+    @property
+    def error(self):
+        return self._error
+    
+    @property
+    def win(self):
+        return self._win
+    
+
 class Location(object):
     ''' Represents a location inside the dungeon. This is the base class
         for all types of locations. Its main use us to use the constructor
@@ -175,10 +221,18 @@ class Player(object):
         self.move_count = -1 # How many moves we have made so far
 
     def handle_response(self, json):
-        ''' Converts the given json into useable objects and then call next_move
-            to determine what to do next. Returns a string, which is sent to the
-            dungeon program.
+        ''' Converts the given json into useable objects. Returns either a string,
+            which is sent to the dungeon program, or False to indicate to stop
+            playing
         '''
+        if 'congratulations' in json:
+            win = WinMessage(json)
+            return False
+        
+        if 'condolences' in json:
+            loss = LossMessage(json)
+            return False
+        
         location, items, threats = None, None, None
         location = Location.from_json(json['location'])
         if 'stuff' in json:
