@@ -1595,7 +1595,7 @@ class spawn (object):
         while True:
             try:
                 char = self.read_nonblocking(1,character_timeout)
-            except TIMEOUT:
+            except (TIMEOUT, EOF):
                 break
 
             chars.append(char)
