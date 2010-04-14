@@ -45,6 +45,8 @@ from optparse import OptionParser
 from random import randint
 from xml.etree import ElementTree
 
+from sys import exit
+
 # Get options from command line
 parser = OptionParser()
 parser.add_option("-c", "--castle", dest="castle_file",
@@ -107,25 +109,23 @@ class DummyCastle():
     def get_room_by_index(self, index):
         return self.list_of_rooms[index]
     
+    def room_has_exit_outside(self, room):
+        for exit_direction in room.exits:
+            exit = self.find_room(room.exits[exit_direction])
+            if exit.is_outside:
+                return True
+        
+        return False
+    
     def get_outside_exit_rooms(self):
-        """ Returns a list of ids all rooms with exits to outside """
-        list = []
-        
-        for room in self.list_of_rooms:
-            # See if exits include outside
-            for exit_direction in room.exits:
-                exit = self.find_room(room.exits[exit_direction])
-                if exit.is_outside:
-                    list.append(room.id)
-        
-        return list
+        return filter(self.room_has_exit_outside, self.list_of_rooms)
 
     def set_random_room_accessible_outside(self):
         """ Sets the current room to a random room that has an exit outside """
+        
         possible_rooms = self.get_outside_exit_rooms()
         
-        random_room_id = possible_rooms[(randint(0, len(possible_rooms) - 1))]
-        random_room = self.find_room(random_room_id)
+        random_room = possible_rooms[(randint(0, len(possible_rooms) - 1))]
         
         self.update_current_room(random_room)
             
