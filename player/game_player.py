@@ -94,5 +94,4 @@ with closing(spawn(process)) as child:
         if next_move == False:
             break
         
-        #child.sendline(next_move)
-        child.sendline("(go east)")
+        child.sendline(next_move)
