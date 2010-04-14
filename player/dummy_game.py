@@ -179,7 +179,7 @@ while True:
     
     # Break if sent (stop)
     if input == "(stop)":
-        print "You said stop"
+        print '{ "condolences" : {"error" : "You said stop"} }'
         break
  
     # Handle outside the castle responses
@@ -264,7 +264,8 @@ while True:
             dummy_castle.current_room.set_message(response)
             continue
     
-    print '{ "error" : "Command %s didn\'t make sense here." } ' % (input)
+    print '{ "condolences" : {"error" : "Command %s didn\'t make sense here."} }' \
+           % (input)
     break
     
     
