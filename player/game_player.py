@@ -30,6 +30,8 @@ parser.add_option("-s", "--random1", dest="random1", help="Random seed variable 
                   1", type="int")
 parser.add_option("-q", "--random2", dest="random2", help="Random seed variable \
                   1", type="int")
+parser.add_option("-p", "--player", dest="player", help="Player you want to use", \
+                  default="BreadcrumbPlayer")
 options, args = parser.parse_args()
 
 # Get important options
@@ -51,7 +53,8 @@ else:
         process += ' -- outputfile %i %i' % (options.random1, options.random2)
 
 # Setup the player
-player = GreedyPlayer()
+player = {'BreadcrumbPlayer' : BreadcrumbPlayer(),
+          'GreedyPlayer' : GreedyPlayer()}[options.player]
 
 # Setup logging
 if options.debug or options.info:
