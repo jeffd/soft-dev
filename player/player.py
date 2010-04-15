@@ -7,7 +7,7 @@ __all__ = ['Location', 'Player', 'BreadcrumbPlayer', 'GreedyPlayer']
 
 class WinMessage(object):
     ''' Represents a win message '''
-    
+
     def __init__(self, message):
         self._message = message
         self._score = message['score']
@@ -15,41 +15,41 @@ class WinMessage(object):
         self._hoard, self._chronicle = False, False
         if 'hoard' in message:
             self._hoard = message['hoard']
-        
+
         if 'chronicle' in message:
             self._chronicle = message['chronicle']
-    
+
     @property
     def score(self):
         return self._score
-    
+
     @property
     def hoard(self):
         return self._hoard
-    
+
     @property
     def chronicle(self):
         return self._chronicle
 
 class LossMessage(object):
-    
+
     def __init__(self, message):
         self._error, self._win = False, False
-        
+
         if "error" in message:
             self._error = message['error']
-        
+
         if "win" in message:
             self._win = WinMessage(message)
-    
+
     @property
     def error(self):
         return self._error
-    
+
     @property
     def win(self):
         return self._win
-    
+
 
 class Location(object):
     ''' Represents a location inside the dungeon. This is the base class
@@ -232,13 +232,13 @@ class Player(object):
                          ' Hoard: ' + str(win.hoard) + \
                          ' Chronicle: ' + str(win.chronicle))
             return False
-        
+
         if 'condolences' in json:
             loss = LossMessage(json['condolences'])
             logging.info('You lost. Error: ' + loss.error + \
                          '\n Win: ' + str(loss.win))
             return False
-        
+
         location, items, threats = None, None, None
         location = Location.from_json(json['location'])
         if 'stuff' in json:
@@ -457,6 +457,34 @@ class BreadcrumbPlayer(Player):
 
         return None
 
+    def make_carry_message(self, item_type, item):
+        ''' Returns a message for carrying an object '''
+        desc = "" # Is there an easier way to do this in Python?
+        name = ""
+        worth = ""
+        leathality = ""
+
+        if item_type == 'treasure':
+            name, worth = item
+        elif item_type == 'weapon':
+            name, leathality = item
+        elif item_type == 'artifact':
+            name, desc = item
+
+        if desc:
+            item_details = map(lambda x: '"%s"' % x, desc)
+            return "(carry (%s \"%s\" \"%s\"))" % (item_type, name,  " ".join(desc))
+
+        elif worth != "":
+            return "(carry (%s \"%s\" %s))" % (item_type, name, worth)
+
+        elif leathality  != "":
+            return "(carry (%s \"%s\" %s))" % (item_type, name, leathality)
+
+        else:
+            return "(carry (%s))" % item_type
+
+
     def invert_and_reverse_path(self, path):
         ''' Invert the order and direction of the directions in the given
             path
@@ -466,36 +494,33 @@ class BreadcrumbPlayer(Player):
         return inverted
 
 class GreedyPlayer(BreadcrumbPlayer):
-    
+
     def maybe_handle_items(self, items):
         maybe = super(GreedyPlayer, self).maybe_handle_items(items)
-        
+
         if maybe:
             return maybe
-        
+
         # Pickup everything because we're greedy as hell
         message = None
         if items:
             if items.weapons:
+                item = items.weapons[0]
                 name, leathality = items.weapons[0]
                 # TODO: don't put "hi there" in items
                 if not(name == "hi there"):
-                    message = "(carry (weapon \"%s\" %s))" % (name, leathality)
+                    message = self.make_carry_message('weapon', item)
             elif items.treasures:
-                name, worth = items.treasures[0]
-                message = "(carry (treasure \"%s\" %s))" % (name, worth)
+                item = items.treasures[0]
+                message = self.make_carry_message('treasure', item)
             elif items.artifacts:
-                name, desc = items.artifacts[0]
-                if desc:
-                    desc = map(lambda x: '"%s"' % x, desc)
-                    message = "(carry (artifact \"%s\" %s))" % (name, " ".join(desc))
-                else:
-                    message = "(carry (artifact \"%s\"))" % name    
-        
+                item = items.artifacts[0]
+                message = self.make_carry_message('artifact', item)
+
         if message:
             logging.debug("picking up item %s" % message)
             return message
-        
+
         return None
 
 if __name__ == '__main__':
