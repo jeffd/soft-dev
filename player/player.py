@@ -3,7 +3,7 @@
 '''
 import logging
 
-__all__ = ['Location', 'Player', 'BreadcrumbPlayer']
+__all__ = ['Location', 'Player', 'BreadcrumbPlayer', 'GreedyPlayer']
 
 class WinMessage(object):
     ''' Represents a win message '''
@@ -174,6 +174,7 @@ class InMoat(Location):
         return True
 
 
+# TODO: REVERT ME
 class Items(object):
     ''' Convience class for items in a room. Sorts items into useful groups '''
 
@@ -190,7 +191,7 @@ class Items(object):
             elif 'weapon' in item:
                 self._weapons.append((item['weapon'], item['lethality']))
             else: # artifact
-                self._artifacts.append(item['artifact'])
+                self._artifacts.append((item['artifact'], item['description']))
 
     @property
     def has_frog(self):
@@ -198,15 +199,15 @@ class Items(object):
 
     @property
     def treasures(self):
-        return frozenset(self._treasures)
+        return self._treasures
 
     @property
     def weapons(self):
-        return frozenset(self._weapons)
+        return self._weapons
 
     @property
     def artifacts(self):
-        return frozenset(self._artifacts)
+        return self._artifacts
 
 
 class Player(object):
@@ -464,6 +465,38 @@ class BreadcrumbPlayer(Player):
         inverted.reverse()
         return inverted
 
+class GreedyPlayer(BreadcrumbPlayer):
+    
+    def maybe_handle_items(self, items):
+        maybe = super(GreedyPlayer, self).maybe_handle_items(items)
+        
+        if maybe:
+            return maybe
+        
+        # Pickup everything because we're greedy as hell
+        message = None
+        if items:
+            if items.weapons:
+                name, leathality = items.weapons[0]
+                # TODO: don't put "hi there" in items
+                if not(name == "hi there"):
+                    message = "(carry (weapon \"%s\" %s))" % (name, leathality)
+            elif items.treasures:
+                name, worth = items.treasures[0]
+                message = "(carry (treasure \"%s\" %s))" % (name, worth)
+            elif items.artifacts:
+                name, desc = items.artifacts[0]
+                if desc:
+                    desc = map(lambda x: '"%s"' % x, desc)
+                    message = "(carry (artifact \"%s\" %s))" % (name, " ".join(desc))
+                else:
+                    message = "(carry (artifact \"%s\"))" % name    
+        
+        if message:
+            logging.debug("picking up item %s" % message)
+            return message
+        
+        return None
 
 if __name__ == '__main__':
     # When run as a python file, take all the docstrings and run them as tests
