@@ -6,7 +6,7 @@ from json import loads
 from optparse import OptionParser
 from contextlib import closing
 
-from player import BreadcrumbPlayer
+from player import BreadcrumbPlayer, GreedyPlayer
 from pexpect import spawn
 
 # Get options from command line
@@ -51,7 +51,7 @@ else:
         process += ' -- outputfile %i %i' % (options.random1, options.random2)
 
 # Setup the player
-player = BreadcrumbPlayer()
+player = GreedyPlayer()
 
 # Setup logging
 if options.debug or options.info:
