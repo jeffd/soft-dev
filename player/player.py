@@ -466,20 +466,16 @@ class BreadcrumbPlayer(Player):
 
         if item_type == 'treasure':
             name, worth = item
-        elif item_type == 'weapon':
-            name, leathality = item
-        elif item_type == 'artifact':
-            name, desc = item
-
-        if desc:
-            item_details = map(lambda x: '"%s"' % x, desc)
-            return "(carry (%s \"%s\" \"%s\"))" % (item_type, name,  " ".join(desc))
-
-        elif worth != "":
             return "(carry (%s \"%s\" %s))" % (item_type, name, worth)
 
-        elif leathality  != "":
+        elif item_type == 'weapon':
+            name, leathality = item
             return "(carry (%s \"%s\" %s))" % (item_type, name, leathality)
+
+        elif item_type == 'artifact':
+            name, desc = item
+            item_details = map(lambda x: '"%s"' % x, desc)
+            return "(carry (%s \"%s\" %s))" % (item_type, name,  " ".join(item_details))
 
         else:
             return "(carry (%s))" % item_type
