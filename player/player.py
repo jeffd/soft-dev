@@ -322,29 +322,62 @@ class Player(object):
         ''' Determines the player's next move in the dungeon '''
         raise NotImplementedError
 
-    def make_carry_message(self, item_type, item):
-        return self.make_message(self, "carry", item_type, item)
+    # Carry functions
+    def carry_weapon(self, weapon):
+        return self.make_carry_message("weapon", weapon, self.weapons)
 
-    def make_drop_message(self, item_type, item):
-        return self.make_message(self, "drop", item_type, item)
+    def carry_treasure(self, treasure):
+        return self.make_carry_message("treasure", treasure, self.treasure)
+
+    def carry_artifact(self, artifact):
+        return self.make_carry_message("artifact", artifact, self.artifact)
+
+    # Drop functions
+    def drop_weapon(self, weapon):
+        return self.make_drop_message("weapon", weapon, self.weapons)
+
+    def drop_treasure(self, treasure):
+        return self.make_drop_message("treasure", treasure, self.treasure)
+
+    def drop_artifact(self, artifact):
+        return self.make_drop_message("artifact", artifact, self.artifact)
+
+    def make_carry_message(self, item_type, item, inv):
+        ''' Add an item to one of our inventories when we carry it '''
+        print "Before Inv: %s\nItem:%s" % (inv, item)
+        if item_type != 'artifact':
+            inv.append(item)
+
+        print "After Inv: %s" % inv
+        return self.make_message("carry", item_type, item)
+
+    def make_drop_message(self, item_type, item, inv):
+        ''' Remove an item to one of our inventories when we drop it '''
+        print "Inv: %s\nItem:%s" % (inv, item)
+        if item_type != 'artifact':
+            inv.remove(item)
+
+        # Drop it like its hot
+        return self.make_message("drop", item_type, item)
 
     def make_message(self, action, item_type, item):
         ''' Returns a message for carrying an object '''
         name = ""
-        details = ""
 
         if item_type == 'treasure' or item_type == 'weapon':
             name, worth = item
-            if item_type == 'weapon':
-		self.weapons.append((name, worth))
-            else:
-		self.treasure.append((name, worth))
-            return "(%s (%s \"%s\" %s))" % (action, item_type, name, details)
+            return "(%s (%s \"%s\" %s))" % (action, item_type, name, worth)
 
         elif item_type == 'artifact':
             name, desc = item
+            # This is only done here unlike the other methods
             item_details = map(lambda x: '"%s"' % x, desc)
-            self.artifacts.append((name, item_details))
+
+            if action == "carry":
+                self.artifacts.append((name, item_details))
+            else:
+                self.artifacts.remove((name, item_details))
+
             return "(%s (%s \"%s\" %s))" % (action, item_type, name,  " ".join(item_details))
 
         else:
@@ -584,13 +617,13 @@ class GreedyPlayer(BreadcrumbPlayer):
                 name, leathality = items.weapons[0]
                 # TODO: don't put "hi there" in items
                 if not(name == "hi there"):
-                    message = self.make_carry_message('weapon', item)
+                    message = self.carry_weapon(item)
             elif items.treasures:
                 item = items.treasures[0]
-                message = self.make_carry_message('treasure', item)
+                message = self.carry_treasure(item)
             elif items.artifacts:
                 item = items.artifacts[0]
-                message = self.make_carry_message('artifact', item)
+                message = self.carry_artifact(item)
 
         if message:
             logging.debug("picking up item %s" % message)
@@ -612,12 +645,11 @@ class FighterPlayer(BreadcrumbPlayer):
             if valid_weapons:
                 best_name, best_lethality = max(valid_weapons, key=lambda x: x[1])
                 if not self.current_weapon:
-                    return self.make_carry_message("weapon", (best_name, best_lethality))
+                    return self.carry_weapon((best_name, best_lethality))
                 else:
                     cur_name, cur_lethality = self.current_weapon
                     if cur_lethality < best_lethality:
-                        self.weapons.pop()
-                        return '(drop (weapon "%s" %s))' % (cur_name, cur_lethality)
+                        return self.drop_weapon((cur_name, cur_lethality))
         return super(FighterPlayer, self).maybe_handle_items(items)
 
     def next_move(self, location, items=None, threats=None):
