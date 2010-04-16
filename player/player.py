@@ -5,6 +5,13 @@ import logging
 
 __all__ = ['Location', 'Player', 'BreadcrumbPlayer', 'GreedyPlayer']
 
+# Through numerous trials, we discovered the following weapons and treasure
+# to not be worth picking up
+IGNORED_WEAPONS = set(["hi there",
+                       "atomic",
+                       "grenade launcher"])
+IGNORED_TREASURE = set(["art"])
+
 class WinMessage(object):
     ''' Represents a win message '''
 
@@ -273,9 +280,6 @@ class Player(object):
 
         self.move_count = -1                # How many moves we have made so far
         self.last_visited_location = None   # The location we saw last
-        self._ignored_weapons = set(["hi there",
-                                     "atomic",
-                                     "grenade launcher"])
 
     def handle_response(self, json):
         ''' Converts the given json into useable objects. Returns either a string,
@@ -372,7 +376,7 @@ class Player(object):
         return "(%s (%s \"%s\" %s))" % (action, item_type, name, etc)
 
     def ignore_weapons(self, weapon):
-        return weapon[0] not in self._ignored_weapons
+        return weapon[0] not in IGNORED_WEAPONS
 
 
 class BreadcrumbPlayer(Player):
@@ -646,7 +650,7 @@ class FighterPlayer(BreadcrumbPlayer):
 class GoldDigger(BreadcrumbPlayer):
 
     def __init__(self):
-        self._ignored_items = set([])
+        self._dropped_items = set([])
         super(GoldDigger, self).__init__()
 
     def next_move(self, location, items=None, threats=None):
@@ -655,9 +659,9 @@ class GoldDigger(BreadcrumbPlayer):
             logging.debug("PREVIOUS-LOC: " + str(self.last_visited_location))
             logging.debug("NEW-LOC: " + str(location.identity))
             logging.debug("Entered new room. Resetting ignore.")
-            self._ignored_items = set([])
+            self._dropped_items = set([])
 
-        logging.debug("IGNORED-ITEMS: " + str(self._ignored_items))
+        logging.debug("IGNORED-ITEMS: " + str(self._dropped_items))
         # TODO: This only drops treasure, does not include weapons. Change
         # this upon merge
         if threats.tired and self.treasure:
@@ -670,7 +674,7 @@ class GoldDigger(BreadcrumbPlayer):
                 # First drop the first artifact
                 if self.artifacts:
                     dropping = self.artifacts[0]
-                    self._ignored_items.add(dropping)
+                    self._dropped_items.add(dropping)
                     return self.drop_artifact(self.artifacts[0])
                 '''
                 
@@ -679,20 +683,20 @@ class GoldDigger(BreadcrumbPlayer):
                 smallest_treasure = sorted(self.treasure, key = lambda x: x[1])[0]
                 
                 # Add to list noting to not pick this item up again
-                self._ignored_items.add(smallest_treasure)
+                self._dropped_items.add(smallest_treasure)
                 return self.drop_treasure(smallest_treasure)
 
         # Otherwise, Pickup treasure
         if items.treasures:
             for treasure in sorted(items.treasures, lambda x, y: y[1] - x[1]):
                 name, _ = treasure
-                if treasure not in self._ignored_items and name != "art":
+                if treasure not in self._dropped_items and name not in IGNORED_TREASURE:
                     return self.carry_treasure(treasure)
         """
         # Pick up artifacts too
         if items.artifacts:
             for artifact in items.artifacts:
-                if artifact not in self._ignored_items:
+                if artifact not in self._dropped_items:
                     return self.carry_artifact(artifact)
         """
 
