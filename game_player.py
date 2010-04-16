@@ -48,7 +48,7 @@ response_timeout = options.response_timeout
 # Determine if we are running our tester, or the actual game program
 if options.test_castle:
     # Setup test file with specified castle
-    process = "python dummy_game.py -c %s" % (options.test_castle)
+    process = "python ./player/dummy_game.py -c %s" % (options.test_castle)
 else:
     # Make sure they specific a game
     if options.game == None:
@@ -101,7 +101,8 @@ with closing(spawn(process)) as child:
         logging.debug("Response:\n" + response)
 
         # Validate the response
-        if not validation.validate(response):
+        # Validation turn off when testing
+        if (not options.test_castle) and (not validation.validate(response)):
             print "Got invalid response from game:"
             print response
             sys.exit(-1)
