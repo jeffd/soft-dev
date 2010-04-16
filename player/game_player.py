@@ -6,7 +6,8 @@ from json import loads
 from optparse import OptionParser
 from contextlib import closing
 
-from player import BreadcrumbPlayer, GoldDigger, GreedyPlayer, FighterPlayer
+from player import BreadcrumbPlayer, SelfPreservationPlayer, GoldDigger,\
+        GreedyPlayer, FighterPlayer
 from pexpect import spawn
 
 # Get options from command line
@@ -16,10 +17,10 @@ parser.add_option("-l", "--larceny", dest="larceny", default="larceny",
 parser.add_option("-g", "--game", dest="game", help="Location of game file")
 parser.add_option("-c", "--charactertimeout", dest="character_timeout",
                   help="Time out for reading characters", type="float",
-                  default=0.01)
+                  default=0.09)
 parser.add_option("-r", "--responsetimeout", dest="response_timeout",
                   help="Timeout for total reading from shell", type="float",
-                  default=4.00)
+                  default=10.00)
 parser.add_option("-t", "--testcastle", dest="test_castle", metavar="FILE",
                   help="Run in test mode, with specified castle file")
 parser.add_option("-d", "--debug", action='store_true', dest="debug",
@@ -48,12 +49,13 @@ else:
         parser.error("Please specify a game location, see --help for details")
     # Setup command to execute program
     process = '%s -r6rs -program %s' % (options.larceny, options.game)
-    
+
     if options.random1 and options.random2:
         process += ' -- outputfile %i %i' % (options.random1, options.random2)
 
 # Setup the player
 player_class = {'BreadcrumbPlayer' : BreadcrumbPlayer,
+                'SelfPreservationPlayer' : SelfPreservationPlayer,
                 'GreedyPlayer' : GreedyPlayer,
                 'FighterPlayer' : FighterPlayer,
                 'GoldDigger' : GoldDigger}[options.player]
@@ -67,7 +69,7 @@ if options.debug or options.info:
         level = logging.INFO
     else:
         level = logging.WARN
-    logging_filename = './gamelog-%s.log' % int(time.time())
+    logging_filename = './runlog-%s.log' % int(time.time())
     logging.basicConfig(level=level,
                         format='%(asctime)s %(levelname)s %(message)s',
                         filename=logging_filename,
