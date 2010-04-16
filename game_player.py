@@ -82,13 +82,16 @@ if options.debug or options.info:
                         filemode='w')
     print 'Logging to file', logging_filename
 
+time_start = time.time()
+logging.info('Start at %s' % time_start)
+
 # Start process
 with closing(spawn(process)) as child:
 
     # Send lines until you receive a False
     while True:
         # Get response
-        response = child.receive_response(response_timeout, character_timeout)
+        response = child.receive_response_json_dict(response_timeout, character_timeout).lstrip('\r\n')
 
         # Encode response
         # Strip first line for decoding, it's either the Version number or the last move
@@ -116,3 +119,9 @@ with closing(spawn(process)) as child:
             break
 
         child.sendline(next_move)
+
+time_end = time.time()
+logging.info('End at %s' % time_end)
+
+elapsed = time_end - time_start
+logging.info("Took %s seconds to run, which is the same as %s minutes" % (elapsed, elapsed/60.0))
