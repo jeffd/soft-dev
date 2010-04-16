@@ -216,6 +216,44 @@ class Items(object):
     def artifacts(self):
         return [] + self._artifacts
 
+class Threats(object):
+    ''' Convience class for threats'''
+    
+    def __init__(self, problems):
+        
+        # Assign null values to indicate we haven't received anything
+        self._ill, self._tired, self._injured, self._attacked, self._attacked_by = \
+            None, None, None, None, None
+       
+        for problem in problems:
+            if 'ill' in problem:
+                self._ill = problem['ill']
+            
+            if 'tired' in problem:
+                self._tired = problem['tired']
+            
+            if 'injured' in problem:
+                self._injured = problem['injured']
+            
+            if 'attacked' in problem:
+                self._attacked = True
+                self._attacked_by = problem['attacked']
+        
+    @property
+    def health(self):
+        return self._injured
+    
+    @property
+    def tired(self):
+        return self._tired
+    
+    @property
+    def attacked(self):
+        return self._attacked
+    
+    @property
+    def attacked_by(self):
+       return self._attacked_by
 
 class Player(object):
     ''' Abstract class to represent any game player. It keeps track of the
@@ -250,8 +288,14 @@ class Player(object):
         location = Location.from_json(json['location'])
         if 'stuff' in json:
             items = Items(json['stuff'])
+        
         if 'threats' in json:
-            pass
+            threats = Threats(json['threats'])
+
+            logging.info('THREATS. HEALTH: ' + str(threats.health))
+            logging.info('THREATS. TIRED: ' + str(threats.tired))
+            logging.info('THREATS. ATTACKED: ' + str(threats.attacked))
+            logging.info('THREATS. ATTACKED BY: ' + str(threats.attacked_by))
 
         self.move_count += 1
         return self.next_move(location, items, threats)
