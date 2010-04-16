@@ -71,11 +71,9 @@ if options.debug or options.info:
 
 # Start process
 with closing(spawn(process)) as child:
-    # Start playing
-    play_game = True
 
-    # Make moves until you can't any more
-    while play_game:
+    # Send lines until you receive a False
+    while True:
         # Get response
         response = child.receive_response(response_timeout, character_timeout)
 
