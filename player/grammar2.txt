@@ -1,0 +1,36 @@
+Revision 2 (9 April 2010)
+-----------------------------
+
+Context-free grammar (using S-expression conventions)
+for messages sent from the game-playing program to the
+game program.
+
+This grammar is a prototype.  More messages will be
+added in future revisions of the game program.
+
+<msg>  ::=  (go <direction>)               ; use only when in a room
+         |  (flee)                         ; use only when in a room
+         |  (attack <character>)           ; use only when in a room
+         |  (attack <character> <weapon>)  ; use only when in a room
+         |  (stop)                         ; use only when outside
+         |  (enter)                        ; use only when outside
+         |  (enter-randomly)               ; use only when outside
+         |  (carry <item>)
+         |  (drop <item>)
+
+<direction>  ::=  up  |  down  |  east  |  west  |  north  |  south
+
+<character>  ::=  (<stereotype> <strings>) ; must match someone in room
+
+<stereotype>  ::=  <string>
+
+<weapon>  ::=  (weapon <string> <int>)     ; must be a carried item
+
+<item>  ::=  (frog)
+          |  (treasure <string> <int>)
+          |  (weapon <string> <int>)
+          |  (artifact <string>)
+          |  (artifact <string> <strings>)
+
+<strings>  ::=  <string>
+             |  <string> <strings>

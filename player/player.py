@@ -180,9 +180,10 @@ class InMoat(Location):
         return True
 
 
-# TODO: REVERT ME
 class Items(object):
-    ''' Convience class for items in a room. Sorts items into useful groups '''
+    ''' Convience class for items in a room. Sorts items into useful groups.
+        The properties return defensive copies of the attribute lists.
+    '''
 
     def __init__(self, items):
         self._has_frog = False
@@ -205,15 +206,15 @@ class Items(object):
 
     @property
     def treasures(self):
-        return self._treasures
+        return [] + self._treasures
 
     @property
     def weapons(self):
-        return self._weapons
+        return [] + self._weapons
 
     @property
     def artifacts(self):
-        return self._artifacts
+        return [] + self._artifacts
 
 
 class Player(object):
@@ -289,14 +290,16 @@ class BreadcrumbPlayer(Player):
         self.last_visited_room = None # The room we were in last
         self.stop_on_exit = False # When we get to an exit, should we stop
         self.restart_on_exit = False # When we get to an exit, should we restart
-        self.restart_attempts = 15 # How many times should we try to restart?
 
-        self.visited_exits = {} # Exits we have been through for each room
+        self.visited_doors = {} # Doors we have been through for each room
         self.reverse_path = [] # Stack of directions to go to reverse progress
                                # inside the castle. A breadcrumb trail
         self.castle_exits = {} # If a room has an exit which leaves the castle,
                                # we store it here along with the direction we
                                # need to go in from that room to leave
+        self.last_origin = None # The room id of the last room we considered the
+                                # origin of the castle
+        self.exit_paths = {}    # Maps room ids to paths to exits.
 
         self.override_path = None # If set, the player will just follow the
                                   # the directions in this path till its done
@@ -310,19 +313,17 @@ class BreadcrumbPlayer(Player):
             return self.handle_outdoors()
 
         room_id = location.identity
+
         # This is the case where we have just entered the room after an
         # enter-randomly
         if self.restart_on_exit and not self.override_path:
             logging.info('Re-entered after an enter randomly')
-            self.restart_attempts -= 1
             # If reset_on_exit is set, and the last_visited_room is this room,
             # have to exit again and try entering randomly again
-            if self.last_visited_room == room_id:
+            if room_id in self.visited_doors:
                 logging.info('Got to a room we already knew about. Exiting.')
-                # We should try to start again if we have restart attempts left
-                self.restart_on_exit = self.restart_attempts > 0
                 # This is definately an exit, so we can look it up
-                direction, _ = self.castle_exits[room_id]
+                direction = self.castle_exits[room_id]
                 return '(go %s)' % direction
             # Otherwise, we have accomplished our goal of finding part of the
             # castle. We have no idea what exit we came through, so we have to
@@ -330,13 +331,20 @@ class BreadcrumbPlayer(Player):
             else:
                 logging.info('Got to a new part of the castle')
                 self.restart_on_exit = False
+                self.last_origin = None
+
+        # When we first start exploring, we need to set this room as the origin
+        if not self.last_origin:
+            logging.debug("SETTING-ORIGIN: %s" % room_id)
+            self.last_origin = room_id
+            self.exit_paths[room_id] = []
 
         self.last_visited_room = room_id
-        if room_id not in self.visited_exits:
-            self.visited_exits[room_id] = set([])
+        if room_id not in self.visited_doors:
+            self.visited_doors[room_id] = set([])
         if self.reverse_path:
             door_entered = self.reverse_path[-1]
-            self.visited_exits[room_id].add(door_entered)
+            self.visited_doors[room_id].add(door_entered)
 
         # If we have the frog, check to see if we are in an exit room. If so,
         # leave through that exit.
@@ -360,7 +368,7 @@ class BreadcrumbPlayer(Player):
 
         logging.debug("HAS-FROG: %s" % self.stop_on_exit)
 
-        unvisited = location.exits - self.visited_exits[room_id]
+        unvisited = location.exits - self.visited_doors[room_id]
         # If this room has no exits we have not been through, go backwards by
         # following our breadcrumb trail
         if not unvisited:
@@ -375,11 +383,11 @@ class BreadcrumbPlayer(Player):
                 # Tell the player he needs to enter randomly when he gets out
                 # This detects hidden pieces of the castle
                 self.restart_on_exit = True
-                nearest_exit = self.find_nearest_exit()
-                if not nearest_exit:
+                nearest_outdoors = self.find_nearest_outdoors()
+                if not nearest_outdoors:
                     logging.error("We never encountered an exit. Que?")
                     return '(stop)'
-                self.override_path = nearest_exit
+                self.override_path = nearest_outdoors
                 direction = self.override_path.pop()
                 logging.info("Starting in direction %s" % direction)
             else:
@@ -393,18 +401,20 @@ class BreadcrumbPlayer(Player):
         # explore, so choose the first one, record the reverse in our trail,
         # and move in that direction
         direction = possible[0]
-        self.visited_exits[room_id].add(direction)
+        self.visited_doors[room_id].add(direction)
         reverse_direction = BreadcrumbPlayer.REVERSE_DIRECTIONS[direction]
         self.reverse_path.append(reverse_direction)
         logging.info("Going in direction %s" % direction)
 
-        logging.debug("VISITED-ROOMS: %s" % len(self.visited_exits))
+        logging.debug("VISITED-ROOMS: %s" % len(self.visited_doors))
         logging.debug("FOUND-EXITS: %s" % len(self.castle_exits))
+        logging.debug("CURRENT-ORIGIN: %s" % self.last_origin)
+        logging.debug("PATHS-TO-EXITS: %s" % self.exit_paths[self.last_origin])
         logging.debug("BREADCRUMB-TRAIL: %s" % self.reverse_path)
 
         return "(go %s)" % direction
 
-    def find_nearest_exit(self):
+    def find_nearest_outdoors(self):
         ''' For each exit we have encountered, we have a path from the origin to
             that exit. What we can do is, using all those collected paths and
             the path we have back to the origin, compute the smallest combined
@@ -412,18 +422,11 @@ class BreadcrumbPlayer(Player):
             For best performance, while going back to the origin, we should
             check to see if we encounter any exits.
         '''
-        if not self.castle_exits:
+        # Get the list of exit paths for the current origin
+        exit_paths = self.exit_paths[self.last_origin]
+        if not exit_paths:
             return None
-        shortest = None, None
-        for exit_direction, exit_path in self.castle_exits.values():
-            cur_short, _ = shortest
-            length = len(exit_path)
-            if not cur_short or length < cur_short:
-                shortest = length, (exit_direction, exit_path)
-        _, (leave, path) = shortest
-        new_path = [leave] + \
-                   self.invert_and_reverse_path(path) + \
-                   self.reverse_path
+        new_path = min(exit_paths) + self.reverse_path
         logging.debug("Calculated new exit path: %s" % new_path)
         return new_path
 
@@ -443,11 +446,14 @@ class BreadcrumbPlayer(Player):
         # remove the last entry in the reverse_path and go back in
         last_direction = self.reverse_path.pop()
         reverse_direction = BreadcrumbPlayer.REVERSE_DIRECTIONS[last_direction]
-        logging.info("Found exit room: %s %s" %
-                     (self.last_visited_room, reverse_direction))
+        logging.info("Found exit room: %s, %s, %s" %
+            (self.last_visited_room, reverse_direction, self.reverse_path))
 
-        self.castle_exits[self.last_visited_room] = (reverse_direction,
-                                                     self.reverse_path[:])
+        self.castle_exits[self.last_visited_room] = reverse_direction
+        origin_to_outside = self.invert_and_reverse_path(self.reverse_path) + \
+                            [reverse_direction]
+        self.exit_paths[self.last_origin].append(origin_to_outside)
+
         return "(enter)"
 
     def maybe_handle_items(self, items):
@@ -458,7 +464,7 @@ class BreadcrumbPlayer(Player):
         if items and items.has_frog:
             logging.info("Found the frog. Taking it.")
             self.stop_on_exit = True
-            self.override_path = self.find_nearest_exit()
+            self.override_path = self.find_nearest_outdoors()
             return '(carry (frog))'
 
         return None
