@@ -18,14 +18,14 @@ class WinMessage(object):
 
         if 'chronicle' in message:
             self._chronicle = message['chronicle']
-    
+
     def __str__(self):
         return str(self.message)
-    
+
     @property
     def message(self):
         return self._message
-    
+
     @property
     def score(self):
         return self._score
@@ -42,7 +42,7 @@ class LossMessage(object):
 
     def __init__(self, message):
         self._error, self._win = False, False
-        
+
         if "error" in message:
             self._error = message['error']
         else:
@@ -218,43 +218,43 @@ class Items(object):
 
 class Threats(object):
     ''' Convience class for threats'''
-    
+
     def __init__(self, problems):
-        
+
         # Assign null values to indicate we haven't received anything
         self._ill, self._tired, self._injured, self._attacked, self._attacked_by = \
             None, None, None, None, None
-       
+
         for problem in problems:
             if 'ill' in problem:
                 self._ill = problem['ill']
-            
+
             if 'tired' in problem:
                 self._tired = problem['tired']
-            
+
             if 'injured' in problem:
                 self._injured = problem['injured']
-            
+
             if 'attacked' in problem:
                 self._attacked = True
                 self._attacked_by = problem['attacked']
-   
+
     @property
     def ill(self):
         return self._ill
-    
+
     @property
     def health(self):
         return self._injured
-    
+
     @property
     def tired(self):
         return self._tired
-    
+
     @property
     def attacked(self):
         return self._attacked
-    
+
     @property
     def attacked_by(self):
        return self._attacked_by
@@ -270,7 +270,7 @@ class Player(object):
     def __init__(self):
         self.health, self.stamina, self.fortitude = 9, 9, 9
         self.weapons, self.artifacts, self.treasure = [], [], [] # Inventory
-        
+
         self.move_count = -1 # How many moves we have made so far
         self._ignored_weapons = set(["hi there",
                                      "atomic",
@@ -300,7 +300,7 @@ class Player(object):
         location = Location.from_json(json['location'])
         if 'stuff' in json:
             items = Items(json['stuff'])
-        
+
         if 'threats' in json:
             threats = Threats(json['threats'])
 
@@ -310,7 +310,7 @@ class Player(object):
             logging.info('THREATS. ATTACKED BY: ' + str(threats.attacked_by))
 
         move = self.next_move(location, items, threats)
-        
+
         if threats:
             self.health = threats.health or self.health
             self.stamina = threats.tired or self.stamina
@@ -550,7 +550,7 @@ class BreadcrumbPlayer(Player):
         exit_paths = self.exit_paths[self.last_origin]
         if not exit_paths:
             return None
-        new_path = min(exit_paths) + self.reverse_path
+        new_path = min(exit_paths, key=lambda x: len(x)) + self.reverse_path
         logging.debug("Calculated new exit path: %s" % new_path)
         return new_path
 
@@ -574,8 +574,8 @@ class BreadcrumbPlayer(Player):
             (self.last_visited_room, reverse_direction, self.reverse_path))
 
         self.castle_exits[self.last_visited_room] = reverse_direction
-        origin_to_outside = self.invert_and_reverse_path(self.reverse_path) + \
-                            [reverse_direction]
+        origin_to_outside = [reverse_direction] + \
+                            self.invert_and_reverse_path(self.reverse_path)
         self.exit_paths[self.last_origin].append(origin_to_outside)
 
         return "(enter)"
