@@ -268,7 +268,7 @@ class Player(object):
     '''
 
     def __init__(self):
-        self.health, self.stamina, self.fortitude = 9, 9, 9
+        self.previous_health, self.previous_tired, self.previous_ill = 9, 9, 9
         self.weapons, self.artifacts, self.treasure = [], [], [] # Inventory
 
         self.move_count = -1 # How many moves we have made so far
@@ -296,7 +296,7 @@ class Player(object):
                          '\n Win: ' + str(loss.win))
             return False
 
-        location, items, threats = None, None, None
+        location, items, threats = None, Items([]), Threats([])
         location = Location.from_json(json['location'])
         if 'stuff' in json:
             items = Items(json['stuff'])
@@ -308,17 +308,19 @@ class Player(object):
             logging.info('THREATS. TIRED: ' + str(threats.tired))
             logging.info('THREATS. ATTACKED: ' + str(threats.attacked))
             logging.info('THREATS. ATTACKED BY: ' + str(threats.attacked_by))
-
+        
         move = self.next_move(location, items, threats)
 
         if threats:
-            self.health = threats.health or self.health
-            self.stamina = threats.tired or self.stamina
-            self.fortitude = threats.ill or self.fortitude
+            # 'or' statement because we should use previous if
+            # there's not an update
+            self.previous_health = threats.health or self.previous_health
+            self.previous_tired = threats.tired or self.previous_tired
+            self.previous_ill = threats.ill or self.previous_ill
 
         return move
 
-    def next_move(self, location, items=None, threats=None):
+    def next_move(self, location, items, threats):
         ''' Determines the player's next move in the dungeon '''
         raise NotImplementedError
 
@@ -344,16 +346,13 @@ class Player(object):
 
     def make_carry_message(self, item_type, item, inv):
         ''' Add an item to one of our inventories when we carry it '''
-        print "Before Inv: %s\nItem:%s" % (inv, item)
         if item_type != 'artifact':
             inv.append(item)
 
-        print "After Inv: %s" % inv
         return self.make_message("carry", item_type, item)
 
     def make_drop_message(self, item_type, item, inv):
         ''' Remove an item to one of our inventories when we drop it '''
-        print "Inv: %s\nItem:%s" % (inv, item)
         if item_type != 'artifact':
             inv.remove(item)
 
@@ -372,12 +371,10 @@ class Player(object):
             name, desc = item
             # This is only done here unlike the other methods
             item_details = map(lambda x: '"%s"' % x, desc)
-
             if action == "carry":
                 self.artifacts.append((name, item_details))
             else:
                 self.artifacts.remove((name, item_details))
-
             return "(%s (%s \"%s\" %s))" % (action, item_type, name,  " ".join(item_details))
 
         else:
@@ -430,7 +427,7 @@ class BreadcrumbPlayer(Player):
         self.override_path = None # If set, the player will just follow the
                                   # the directions in this path till its done
 
-    def next_move(self, location, items=None, threats=None):
+    def next_move(self, location, items, threats):
         # The only way to be outside is to have explored there going forward.
         # We will never go outside by going backwards following our trail
         if location.is_outside or location.in_moat:
@@ -532,8 +529,8 @@ class BreadcrumbPlayer(Player):
 
         logging.debug("VISITED-ROOMS: %s" % len(self.visited_doors))
         logging.debug("FOUND-EXITS: %s" % len(self.castle_exits))
-        logging.debug("CURRENT-ORIGIN: %s" % self.last_origin)
-        logging.debug("PATHS-TO-EXITS: %s" % self.exit_paths[self.last_origin])
+        #logging.debug("CURRENT-ORIGIN: %s" % self.last_origin)
+        #logging.debug("PATHS-TO-EXITS: %s" % self.exit_paths[self.last_origin])
         logging.debug("BREADCRUMB-TRAIL: %s" % self.reverse_path)
 
         return "(go %s)" % direction
@@ -585,7 +582,7 @@ class BreadcrumbPlayer(Player):
             Returns None if we don't want to do anything
         '''
         # If we find the frog, pick his royal butt up
-        if items and items.has_frog:
+        if items.has_frog:
             logging.info("Found the frog. Taking it.")
             self.stop_on_exit = True
             self.override_path = self.find_nearest_outdoors()
@@ -611,19 +608,18 @@ class GreedyPlayer(BreadcrumbPlayer):
 
         # Pickup everything because we're greedy as hell
         message = None
-        if items:
-            if items.weapons:
-                item = items.weapons[0]
-                name, leathality = items.weapons[0]
-                # TODO: don't put "hi there" in items
-                if not(name == "hi there"):
-                    message = self.carry_weapon(item)
-            elif items.treasures:
-                item = items.treasures[0]
-                message = self.carry_treasure(item)
-            elif items.artifacts:
-                item = items.artifacts[0]
-                message = self.carry_artifact(item)
+        if items.weapons:
+            item = items.weapons[0]
+            name, leathality = items.weapons[0]
+            # TODO: don't put "hi there" in items
+            if not(name == "hi there"):
+                message = self.carry_weapon(item)
+        elif items.treasures:
+            item = items.treasures[0]
+            message = self.carry_treasure(item)
+        elif items.artifacts:
+            item = items.artifacts[0]
+            message = self.carry_artifact(item)
 
         if message:
             logging.debug("picking up item %s" % message)
@@ -640,27 +636,60 @@ class FighterPlayer(BreadcrumbPlayer):
         return self.weapons[0]
 
     def maybe_handle_items(self, items):
-        if items:
-            valid_weapons = filter(self.ignore_weapons, items.weapons)
-            if valid_weapons:
-                best_name, best_lethality = max(valid_weapons, key=lambda x: x[1])
-                if not self.current_weapon:
-                    return self.carry_weapon((best_name, best_lethality))
-                else:
-                    cur_name, cur_lethality = self.current_weapon
-                    if cur_lethality < best_lethality:
-                        return self.drop_weapon((cur_name, cur_lethality))
+        valid_weapons = filter(self.ignore_weapons, items.weapons)
+        if valid_weapons:
+            best_name, best_lethality = max(valid_weapons, key=lambda x: x[1])
+            if not self.current_weapon:
+                return self.carry_weapon((best_name, best_lethality))
+            else:
+                cur_name, cur_lethality = self.current_weapon
+                if cur_lethality < best_lethality:
+                    return self.drop_weapon((cur_name, cur_lethality))
         return super(FighterPlayer, self).maybe_handle_items(items)
 
-    def next_move(self, location, items=None, threats=None):
+    def next_move(self, location, items, threats):
 
-        if threats and threats.attacked:
-            if self.current_weapon:
-                return '(attack (%s) (weapon "%s" %s))' % (" ".join(map(lambda x: '"%s"' % x, threats.attacked_by)),
-                                                          self.current_weapon[0],
-                                                          self.current_weapon[1])
+        if threats.attacked and self.current_weapon:
+            return '(attack (%s) (weapon "%s" %s))' % (" ".join(map(lambda x: '"%s"' % x, threats.attacked_by)),
+                                                      self.current_weapon[0],
+                                                      self.current_weapon[1])
 
         return super(FighterPlayer, self).next_move(location, items, threats)
+
+class GoldDigger(BreadcrumbPlayer):
+
+    def __init__(self):
+        self._ignored_treasure = []
+        super(GoldDigger, self).__init__()
+
+    def next_move(self, location, items=None, threats=None):
+        # Reset ignored treasure if we're in a new room and not outside
+        if (self.last_visited_room != location.identity) and (location.identity != "OUTSIDE"):
+            self._ignored_treasure = []
+
+        # TODO: This only drops treasure, does not include weapons. Change
+        # this upon merge
+        if threats.tired and (len(self.treasure) > 0):
+            # Subtract the current tiredness from the previous
+            difference = self.previous_tired - threats.tired
+
+            # If that difference is subtracted from our current health
+            # we'll die! So let's drop a treasure with the smallest value
+            if threats.tired - difference < 0:
+                # Find treasure with smallest value
+                smallest_treasure = sorted(treasures, key = lambda x: x[1])[0]
+                
+                # Add to list noting to not pick this item up again
+                self._ignored_treasure.append(smallest_treasure)
+                return self.drop_treasure(smallest_treasure)
+
+        # Otherwise, Pickup treasure
+        if items.treasures:
+            for treasure in items.treasures:
+                if treasure not in self._ignored_treasure:    
+                    return self.carry_treasure(treasure)
+
+        return super(GoldDigger, self).next_move(location, items, threats)
 
 if __name__ == '__main__':
     # When run as a python file, take all the docstrings and run them as tests
