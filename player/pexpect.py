@@ -1602,6 +1602,42 @@ class spawn (object):
         
         return ''.join(chars)
 
+        
+    def receive_response_json_dict(self, response_timeout, character_timeout):
+        """ Added by Steve Klebanoff
+        Works the same as receive_response, except if it finds a finished valid
+        json dict in immediately stops instead of waiting for the timeout"""
+        chars = []
+        
+        # Get first character, using initial response timeout
+        try:
+            chars.append(self.read_nonblocking(1,response_timeout))
+        except TIMEOUT:
+            raise Exception("Program timed out , didnt receive a response after \
+                                        %f " % (response_timeout))
+        
+        open_curlies = 0
+        closed_curlies = 0
+        # We've got at least one character of response
+        # Get rest of response, using different (shorter) character timeout
+        while True:
+            try:
+                char = self.read_nonblocking(1,character_timeout)
+                if char == "{":
+                    open_curlies += 1
+                elif char == "}":
+                    closed_curlies += 1
+                
+                chars.append(char)
+                if (open_curlies) and (closed_curlies == open_curlies):
+                    # end of json object, don't timeout since we know we're done
+                    break
+
+            except (TIMEOUT, EOF):
+                break
+
+        return ''.join(chars)
+
 ##############################################################################
 # End of spawn class
 ##############################################################################
