@@ -6,7 +6,7 @@ from json import loads
 from optparse import OptionParser
 from contextlib import closing
 
-from player import BreadcrumbPlayer, GreedyPlayer, FighterPlayer
+from player import BreadcrumbPlayer, GoldDigger, GreedyPlayer, FighterPlayer
 from pexpect import spawn
 
 # Get options from command line
@@ -16,7 +16,7 @@ parser.add_option("-l", "--larceny", dest="larceny", default="larceny",
 parser.add_option("-g", "--game", dest="game", help="Location of game file")
 parser.add_option("-c", "--charactertimeout", dest="character_timeout",
                   help="Time out for reading characters", type="float",
-                  default=0.10)
+                  default=0.01)
 parser.add_option("-r", "--responsetimeout", dest="response_timeout",
                   help="Timeout for total reading from shell", type="float",
                   default=4.00)
@@ -55,7 +55,8 @@ else:
 # Setup the player
 player_class = {'BreadcrumbPlayer' : BreadcrumbPlayer,
                 'GreedyPlayer' : GreedyPlayer,
-                'FighterPlayer' : FighterPlayer}[options.player]
+                'FighterPlayer' : FighterPlayer,
+                'GoldDigger' : GoldDigger}[options.player]
 player = player_class()
 
 # Setup logging
@@ -66,10 +67,12 @@ if options.debug or options.info:
         level = logging.INFO
     else:
         level = logging.WARN
+    logging_filename = './gamelog-%s.log' % int(time.time())
     logging.basicConfig(level=level,
                         format='%(asctime)s %(levelname)s %(message)s',
-                        filename='./gamelog-%s.log' % int(time.time()),
+                        filename=logging_filename,
                         filemode='w')
+    print 'Logging to file', logging_filename
 
 # Start process
 with closing(spawn(process)) as child:
