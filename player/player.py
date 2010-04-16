@@ -18,7 +18,14 @@ class WinMessage(object):
 
         if 'chronicle' in message:
             self._chronicle = message['chronicle']
-
+    
+    def __str__(self):
+        return str(self.message)
+    
+    @property
+    def message(self):
+        return self._message
+    
     @property
     def score(self):
         return self._score
@@ -35,11 +42,10 @@ class LossMessage(object):
 
     def __init__(self, message):
         self._error, self._win = False, False
-
+        
         if "error" in message:
             self._error = message['error']
-
-        if "win" in message:
+        else:
             self._win = WinMessage(message)
 
     @property
@@ -235,7 +241,7 @@ class Player(object):
 
         if 'condolences' in json:
             loss = LossMessage(json['condolences'])
-            logging.info('You lost. Error: ' + loss.error + \
+            logging.info('You lost. Error: ' + str(loss.error) + \
                          '\n Win: ' + str(loss.win))
             return False
 
