@@ -267,18 +267,17 @@ class Threats(object):
        return self._attacked_by
 
 class Player(object):
-    ''' Abstract class to represent any game player. It keeps track of the
-        number of total moves made. Its handle_response is passed JSON,
-        and that JSON is converted into the proper objects. These objects
-        are passed to the next_move method, whose implementation is left
-        up to the implementing class.
+    ''' Abstract class to represent any game player. It has attributes for
+        tracking inventory.Its handle_response is passed JSON, and that JSON is
+        converted into the proper objects. These objects are passed to the next_move
+        method, whose implementation is left up to the implementing class. After
+        the implementing class decides on a move, the last room seen and changes
+        in health are recorded.
     '''
 
     def __init__(self):
-        self.previous_health, self.previous_tired, self.previous_ill = 9, 9, 9
-        self.weapons, self.artifacts, self.treasure = [], [], [] # Inventory
-
-        self.move_count = -1                # How many moves we have made so far
+        self.prev_health, self.prev_tired, self.prev_ill = 9, 9, 9 # Statuses
+        self.weapons, self.artifacts, self.treasure = [], [], []   # Inventory
         self.last_visited_location = None   # The location we saw last
 
     def handle_response(self, json):
@@ -286,7 +285,6 @@ class Player(object):
             which is sent to the dungeon program, or False to indicate to stop
             playing
         '''
-        self.move_count += 1
 
         if 'congratulations' in json:
             win = WinMessage(json['congratulations'])
@@ -301,8 +299,8 @@ class Player(object):
                          '\n Win: ' + str(loss.win))
             return False
 
-        location, items, threats = None, Items([]), Threats([])
         location = Location.from_json(json['location'])
+        items, threats = Items([]), Threats([])
         if 'stuff' in json:
             items = Items(json['stuff'])
 
@@ -317,12 +315,11 @@ class Player(object):
         move = self.next_move(location, items, threats)
         self.last_visited_location = location.identity
 
-        if threats:
-            # 'or' statement because we should use previous if
-            # there's not an update
-            self.previous_health = threats.health or self.previous_health
-            self.previous_tired = threats.tired or self.previous_tired
-            self.previous_ill = threats.ill or self.previous_ill
+        # 'or' statement because we should use previous if
+        # there's not an update
+        self.prev_health = threats.health or self.prev_health
+        self.prev_tired = threats.tired or self.prev_tired
+        self.prev_ill = threats.ill or self.prev_ill
 
         return move
 
@@ -666,7 +663,7 @@ class GoldDigger(BreadcrumbPlayer):
         # this upon merge
         if threats.tired and self.treasure:
             # Subtract the current tiredness from the previous
-            difference = self.previous_tired - threats.tired
+            difference = self.prev_tired - threats.tired
             
             # If our tiredness is not increasing aka we're not getting better, drop stuff
             if difference >= 0:
