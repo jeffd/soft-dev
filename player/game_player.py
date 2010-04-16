@@ -76,6 +76,9 @@ if options.debug or options.info:
                         filemode='w')
     print 'Logging to file', logging_filename
 
+time_start = time.time()
+logging.debug('Start at %s' % time_start)
+
 # Start process
 with closing(spawn(process)) as child:
 
@@ -106,3 +109,9 @@ with closing(spawn(process)) as child:
             break
         
         child.sendline(next_move)
+
+time_end = time.time()
+logging.debug('End at %s' % time_end)
+
+elapsed = time_end - time_start
+logging.debug("Took %s seconds to run, which is the same as %s minutes" % (elapsed, elapsed/60.0))
