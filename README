@@ -1,14 +1,99 @@
 CS 4500: Software Development: Spring 2010
 ==========================================
 
-[Testing Grammars]
-Create your grammer in a .grm file.
-Create your tests in a .txt file.
-Run:
-    cat <grammar> | python test_grammar.py -i <tests>
+Team Members
+------------
+Steven Klebanoff <stevek@ccs.neu.edu>
+John Mendelewski <jmendel@ccs.neu.edu>
+Jeff Dlouhy <jdlouhy@ccs.neu.edu>
 
-    or
+Repository
+----------
+https://github.com/jeffd/soft-dev/ (PRIVATE)
 
-    python test_grammar.py <grammar> <tests>
 
-For an example, see json_base.grm and json_base_tests.txt
+
+Getting Started
+===============
+
+Running The Game
+----------------
+
+$ python game_player.py -l LARCENYBIN -g GAMEFILE
+
+(Example on CCIS Linux)
+
+$ python game_player.py -l /usr/bin/larceny -g /course/cs4500wc/Assignments/Game10/game.sps.slfasl
+
+
+(Example with random seed)
+
+$ python game_player.py -g /course/cs4500wc/Assignments/Game10/game.sps.slfasl -s 675434126 -q 879542811
+
+
+Command Line Options
+--------------------
+
+        -i    Outputs small amount of informational output to a logfile
+
+        -d    Outputs *large* amount of debugging information to a logfile
+
+        -l    Path to Larceny program
+
+        -g    Path to game file
+
+        -s    First seed variable
+
+        -q    Second seed variable
+
+
+Third Party Software
+====================
+
+Pexpect
+-------
+
+Pexpect Copyright (c) 2010 Noah Spurrier
+
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+
+
+PyMeta
+------
+
+Copyright (c) 2008 Allen Short. Soli Deo Gloria.
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
