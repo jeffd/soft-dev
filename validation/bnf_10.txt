@@ -1,9 +1,3 @@
-Revision 0 (16 February 2010)
------------------------------
-
-Context-free grammar (using JSON conventions)
-for messages sent from the game program to the game-playing program.
-
 <msg>  ::=  <congratulations>
          |  <condolences>
          |  <status>
@@ -13,56 +7,48 @@ for messages sent from the game program to the game-playing program.
 <condolences>  ::=  { "condolences" : <loss> }
 
 <status>  ::=  { <location> }
-
             |  { <location> , <actors> }
             |  { <actors> , <location> }
             |  { <location> , <stuff> }
             |  { <stuff> , <location> }
             |  { <location> , <threats> }
             |  { <threats> , <location> }
-
             |  { <location> , <actors> , <stuff> }
             |  { <actors> , <location> , <stuff> }
             |  { <actors> , <stuff> , <location> }
             |  { <location> , <stuff> , <actors> }
             |  { <stuff> , <location> , <actors> }
             |  { <stuff> , <actors> , <location> }
-
             |  { <location> , <actors> , <threats> }
             |  { <actors> , <location> , <threats> }
             |  { <actors> , <threats> , <location> }
             |  { <location> , <threats> , <actors> }
             |  { <threats> , <location> , <actors> }
             |  { <threats> , <actors> , <location> }
-
             |  { <location> , <stuff> , <threats> }
             |  { <stuff> , <location> , <threats> }
             |  { <stuff> , <threats> , <location> }
             |  { <location> , <threats> , <stuff> }
             |  { <threats> , <location> , <stuff> }
             |  { <threats> , <stuff> , <location> }
-
             |  { <location> , <actors> , <stuff> , <threats> }
             |  { <location> , <threats> , <actors> , <stuff> }
             |  { <location> , <stuff> , <threats> , <actors> }
             |  { <location> , <actors> , <threats> , <stuff> }
             |  { <location> , <stuff> , <actors> , <threats> }
             |  { <location> , <threats> , <stuff> , <actors> }
-
             |  { <actors> , <location> , <stuff> , <threats> }
             |  { <threats> , <location> , <actors> , <stuff> }
             |  { <stuff> , <location> , <threats> , <actors> }
             |  { <actors> , <location> , <threats> , <stuff> }
             |  { <stuff> , <location> , <actors> , <threats> }
             |  { <threats> , <location> , <stuff> , <actors> }
-
             |  { <actors> , <stuff> , <location> , <threats> }
             |  { <threats> , <actors> , <location> , <stuff> }
             |  { <stuff> , <threats> , <location> , <actors> }
             |  { <actors> , <threats> , <location> , <stuff> }
             |  { <stuff> , <actors> , <location> , <threats> }
             |  { <threats> , <stuff> , <location> , <actors> }
-
             |  { <actors> , <stuff> , <threats> , <location> }
             |  { <threats> , <actors> , <stuff> , <location> }
             |  { <stuff> , <threats> , <actors> , <location> }
@@ -118,7 +104,12 @@ for messages sent from the game program to the game-playing program.
 <exits>  ::=  "exits" : [ ]
            |  "exits" : [ <directions> ]
 
-<direction>  ::=  "up"  |  "down"  |  "east"  |  "west"  |  "north"  |  "south"
+<direction>  ::=  "up"
+               |  "down"
+               |  "east"
+               |  "west"
+               |  "north"
+               |  "south"
 
 <character>  ::=  [ <stereotype> ]
                |  [ <stereotype> , <strings> ]
@@ -171,20 +162,3 @@ for messages sent from the game program to the game-playing program.
 
 <strings>  ::=  <string>
              |  <string> , <strings>
-
-****************************************************************
-
-Notes.
-
-The order of pairs in a <status> or <win> does not matter.
-
-The ordering of <events> matters.
-
-The ordering of <items> or <characters> or <problems>
-does not matter.
-
-The ordering of <strings> does not matter.
-
-The ordering of <directions> does not matter.
-
-****************************************************************

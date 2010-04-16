@@ -1,0 +1,34 @@
+escapedChar ::= '\\' ( 'n'
+                     | 'r'
+                     | 't'
+                     | 'b'
+                     | 'f'
+                     | '"'
+                     | '\''
+                     | '\\'
+                     | 'u' <hexdigit>+:h ?(len(h) == 4))
+
+hexdigit ::= :x ?(x in "0123456789abcdefABCDEF")
+
+string ::= <token '"'> (<escapedChar> | '-' | ~('"') <anything>)*:c <token '"'>
+
+number ::= '-' <unsigned_number>
+         | <unsigned_number>
+
+unsigned_number ::= <int> <frac> <expon>
+                  | <int> <expon>
+                  | <int> <frac>
+                  | <int>
+
+int ::= <digit>+:ds
+
+frac ::= '.' <digit>+
+
+expon ::= <e> <digit>+
+
+e ::= "e" "-"
+    | "e" "+"
+    | "e"
+    | "E" "-"
+    | "E" "+"
+    | "E"
