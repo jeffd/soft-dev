@@ -304,6 +304,29 @@ class Player(object):
         ''' Determines the player's next move in the dungeon '''
         raise NotImplementedError
 
+    def make_carry_message(self, item_type, item):
+        return self.make_message(self, "carry", item_type, item)
+
+    def make_drop_message(self, item_type, item):
+        return self.make_message(self, "drop", item_type, item)
+
+    def make_message(self, action, item_type, item):
+        ''' Returns a message for carrying an object '''
+        name = ""
+        details = ""
+
+        if item_type == 'treasure' or item_type == 'weapon':
+            name, worth = item
+            return "(%s (%s \"%s\" %s))" % (action, item_type, name, details)
+
+        elif item_type == 'artifact':
+            name, desc = item
+            item_details = map(lambda x: '"%s"' % x, desc)
+            return "(%s (%s \"%s\" %s))" % (action, item_type, name,  " ".join(item_details))
+
+        else:
+            return "(%s (%s))" % (action, item_type)
+
 
 class BreadcrumbPlayer(Player):
     ''' This player keeps track of each room it encounters. Each room has a
@@ -512,29 +535,6 @@ class BreadcrumbPlayer(Player):
             return '(carry (frog))'
 
         return None
-
-    def make_carry_message(self, item_type, item):
-        ''' Returns a message for carrying an object '''
-        desc = "" # Is there an easier way to do this in Python?
-        name = ""
-        worth = ""
-        leathality = ""
-
-        if item_type == 'treasure':
-            name, worth = item
-            return "(carry (%s \"%s\" %s))" % (item_type, name, worth)
-
-        elif item_type == 'weapon':
-            name, leathality = item
-            return "(carry (%s \"%s\" %s))" % (item_type, name, leathality)
-
-        elif item_type == 'artifact':
-            name, desc = item
-            item_details = map(lambda x: '"%s"' % x, desc)
-            return "(carry (%s \"%s\" %s))" % (item_type, name,  " ".join(item_details))
-
-        else:
-            return "(carry (%s))" % item_type
 
 
     def invert_and_reverse_path(self, path):
