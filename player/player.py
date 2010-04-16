@@ -238,7 +238,11 @@ class Threats(object):
             if 'attacked' in problem:
                 self._attacked = True
                 self._attacked_by = problem['attacked']
-        
+   
+    @property
+    def ill(self):
+        return self._ill
+    
     @property
     def health(self):
         return self._injured
@@ -264,13 +268,21 @@ class Player(object):
     '''
 
     def __init__(self):
+        self.health, self.stamina, self.fortitude = 9, 9, 9
+        self.weapons, self.artifacts, self.treasure = [], [], [] # Inventory
+        
         self.move_count = -1 # How many moves we have made so far
+        self._ignored_weapons = set(["hi there",
+                                     "atomic",
+                                     "grenade launcher"])
 
     def handle_response(self, json):
         ''' Converts the given json into useable objects. Returns either a string,
             which is sent to the dungeon program, or False to indicate to stop
             playing
         '''
+        self.move_count += 1
+
         if 'congratulations' in json:
             win = WinMessage(json['congratulations'])
             logging.info('You won. Score:' + str(win.score) + \
@@ -297,8 +309,14 @@ class Player(object):
             logging.info('THREATS. ATTACKED: ' + str(threats.attacked))
             logging.info('THREATS. ATTACKED BY: ' + str(threats.attacked_by))
 
-        self.move_count += 1
-        return self.next_move(location, items, threats)
+        move = self.next_move(location, items, threats)
+        
+        if threats:
+            self.health = threats.health or self.health
+            self.stamina = threats.tired or self.stamina
+            self.fortitude = threats.ill or self.fortitude
+
+        return move
 
     def next_move(self, location, items=None, threats=None):
         ''' Determines the player's next move in the dungeon '''
@@ -317,15 +335,23 @@ class Player(object):
 
         if item_type == 'treasure' or item_type == 'weapon':
             name, worth = item
+            if item_type == 'weapon':
+		self.weapons.append((name, worth))
+            else:
+		self.treasure.append((name, worth))
             return "(%s (%s \"%s\" %s))" % (action, item_type, name, details)
 
         elif item_type == 'artifact':
             name, desc = item
             item_details = map(lambda x: '"%s"' % x, desc)
+            self.artifacts.append((name, item_details))
             return "(%s (%s \"%s\" %s))" % (action, item_type, name,  " ".join(item_details))
 
         else:
             return "(%s (%s))" % (action, item_type)
+
+    def ignore_weapons(self, weapon):
+        return weapon[0] not in self._ignored_weapons
 
 
 class BreadcrumbPlayer(Player):
@@ -371,8 +397,6 @@ class BreadcrumbPlayer(Player):
         self.override_path = None # If set, the player will just follow the
                                   # the directions in this path till its done
 
-        self.weapons, self.artifacts, self.treasure = [], [], [] # Inventory
-
     def next_move(self, location, items=None, threats=None):
         # The only way to be outside is to have explored there going forward.
         # We will never go outside by going backwards following our trail
@@ -417,7 +441,7 @@ class BreadcrumbPlayer(Player):
         # leave through that exit.
         if self.stop_on_exit and room_id in self.castle_exits:
             logging.info("Found an exit and we have the frog. Leaving.")
-            direction, _ = self.castle_exits[room_id]
+            direction = self.castle_exits[room_id]
             return "(go %s)" % direction
 
         # Special handler case of just leaving
@@ -536,7 +560,6 @@ class BreadcrumbPlayer(Player):
 
         return None
 
-
     def invert_and_reverse_path(self, path):
         ''' Invert the order and direction of the directions in the given
             path
@@ -574,6 +597,38 @@ class GreedyPlayer(BreadcrumbPlayer):
             return message
 
         return None
+
+class FighterPlayer(BreadcrumbPlayer):
+
+    @property
+    def current_weapon(self):
+        if not self.weapons:
+            return None
+        return self.weapons[0]
+
+    def maybe_handle_items(self, items):
+        if items:
+            valid_weapons = filter(self.ignore_weapons, items.weapons)
+            if valid_weapons:
+                best_name, best_lethality = max(valid_weapons, key=lambda x: x[1])
+                if not self.current_weapon:
+                    return self.make_carry_message("weapon", (best_name, best_lethality))
+                else:
+                    cur_name, cur_lethality = self.current_weapon
+                    if cur_lethality < best_lethality:
+                        self.weapons.pop()
+                        return '(drop (weapon "%s" %s))' % (cur_name, cur_lethality)
+        return super(FighterPlayer, self).maybe_handle_items(items)
+
+    def next_move(self, location, items=None, threats=None):
+
+        if threats and threats.attacked:
+            if self.current_weapon:
+                return '(attack (%s) (weapon "%s" %s))' % (" ".join(map(lambda x: '"%s"' % x, threats.attacked_by)),
+                                                          self.current_weapon[0],
+                                                          self.current_weapon[1])
+
+        return super(FighterPlayer, self).next_move(location, items, threats)
 
 if __name__ == '__main__':
     # When run as a python file, take all the docstrings and run them as tests

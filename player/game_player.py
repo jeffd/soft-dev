@@ -6,7 +6,7 @@ from json import loads
 from optparse import OptionParser
 from contextlib import closing
 
-from player import BreadcrumbPlayer, GreedyPlayer
+from player import BreadcrumbPlayer, GreedyPlayer, FighterPlayer
 from pexpect import spawn
 
 # Get options from command line
@@ -53,8 +53,10 @@ else:
         process += ' -- outputfile %i %i' % (options.random1, options.random2)
 
 # Setup the player
-player = {'BreadcrumbPlayer' : BreadcrumbPlayer(),
-          'GreedyPlayer' : GreedyPlayer()}[options.player]
+player_class = {'BreadcrumbPlayer' : BreadcrumbPlayer,
+                'GreedyPlayer' : GreedyPlayer,
+                'FighterPlayer' : FighterPlayer}[options.player]
+player = player_class()
 
 # Setup logging
 if options.debug or options.info:
@@ -90,7 +92,10 @@ with closing(spawn(process)) as child:
 
         # Determine next move and tell the game program
         next_move = player.handle_response(response)
-        
+
+                # log the response
+        logging.debug("Next Move:\n" + str(next_move))
+
         # If next_move is false then stop playing
         if next_move == False:
             break
